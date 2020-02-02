@@ -1,0 +1,9 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+
+project/static_collected/.*
+project/media/.*
+project/settings/production.py
+project/settings/local.py
+project/db.sqlite3
