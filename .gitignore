@@ -2,8 +2,9 @@
 __pycache__/
 *.py[cod]
 
-project/static_collected/.*
-project/media/.*
+static_collected/.*
+media/
 project/settings/production.py
 project/settings/local.py
-project/db.sqlite3
+static/images
+db.sqlite3
