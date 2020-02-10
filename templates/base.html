@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="ru">
+{% load static %}
+  <head>
+    <title>{% block title %}ЯЛ ӖҪЧЕНӖ - Янтиковская районная газета "Селький труженик"{% endblock %}</title>
+    <!-- Required meta tags -->
+    <meta http-equiv="Content-Language" content="ru">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=1110">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--[if lte IE 9]><script src="http://phpbbex.com/oldies/oldies.js" charset="utf-8"></script><![endif]-->
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
+  </head>
+  <body>
+    <div class="container">
+        <header>
+            <div class="row align-items-center">
+
+              <div class="col-6 header-left">
+                
+                <div class="logo">
+                  <div class="logoexpand">Янтиковская районная газета "Сельский труженик"</div>
+                  <div class="logo"><a href="{% url 'index' %}">ЯЛ ӖҪЧЕНӖ</a></div>
+                  {# <img src="{% static 'images/logo.png'%}" width="540" height="115"> #}
+                </div>
+              </div>
+
+              <div class="col-3 header-center">
+                <div class="gismeteo">
+                    <!-- Gismeteo informer START -->
+                    <link rel="stylesheet" type="text/css" href="https://nst1.gismeteo.ru/assets/flat-ui/legacy/css/informer.min.css">
+                    <div id="gsInformerID-5FBglbu3SoP5s1" class="gsInformer" style="width:259px;height:105px">
+                      <div class="gsIContent">
+                      <div id="cityLink">
+                          <a href="https://www.gismeteo.ru/weather-yantikovo-236694/" target="_blank" title="Погода в Янтиково">
+                            <img src="https://nst1.gismeteo.ru/assets/flat-ui/img/gisloader.svg" width="24" height="24" alt="Погода в Янтиково">
+                          </a>
+                      </div>
+                      <div class="gsLinks">
+                          <table>
+                              <tr>
+                                  <td>
+                                      <div class="leftCol">
+                                          <a href="https://www.gismeteo.ru/" target="_blank" title="Погода">
+                                              <img alt="Погода" src="https://nst1.gismeteo.ru/assets/flat-ui/img/logo-mini2.png" align="middle" border="0" width="11" height="16" />
+                                              <img src="https://nst1.gismeteo.ru/assets/flat-ui/img/informer/gismeteo.svg" border="0" align="middle" style="left: 5px; top:1px">
+                                          </a>
+                                      </div>
+                                      <div class="rightCol">
+                                          <a href="https://www.gismeteo.ru/" target="_blank" title="Погода в Янтиково на 2 недели">
+                                            <img src="https://nst1.gismeteo.ru/assets/flat-ui/img/informer/forecast-2weeks.ru.svg" border="0" align="middle" style="top:auto" alt="Погода в Янтиково на 2 недели">
+                                          </a>
+                                      </div>
+                                  </td>
+                              </tr>
+                          </table>
+                      </div>
+                      </div>
+                    </div>
+                    <script async src="https://www.gismeteo.ru/api/informer/getinformer/?hash=5FBglbu3SoP5s1"></script>
+                    <!-- Gismeteo informer END -->
+                </div>
+                <div class="today_data_time">{% now "l\, j F Y \г." %}</div>
+              </div>
+
+              <div class="col-3 header-right">
+                  <div class="since">
+                      <span class="since_chuv">1935 ÇУЛТА ФЕВРАЛĔН 17-МĔШĔНЧЕ ТУХМА ПУÇЛАНĂ</span>
+                      <span class="since_rus">(Газета издается с 17 февраля 1935 года)</span>
+                  </div>
+                  <div class="subscribe">
+                      <a class="btn btn_subscribe" href="subscribe/" role="button">Подписка на газету &raquo;</a>
+                      <div class="vk">
+                        <a href="https://vk.com/seltruzh" target="_blank"><img class="rounded" alt="вконтакте" src="{% static 'images/vk.png' %}" data-holder-rendered="true"></a>
+                      </div>
+                  </div>
+              </div>
+
+            </div>
+        </header>
+
+            <div class="row">
+              <div class="col">
+                <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
+                  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                      <li class="nav-item active">
+                        <a class="nav-link" href="{% url 'index' %}">Главная<span class="sr-only">(current)</span></a>
+                      </li>
+                      <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Статьи
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                          <a class="dropdown-item" href="/news/">Новости</a>
+                          <a class="dropdown-item" href="/news/publications">Публикации</a>
+                        </div>
+                      </li>
+                      <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          О редакции
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                          <a class="dropdown-item" href="#">Структура</a>
+                          <a class="dropdown-item" href="#">Вакансии</a>
+                          <a class="dropdown-item" href="#">Документы</a>
+                          <div class="dropdown-divider"></div>
+                          <a class="dropdown-item" href="#">Редакция газеты: вчера и сегодня</a>
+                        </div>
+                      </li>
+ 
+                      <li class="nav-item">
+                        <a class="nav-link" href="#">Подписка</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="#">Реклама</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="#">Объявления</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="#">Контакты</a>
+<!--                       <li class="nav-item">
+                        <a class="nav-link" href="#">Предложить новость</a>
+                      </li> -->
+                      </li>
+                    </ul>
+                    <form class="form-inline my-2 my-lg-0">
+                      <input class="form-control mr-sm-2" type="Поиск" placeholder="Поиск" aria-label="Поиск">
+                      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Поиск</button>
+                    </form>
+                  </div>
+                </nav>
+              </div>
+          </div>
+
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="base.html">Главная</a></li>
+            <li class="breadcrumb-item"><a href="#">О редакции</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Вакансии</li>
+          </ol>
+        </nav>
+
+        <main>
+          {% block main %}{% endblock %}
+        </main>
+
+        <footer>
+            <div class="row footer">
+              <div class="col-4 footer-left">
+                АУ «Редакция Янтиковской районной газеты «Ял ěçченě» («Сельский труженик») Мининформполитики Чувашии
+                429290, ЧР, Янтиковский район, с. Янтиково, пр. Ленина, 15
+              </div>
+
+              <div class="col-4 footer-center">
+                  <div class="copyright">© При использовании материалов ссылка на данный сайт обязательна</div>
+                  <div style="text-align:center;">
+                      <!--TopList COUNTER-->
+                      <a target="_top" href="http://top.list.ru/jump?from=29373"><img src="http://top.list.ru/counter?id=29373;t=52" border="0" height="31" width="88" alt="TopList"></a> 
+                      <!--TopList COUNTER-->
+                      <a href="http://gov.cap.ru/stat/svod.asp"><img src="data:image/gif;base64,R0lGODlhWAAfALMAAHeTqWybwVd5m4q21/7FAZPM89amEK7c+ENXbGFYPzFDXqqHHqrH14ZyMhcjQTNmmSH5BAAAAAAALAAAAABYAB8AAAT/8MlJq7046827/2AojmQGDEGprqDAHPAxDILA3nj9xkURAwAbbhgCMAi83qHH8B0YQaI0IwDElr2sVgtDTb8PAQoVKD/KaAF6fS4PomBcAEiv2+94Yfx2CpDRf2t+g2t6ezcMA1AOCFACCQkNCw2QVQwKDi4MDIaHKz4FAZlvCwSmpwYGagoKAjChnjgDPQiMDae4qA0OCggDB2axLL8FmAm5yAQGDazEncIjVsUKyJMNBrgGzTLP0CG/AwqluLsODsfkCi803irECNi4kAkKCfGmCwrg3e0eswUIkglUpo9bPxLv7g1Epc7gQREJs1GaRxFSwQEPRxATl4seK3GpcRYsu8gvY4aN6OTVG3eK2TqT32RgYomqWi9wMEFsZEUzWb5eTQrk9BDgRQEAmQCITLYMACtXSwAM5SAgFA0HDUI9krTAGgI/mAAUmFFyqgQxcwA08AMgQA23VdgGaUAGjlkMbgWpEcSX792/gAMLvhEBADs=" width="88" height="31" border="0" alt="Сводная статистика портала"></a>
+                      <img src="http://www.ranker.ru/scripts/rcounter.dll?ID=8594&image=316" border="0" width="1" height="1">
+                </div>
+              </div>
+              <div class="col-4 footer-right">
+                Телефон: 8 (835 48) 2-11-10, 2-15-64
+                Факс: 8(83548) 2-11-10
+                http://yantik-press.ru/
+                E-Mail: smi11@cap.ru
+              </div>
+          </div>
+        </footer>
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <!-- Gismeteo Informer (begin) -->
+    <script type="text/javascript">
+    (function() {
+        var
+            d = this.document,
+            o = this.navigator.userAgent.match(/MSIE (6|7|8)/) ? true : false,
+            s = d.createElement('script');
+     
+        s.src  = 'https://www.gismeteo.ru/informers/simple/install/';
+        s.type = 'text/javascript';
+        s[(o ? 'defer' : 'async')] = true;
+        s[(o ? 'onreadystatechange' : 'onload')] = function() {
+            try {new GmI({
+                slug : 'fbe2ee01c6b2a0dd0f3ef73c04bc49fd',
+                type : '240x90-2',
+                city : '236694',
+                lang : 'ru'
+            })} catch (e) {}
+        }
+     
+        d.body.appendChild(s);
+    })();
+    </script>
+    <!-- Gismeteo Informer (finish) -->
+
+
+  </body>
+</html>

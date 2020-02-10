@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Публикации / ЯЛ ӖҪЧЕНӖ - Янтиковская районная газета "Селький труженик"{% endblock %}
+
+{% block main %}
+            <div class="row">
+              <div class="col-9 news">
+                {% for publication in all_publications %}
+                <div class="news_post">
+                    <div class="header">
+                        <a href="{{ publication.get_absolute_url}}">{{ publication.title}}</a>
+                    </div>
+                    {% if publication.image %}
+                      <img class="rounded float-left" alt="" src="/media/{{ publication.image}}" data-holder-rendered="true" width="300px" height="auto">
+                    {% endif %}
+                    <p>
+                        {{ publication.content|truncatewords:100 }}
+                        {% if publication.content|wordcount > 100 %}
+                          <a href="{{ publication.get_absolute_url}}"> тĕплĕнрех</a>
+                        {% endif %}
+                    </p>
+                    <div class="created">{{ publication.created }}</div>
+                </div>
+                {% endfor %}
+              </div>
+
+<!--               <div class="col-3 publications">
+                <div class="badge_all_publications"><a href="/news/"><span class="badge badge-info">Все новости</span></a></div>
+                {% for news in all_news %}
+                <div class="publication_post">
+                  <div class="header">
+                    <a href="{{ news.get_absolute_url}}">{{ news.title}}</a>
+                  </div>
+                  {% if news.image %}
+                    <img class="rounded float-left" alt="" src="/media/{{ news.image}}" data-holder-rendered="true" width="100%" height="auto">
+                  {% endif %}
+                  <p>
+                    {{ news.content|truncatewords:43 }}<a href="{{ news.get_absolute_url}}"> подробнее</a>
+                  </p>
+                  <div class="created">{{ news.created }}</div>
+                </div>
+                {% endfor %}
+                <div class="all_publications"><a href="/news/" class="btn btn-info btn-sm">Перейти к новостям</a></div>
+              </div>
+-->
+
+              <div class="col-3 banners">
+                {% for banners in all_banners %}
+                <div class="banners_post">
+                  {% if banners.image %}
+                    <a href="{{ banners.link}}" target="_blank">
+                      <img class="rounded" alt="{{ banners.title}}" src="/media/{{ banners.image}}" data-holder-rendered="true">
+                    </a>
+                  {% endif %}
+                </div>
+                {% endfor %}
+              </div>
+            </div>
+
+            {% include "paginations.html" with page=all_publications %}
+
+
+
+{% endblock %}
