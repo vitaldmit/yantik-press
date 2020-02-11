@@ -9,7 +9,7 @@
                         <a href="{{ news.get_absolute_url}}">{{ news.title}}</a>
                     </div>
                     {% if news.image %}
-                      <img class="rounded float-left" alt="" src="/media/{{ news.image}}" data-holder-rendered="true" width="300px" height="auto">
+                      <img class="rounded float-left news_post_imgs" alt="" src="/media/{{ news.image}}" data-holder-rendered="true">
                     {% endif %}
                     <p>
                         {{ news.content|truncatewords:100 }}

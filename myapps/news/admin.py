@@ -15,7 +15,7 @@ class NewsAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('title',)}
     # raw_id_fields = ('author',)
     date_hierarchy = 'publish'
-    ordering = ('created', 'publish')
+    ordering = ('-created', '-publish')
     inlines = [NewsImagesInline, ]
 
 
@@ -24,6 +24,7 @@ class NewsImagesAdmin(admin.ModelAdmin):
     list_display = ('news', 'created', 'updated', 'visible')
     list_filter = ('visible', 'created', 'updated')
     search_fields = ('news', )
+    ordering = ('-created', )
 
 
 @admin.register(Banners)
@@ -31,3 +32,4 @@ class BannersAdmin(admin.ModelAdmin):
     list_display = ('title', 'created', 'updated', 'visible',)
     list_filter = ('visible', 'created', 'updated')
     search_fields = ('title', )
+    ordering = ('-created', '-publish')

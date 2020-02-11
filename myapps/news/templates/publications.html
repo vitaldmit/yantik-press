@@ -12,11 +12,11 @@
                         <a href="{{ publication.get_absolute_url}}">{{ publication.title}}</a>
                     </div>
                     {% if publication.image %}
-                      <img class="rounded float-left" alt="" src="/media/{{ publication.image}}" data-holder-rendered="true" width="300px" height="auto">
+                      <img class="rounded float-left news_post_imgs" alt="" src="/media/{{ publication.image}}" data-holder-rendered="true">
                     {% endif %}
                     <p>
-                        {{ publication.content|truncatewords:100 }}
-                        {% if publication.content|wordcount > 100 %}
+                        {{ publication.content|truncatewords:150 }}
+                        {% if publication.content|wordcount > 150 %}
                           <a href="{{ publication.get_absolute_url}}"> тĕплĕнрех</a>
                         {% endif %}
                     </p>
