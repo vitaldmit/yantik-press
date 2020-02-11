@@ -176,8 +176,8 @@ p {
 }
 
 .banners_post img {
-    width: 95%;
-    /*height: 100px;*/
+    width: 100%;
+    height: fit-content;
 }
 .news_article {
     margin-bottom: 15px;

@@ -96,8 +96,11 @@
                           Статьи
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                          <a class="dropdown-item" href="/news/">Новости</a>
-                          <a class="dropdown-item" href="/news/publications">Публикации</a>
+                          <a class="dropdown-item" href="#">Акутально</a>
+                          <a class="dropdown-item" href="{% url 'news:news' %}">Новости</a>
+                          <a class="dropdown-item" href="{% url 'news:publications' %}">Публикации</a>
+                          <a class="dropdown-item" href="#">Фоторепортаж</a>
+                          <a class="dropdown-item" href="#">Видеорепортаж</a>
                         </div>
                       </li>
                       <li class="nav-item dropdown">
@@ -105,8 +108,8 @@
                           О редакции
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                          <a class="dropdown-item" href="#">Структура</a>
-                          <a class="dropdown-item" href="#">Вакансии</a>
+                          <a class="dropdown-item" href="{% url 'about:employees' %}">Структура</a>
+                          <a class="dropdown-item" href="{% url 'about:vacancies' %}">Вакансии</a>
                           <a class="dropdown-item" href="#">Документы</a>
                           <div class="dropdown-divider"></div>
                           <a class="dropdown-item" href="#">Редакция газеты: вчера и сегодня</a>
@@ -140,7 +143,7 @@
 
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="base.html">Главная</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'index' %}">Главная</a></li>
             <li class="breadcrumb-item"><a href="#">О редакции</a></li>
             <li class="breadcrumb-item active" aria-current="page">Вакансии</li>
           </ol>
@@ -168,9 +171,9 @@
                 </div>
               </div>
               <div class="col-4 footer-right">
-                Телефон: 8 (835 48) 2-11-10, 2-15-64
+                Телефон: 8 (83548) 2-11-10, 2-15-64
                 Факс: 8(83548) 2-11-10
-                http://yantik-press.ru/
+                http://yantik-press.ru
                 E-Mail: smi11@cap.ru
               </div>
           </div>

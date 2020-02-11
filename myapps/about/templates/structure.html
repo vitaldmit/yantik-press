@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}Структура / ЯЛ ӖҪЧЕНӖ - Янтиковская районная газета "Селький труженик"{% endblock %}
+
+{% block main %}
+<div class="row">
+    <div class="col-3">
+        menu
+    </div>
+    <div class="col-9">
+        {% for employee in all_employees %}
+            <h1>{{ employee.name }}</h1>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

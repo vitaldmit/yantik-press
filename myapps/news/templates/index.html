@@ -7,7 +7,7 @@
                 {% for news in all_news %}
                 <div class="news_post">
                     <div class="header">
-                        <a href="{{ news.get_absolute_url}}">{{ news.title}}</a>
+                        <a href="{{ news.get_absolute_url}}">{{ news.title }}</a>
                     </div>
                     {% if news.image %}
                       {% if forloop.first %} 

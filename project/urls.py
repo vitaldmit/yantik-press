@@ -24,6 +24,7 @@ from myapps.news.views import index
 urlpatterns = [
     path('', index, name='index'),
     path('news/', include('myapps.news.urls')),
+    path('about/', include('myapps.about.urls')),
     path('admin/', admin.site.urls),
 ]
 # handle /media/, /static/ static files (only if DEBUG is True)
