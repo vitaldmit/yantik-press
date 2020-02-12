@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Employees, Vacancies
+from .models import Employees, Vacancies, Documents
 
 
 @admin.register(Employees)
@@ -11,3 +11,8 @@ class EmployeesAdmin(admin.ModelAdmin):
 @admin.register(Vacancies)
 class VacanciesAdmin(admin.ModelAdmin):
     list_display = ('post', 'visible')
+
+
+@admin.register(Documents)
+class DocumentsAdmin(admin.ModelAdmin):
+    list_display = ('name', 'visible')

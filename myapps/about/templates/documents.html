@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}Документы / ЯЛ ӖҪЧЕНӖ - Янтиковская районная газета "Селький труженик"{% endblock %}
+
+{% block main %}
+<div class="row">
+    <div class="col-3">
+        menu
+    </div>
+    <div class="col-9">
+        {% for documents in all_documents %}
+            <h1>{{ documents.name }}</h1>
+            <h1><a href="{{ documents.file }}" download>Скачать файл</a></h1>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

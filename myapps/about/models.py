@@ -40,3 +40,22 @@ class Vacancies(models.Model):
 
     def __str__(self):
         return self.post
+
+
+class Documents(models.Model):
+    name = models.CharField('Название', max_length=100)
+    file = models.FileField('Файл', upload_to='about/documents/%Y-%m-%d/',
+                              max_length=100)
+    visible = models.BooleanField('Показывать', default=1)
+    ontop = models.BooleanField('Размещать сверху', )
+    created = models.DateTimeField('Создан', auto_now=False, auto_now_add=True)
+    updated = models.DateTimeField('Обновлен',
+                                   auto_now=True, auto_now_add=False)
+
+    class Meta:
+        ordering = ('created', )
+        verbose_name = 'Документ'
+        verbose_name_plural = 'Документы'
+
+    def __str__(self):
+        return self.name

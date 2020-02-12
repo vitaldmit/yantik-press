@@ -7,5 +7,6 @@ app_name = 'about'
 urlpatterns = [
     # path('structure/', views.employees, name='structure'),
     path('employees/', views.employees, name='employees'),
-    path('employeesvacancies/', views.vacancies, name='vacancies'),
+    path('vacancies/', views.vacancies, name='vacancies'),
+    path('documents/', views.documents, name='documents'),
 ]
