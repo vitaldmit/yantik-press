@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Фотогалереи / ЯЛ ӖҪЧЕНӖ - Янтиковская районная газета "Селький труженик"{% endblock %}
+
+{% block main %}
+            <div class="row">
+              <div class="col-9 news">
+                {% for photogallery in all_photogallery %}
+                <div class="news_post">
+                    <div class="header">
+                        <a href="{{ photogallery.get_absolute_url }}">{{ photogallery.title }}</a>
+                    </div>
+                    {% if photogallery.image %}
+                      <img class="rounded float-left news_post_imgs" alt="" src="/media/{{ photogallery.image}}" data-holder-rendered="true">
+                    {% endif %}
+                    <div class="created">{{ photogallery.created }}</div>
+                </div>
+                {% endfor %}
+              </div>
+
+<!--               <div class="col-3 publications">
+                <div class="badge_all_publications"><a href="/news/"><span class="badge badge-info">Все новости</span></a></div>
+                {% for news in all_news %}
+                <div class="publication_post">
+                  <div class="header">
+                    <a href="{{ news.get_absolute_url}}">{{ news.title}}</a>
+                  </div>
+                  {% if news.image %}
+                    <img class="rounded float-left" alt="" src="/media/{{ news.image}}" data-holder-rendered="true" width="100%" height="auto">
+                  {% endif %}
+                  <p>
+                    {{ news.content|truncatewords:43 }}<a href="{{ news.get_absolute_url}}"> подробнее</a>
+                  </p>
+                  <div class="created">{{ news.created }}</div>
+                </div>
+                {% endfor %}
+                <div class="all_publications"><a href="/news/" class="btn btn-info btn-sm">Перейти к новостям</a></div>
+              </div>
+-->
+
+              <div class="col-3 banners">
+                {% for banners in all_banners %}
+                <div class="banners_post">
+                  {% if banners.image %}
+                    <a href="{{ banners.link}}" target="_blank">
+                      <img class="rounded" alt="{{ banners.title}}" src="/media/{{ banners.image}}" data-holder-rendered="true">
+                    </a>
+                  {% endif %}
+                </div>
+                {% endfor %}
+              </div>
+            </div>
+
+            {% include "paginations.html" with page=all_publications %}
+
+
+
+{% endblock %}

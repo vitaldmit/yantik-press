@@ -1,28 +1,22 @@
 {% extends 'base.html' %}
 
-{% block title %} {{ news_article.title}} {% endblock %}
+{% block title %} {{ photogallery_article.title}} - фотогалерея {% endblock %}
 
 {% block main %}
     <div class="row">
         <div class="col-9 news_article">
                 <div class="header">
-                    {{ news_article.title}}
+                    {{ photogallery_article.title}}
                 </div>
-                {% if news_article.image %}
-                    <img src="/media/{{ news_article.image }}" alt="{{ news_article.title }}">
-                {% endif %}
                 <p>
-                    {{ news_article.content }}
-                    {% for photogallery in news_article.photogallery.all %}
-                        <img src="/media/{{ photogallery.image }}" alt="{{ photogallery.title }}">
-                        {% for imgs in photogallery.news_images.all %}
-                            <img src="/media/{{ imgs.image }}" alt="{{ photogallery.title }}">
-                        {% endfor %}
+                    <img src="/media/{{ photogallery_article.image}}" alt="{{ photogallery.title }}">
+                    {% for images in photogallery_article.news_images.all %}
+                        <img src="/media/{{ images.image }}" alt="{{ photogallery.title }}">
                     {% endfor %}
                 </p>
-                {% if news_article.source %}
+{#                 {% if news_article.source %}
                     <div class="source_news_article">Первоисточник: {{ news_article.source }} </div>
-                {% endif %}
+                {% endif %} #}
         </div>
         <div class="col-3">
             <div class="share_news_article">
