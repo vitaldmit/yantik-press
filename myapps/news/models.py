@@ -23,7 +23,7 @@ class News(models.Model):
     keywords = models.CharField('Ключевые слова', max_length=100,
                                 blank=True, null=True)
     description = models.TextField('Описание', blank=True, null=True)
-    image = models.ImageField('Главное фото', upload_to='newsimages/',
+    image = models.ImageField('Главное фото', upload_to='newsimages/%Y-%m-%d/',
                               blank=True, null=True)
     imagesign = models.CharField('Подпись к главному фото', max_length=100,
                                  blank=True, null=True)
@@ -59,7 +59,7 @@ class NewsImages(models.Model):
                              null=True, default=None,
                              verbose_name='Связанная новость',
                              related_name='related_news')
-    image = models.ImageField('Фото', upload_to='newsimages/',
+    image = models.ImageField('Фото', upload_to='newsimages/%Y-%m-%d/',
                               null=True, blank=True)
     visible = models.BooleanField('Показывать', default=1)
     created = models.DateTimeField('Создан', auto_now=False, auto_now_add=True)
@@ -84,7 +84,7 @@ class Banners(models.Model):
                             choices=TYPE_CHOICES, default='image')
     title = models.CharField('Заголовок', max_length=200)
     link = models.CharField('Ссылка', max_length=200)
-    image = models.ImageField('Фото баннера', upload_to='bannersimages/',
+    image = models.ImageField('Фото баннера', upload_to='bannersimages/%Y-%m-%d/',
                               blank=True, null=True)
     visible = models.BooleanField('Показывать', default=1)
     created = models.DateTimeField('Создан', auto_now=False, auto_now_add=True)
