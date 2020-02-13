@@ -3,7 +3,7 @@ __pycache__/
 *.py[cod]
 
 # media/
-media/cache/
+# media/cache/
 # static/images
 static_collected/.*
 project/settings/production.py
