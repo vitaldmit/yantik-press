@@ -215,7 +215,7 @@ p {
 .news_article {
     margin-bottom: 15px;
 }
-.news_article img, .publications_article img {
+.news_article img{
     width: 50%;
     height: auto;
     float: left;
