@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     'myapps.news.apps.NewsConfig',
     'myapps.about.apps.AboutConfig',
     'sorl.thumbnail',
+    'tinymce',
 ]
 
 MIDDLEWARE = [

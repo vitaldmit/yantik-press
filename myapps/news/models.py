@@ -3,6 +3,8 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 from django.utils import timezone
 
+from tinymce.models import HTMLField
+
 
 class News(models.Model):
     """
@@ -28,7 +30,7 @@ class News(models.Model):
                               blank=True, null=True)
     imagesign = models.CharField('Подпись к главному фото', max_length=100,
                                  blank=True, null=True)
-    content = models.TextField('Контент', )
+    content = HTMLField('Контент', )
     source = models.CharField('Первоисточник', max_length=100,
                               blank=True, null=True)
     visible = models.BooleanField('Показывать', default=1)
@@ -71,7 +73,7 @@ class PhotoGallery(models.Model):
     publish = models.DateTimeField("Дата публикации", default=timezone.now)
 
     def get_absolute_url(self):
-        return reverse('news:photogallery_article', args=[self.publish.year, 
+        return reverse('news:photogallery_article', args=[self.publish.year,
                                                           self.publish.month,
                                                           self.publish.day,
                                                           self.slug])

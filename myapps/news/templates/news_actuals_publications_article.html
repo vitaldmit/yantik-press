@@ -16,9 +16,10 @@
                       </a>
                     {# <img src="/media/{{ news_article.image }}" alt="{{ news_article.title }}"> #}
                 {% endif %}
-                <p>
-
-                    {{ news_article.content }}
+                
+                    <div class="content">
+                        {{ news_article.content|safe }}
+                    </div>
 {% comment %}
                     {% for photogallery in news_article.photogallery.all %}
                         <img src="/media/{{ photogallery.image }}" alt="{{ photogallery.title }}">
@@ -43,9 +44,6 @@
                         {% endfor %}
                     {% endfor %}
                 </div>
-
-
-
 {% comment %}
                     <a href="/media/{{ photogallery_article.image}}" rel="gallery" class="swipebox" title="{{ photogallery_article.title}}">
                         {% thumbnail photogallery_article.image "150" crop="center" as im %}
@@ -63,7 +61,7 @@
                         </a>
                     {% endfor %}
 {% endcomment %}
-                </p>
+
                 {% if news_article.source %}
                     <div class="source_news_article">Первоисточник: {{ news_article.source }} </div>
                 {% endif %}
