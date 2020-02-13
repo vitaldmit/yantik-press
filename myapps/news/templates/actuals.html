@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Публикации / ЯЛ ӖҪЧЕНӖ - Янтиковская районная газета "Селький труженик"{% endblock %}
+
+{% block main %}
+            <div class="row">
+              <div class="col-9 news">
+                {% for actual in all_actuals %}
+                <div class="news_post">
+                    <div class="header">
+                        <a href="{{ actual.get_absolute_url}}">{{ actual.title}}</a>
+                    </div>
+                    {% if actual.image %}
+                      <img class="rounded float-left news_post_imgs" alt="" src="/media/{{ actual.image}}" data-holder-rendered="true">
+                    {% endif %}
+                    <p>
+                        {{ actual.content|truncatewords:150 }}
+                        {% if actual.content|wordcount > 150 %}
+                          <a href="{{ actual.get_absolute_url}}"> тĕплĕнрех</a>
+                        {% endif %}
+                    </p>
+                    <div class="created">{{ actual.created }}</div>
+                </div>
+                {% endfor %}
+              </div>
+
+<!--               <div class="col-3 actuals">
+                <div class="badge_all_actuals"><a href="/news/"><span class="badge badge-info">Все новости</span></a></div>
+                {% for news in all_news %}
+                <div class="actual_post">
+                  <div class="header">
+                    <a href="{{ news.get_absolute_url}}">{{ news.title}}</a>
+                  </div>
+                  {% if news.image %}
+                    <img class="rounded float-left" alt="" src="/media/{{ news.image}}" data-holder-rendered="true" width="100%" height="auto">
+                  {% endif %}
+                  <p>
+                    {{ news.content|truncatewords:43 }}<a href="{{ news.get_absolute_url}}"> подробнее</a>
+                  </p>
+                  <div class="created">{{ news.created }}</div>
+                </div>
+                {% endfor %}
+                <div class="all_actuals"><a href="/news/" class="btn btn-info btn-sm">Перейти к новостям</a></div>
+              </div>
+-->
+
+              <div class="col-3 banners">
+                {% for banners in all_banners %}
+                <div class="banners_post">
+                  {% if banners.image %}
+                    <a href="{{ banners.link}}" target="_blank">
+                      <img class="rounded" alt="{{ banners.title}}" src="/media/{{ banners.image}}" data-holder-rendered="true">
+                    </a>
+                  {% endif %}
+                </div>
+                {% endfor %}
+              </div>
+            </div>
+
+            {% include "paginations.html" with page=all_actuals %}
+
+
+
+{% endblock %}

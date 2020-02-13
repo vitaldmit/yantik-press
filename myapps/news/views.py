@@ -60,6 +60,29 @@ def publications(request):
                    'all_banners': all_banners})
 
 
+def actuals(request):
+    # Тип новости 'Публикации'
+    all_actuals = News.objects.filter(type='actuals').order_by('-created')
+    paginator = Paginator(all_actuals, 10)
+    page = request.GET.get('page')
+    try:
+        all_actuals = paginator.page(page)
+    except PageNotAnInteger:
+        # Если страница не является целым числом,возвращаем первую страницу.
+        all_actuals = paginator.page(1)
+    except EmptyPage:
+        # Если номер страницы больше, чем общее количество страниц,
+        # возвращаем последнюю.
+        all_actuals = paginator.page(paginator.num_pages)
+    # Тип новости 'Публикация'
+    # all_news = News.objects.filter(type='news').order_by('-created')[:8]
+    all_banners = Banners.objects.all()
+    return render(request, 'actuals.html',
+                  {'page': page,
+                   'all_actuals': all_actuals,
+                   'all_banners': all_banners})
+
+
 def news_article(request, year, month, day, slug):
     news_article = get_object_or_404(News, slug=slug, visible=True,
                                      publish__year=year, publish__month=month,

@@ -9,7 +9,7 @@ class News(models.Model):
     Новости
     """
     TYPE_CHOICES = (
-      ('actual', 'Актуально'),
+      ('actuals', 'Актуально'),
       ('news', 'Новости'),
       ('publications', 'Публикация'),
       ('announcements', 'Объявление'),
