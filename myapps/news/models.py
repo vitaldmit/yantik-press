@@ -71,9 +71,10 @@ class PhotoGallery(models.Model):
     publish = models.DateTimeField("Дата публикации", default=timezone.now)
 
     def get_absolute_url(self):
-        return reverse('news:photogallery_article',
-                       args=[self.publish.year, self.publish.month,
-                             self.publish.day, self.slug])
+        return reverse('news:photogallery_article', args=[self.publish.year, 
+                                                          self.publish.month,
+                                                          self.publish.day,
+                                                          self.slug])
 
     class Meta:
         ordering = ('-created', )

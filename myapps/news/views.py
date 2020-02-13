@@ -113,11 +113,14 @@ def photogallery(request):
 
 
 def photogallery_article(request, year, month, day, slug):
+    print(day)
     photogallery_article = get_object_or_404(PhotoGallery,
-                                             slug=slug,
-                                             visible=True,
                                              publish__year=year,
                                              publish__month=month,
-                                             publish__day=day)
+                                             publish__day=day,
+                                             slug=slug,
+                                             visible=True,
+                                             )
+
     return render(request, 'photogallery_article.html',
                   {'photogallery_article': photogallery_article})
