@@ -5,16 +5,21 @@
 
 {% block main %}
             <div class="row">
-              <div class="col-9 news">
+              <div class="col-9 photogallery">
                 {% for photogallery in all_photogallery %}
-                <div class="news_post">
-                    <div class="header">
-                        <a href="{{ photogallery.get_absolute_url }}">{{ photogallery.title }}</a>
+                <div class="photogallery-post">
+                  <div class="row">
+                    <div class="col-3 photogallery-post__image">
+                        <img class="rounded float-left photogallery-post__image_width100" alt="" src="/media/{{ photogallery.image}}" data-holder-rendered="true">
                     </div>
-                    {% if photogallery.image %}
-                      <img class="rounded float-left news_post_imgs" alt="" src="/media/{{ photogallery.image}}" data-holder-rendered="true">
-                    {% endif %}
-                    <div class="created">{{ photogallery.created }}</div>
+                  <div class="col-6">
+                      <a href="{{ photogallery.get_absolute_url }}" class="photogallery-post__title">{{ photogallery.title }}</a>
+                  </div>
+                    
+                    <div class="col-3 photogallery-post_additional">
+                      <div class="created">{{ photogallery.created }}</div>
+                  </div>
+                  </div>
                 </div>
                 {% endfor %}
               </div>
