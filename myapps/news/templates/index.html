@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load thumbnail %}
 {% block title %}Новости / ЯЛ ӖҪЧЕНӖ - Янтиковская районная газета "Селький труженик"{% endblock %}
 {% block main %}
             <div class="row">
@@ -10,8 +11,12 @@
                         <a href="{{ news.get_absolute_url}}">{{ news.title }}</a>
                     </div>
                     {% if news.image %}
-                      {% if forloop.first %} 
-                        <img class="rounded first_news_post_img" alt="{{ news.title}}" src="/media/{{ news.image}}" data-holder-rendered="true" width="100%" height="auto">
+                      {% if forloop.first %}
+                      <a href="/media/{{ news.image }}" rel="gallery" class="swipebox" title="{{ news.title }}">
+                        {% thumbnail news.image "550" crop="center" as im %}
+                          <img class="rounded first_news_post_img" alt="{{ news.title}}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+                        {% endthumbnail %}
+                      </a>
                       {% else %}
                         <img class="rounded float-left news_post_imgs" alt="{{ news.title}}" src="/media/{{ news.image}}" data-holder-rendered="true" width="60%" height="auto">
                       {% endif %}

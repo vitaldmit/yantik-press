@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% load thumbnail %}
+{% block title %} {{ news_article.title}} {% endblock %}
+
+{% block main %}
+    <div class="row">
+        <div class="col-9 news_article">
+                <div class="header">
+                    {{ news_article.title}}
+                </div>
+                {% if news_article.image %}
+                      <a href="/media/{{ news_article.image }}" rel="gallery" class="swipebox" title="{{ news_article.title }}">
+                        {% thumbnail news_article.image "400" crop="center" as im %}
+                          <img class="rounded float-left article_main_image" alt="{{ news_article.title}}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+                        {% endthumbnail %}
+                      </a>
+                    {# <img src="/media/{{ news_article.image }}" alt="{{ news_article.title }}"> #}
+                {% endif %}
+                <p>
+
+                    {{ news_article.content }}
+{% comment %}
+                    {% for photogallery in news_article.photogallery.all %}
+                        <img src="/media/{{ photogallery.image }}" alt="{{ photogallery.title }}">
+                        {% for imgs in photogallery.news_images.all %}
+                            <img src="/media/{{ imgs.image }}" alt="{{ photogallery.title }}">
+                        {% endfor %}
+                    {% endfor %}
+{% endcomment %}
+                <div class="news_article_gallery">
+                    {% for photogallery in news_article.photogallery.all %}
+                        <a href="/media/{{ photogallery.image }}" rel="gallery" class="swipebox" title="{{ photogallery_article.title}}">
+                            {% thumbnail photogallery.image "150" crop="center" as im %}
+                                <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="{{ photogallery.title }}">
+                            {% endthumbnail %}
+                        </a>
+                        {% for imgs in photogallery.news_images.all %}
+                            <a href="/media/{{ imgs.image }}" rel="gallery" class="swipebox" title="{{ photogallery_article.title}}">
+                                {% thumbnail imgs.image "150" crop="center" as im %}
+                                    <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="{{ photogallery.title }}">
+                                {% endthumbnail %}
+                            </a>
+                        {% endfor %}
+                    {% endfor %}
+                </div>
+
+
+
+{% comment %}
+                    <a href="/media/{{ photogallery_article.image}}" rel="gallery" class="swipebox" title="{{ photogallery_article.title}}">
+                        {% thumbnail photogallery_article.image "150" crop="center" as im %}
+                            <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+                        {% endthumbnail %}
+                    </a>
+                    <!-- <img src="/media/{{ photogallery_article.image}}" alt="{{ photogallery.title }}"> -->
+
+                    {% for images in photogallery_article.news_images.all %}
+                        <a href="/media/{{ images.image }}" class="swipebox" rel="gallery" title="{{ photogallery_article.title}}">
+                            {% thumbnail images.image "150" crop="center" as im %}
+                                <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+                            {% endthumbnail %}
+                            <!-- <img src="/media/{{ images.image }}" alt="{{ photogallery.title }}"> -->
+                        </a>
+                    {% endfor %}
+{% endcomment %}
+                </p>
+                {% if news_article.source %}
+                    <div class="source_news_article">Первоисточник: {{ news_article.source }} </div>
+                {% endif %}
+        </div>
+        <div class="col-3">
+            <div class="share_news_article">
+                <script src="https://yastatic.net/es5-shims/0.0.2/es5-shims.min.js"></script>
+                <script src="https://yastatic.net/share2/share.js"></script>
+                Поделиться: <div class="ya-share2" data-services="vkontakte,facebook,odnoklassniki,twitter,viber,whatsapp,telegram"></div>
+            </div>
+            <a href="#" class="btn btn-danger" onclick="window.print()">Распечатать</a>
+        </div>
+    </div>
+
+{% endblock %}

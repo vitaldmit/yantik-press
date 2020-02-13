@@ -87,7 +87,8 @@ def news_article(request, year, month, day, slug):
     news_article = get_object_or_404(News, slug=slug, visible=True,
                                      publish__year=year, publish__month=month,
                                      publish__day=day)
-    return render(request, 'news_article.html', {'news_article': news_article})
+    return render(request, 'news_actuals_publications_article.html',
+                  {'news_article': news_article})
 
 
 def photogallery(request):

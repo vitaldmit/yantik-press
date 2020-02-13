@@ -215,9 +215,14 @@ p {
 .news_article {
     margin-bottom: 15px;
 }
-.news_article img{
+
+.article_main_image {
+    margin-right: 10px;
+}
+
+.news_article >img{
     width: 50%;
-    height: auto;
+    /* height: auto; */
     float: left;
     margin-right: 10px;
 }
