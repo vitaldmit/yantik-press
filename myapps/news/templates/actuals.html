@@ -15,7 +15,7 @@
                       <img class="rounded float-left news_post_imgs" alt="" src="/media/{{ actual.image}}" data-holder-rendered="true">
                     {% endif %}
                     <p>
-                        {{ actual.content|safe|truncatewords:150 }}
+                        {{ actual.content|safe|truncatewords_html:150 }}
                         {% if actual.content|wordcount > 150 %}
                           <a href="{{ actual.get_absolute_url}}"> тĕплĕнрех</a>
                         {% endif %}
@@ -36,7 +36,7 @@
                     <img class="rounded float-left" alt="" src="/media/{{ news.image}}" data-holder-rendered="true" width="100%" height="auto">
                   {% endif %}
                   <p>
-                    {{ news.content|safe|truncatewords:43 }}<a href="{{ news.get_absolute_url}}"> подробнее</a>
+                    {{ news.content|safe|truncatewords_html:43 }}<a href="{{ news.get_absolute_url}}"> подробнее</a>
                   </p>
                   <div class="created">{{ news.created }}</div>
                 </div>

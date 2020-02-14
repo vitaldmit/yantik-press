@@ -26,7 +26,7 @@
 
                     <div class="content">
                       <p>
-                        {{ news.content|safe|truncatewords:50 }}
+                        {{ news.content|safe|truncatewords_html:50 }}
                         {% if news.content|wordcount > 100 %}
                           <a href="{{ news.get_absolute_url}}"> подробнее</a>
                         {% endif %}
@@ -50,7 +50,7 @@
                   {% endif %}
                   <div class="content">
                     <p>
-                      {{ publication.content|safe|truncatewords:24 }}
+                      {{ publication.content|safe|truncatewords_html:24 }}
                       <a href="{{ publication.get_absolute_url}}"> тĕплĕнрех</a>
                     </p>
                   </div>

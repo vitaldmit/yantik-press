@@ -35,7 +35,7 @@
                     <img class="rounded float-left" alt="" src="/media/{{ news.image}}" data-holder-rendered="true" width="100%" height="auto">
                   {% endif %}
                   <p>
-                    {{ news.content|safe|truncatewords:43 }}<a href="{{ news.get_absolute_url}}"> подробнее</a>
+                    {{ news.content|safe|truncatewords_html:43 }}<a href="{{ news.get_absolute_url}}"> подробнее</a>
                   </p>
                   <div class="created">{{ news.created }}</div>
                 </div>
