@@ -13,14 +13,57 @@
 
                     {% if news.image %}
                       {% if forloop.first %}
-                      
-                      <a href="/media/{{ news.image }}" rel="gallery" class="swipebox" title="{{ news.title }}">
+                      <!-- <a href="/media/{{ news.image }}" rel="gallery" class="swipebox" title="{{ news.title }}"> -->
+<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+  <div class="carousel-inner">
+                    {% for photogallery in news.photogallery.all %}
+<!--                         <a href="/media/{{ photogallery.image }}" rel="gallery" class="swipebox" title="{{ photogallery_article.title}}"> -->
+    <div class="carousel-item active">
+      <a href="/media/{{ news.image }}" rel="gallery" class="swipebox" title="{{ news.title}}">
                         {% thumbnail news.image "550" crop="center" as im %}
-                          <img class="rounded first_news_post_img" alt="{{ news.title}}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+                          <img class="d-block w-100 rounded" alt="{{ news.title}}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
                         {% endthumbnail %}
-                      </a>
+      </a>
+    </div>
+    <div class="carousel-item">
+      <a href="/media/{{ photogallery.image }}" rel="gallery" class="swipebox" title="{{ news.title}}">
+                      {% thumbnail photogallery.image "550" crop="center" as im %}
+                          <img class="d-block w-100 rounded" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="{{ photogallery.title }}">
+                      {% endthumbnail %}
+      </a>
+    </div>
+                        <!-- </a> -->
+                          {% for imgs in photogallery.news_images.all %}
+                              <!-- <a href="/media/{{ imgs.image }}" rel="gallery" class="swipebox" title="{{ photogallery_article.title}}"> -->
+    <div class="carousel-item">
+      <a href="/media/{{ imgs.image }}" rel="gallery" class="swipebox" title="{{ news.title}}">
+                                  {% thumbnail imgs.image "550" crop="center" as im %}
+                                      <img class="d-block w-100 rounded" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="{{ photogallery.title }}">
+                                  {% endthumbnail %}
+      </a>
+    </div>
+                              <!-- </a> -->
+                          {% endfor %}
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+                    {% endfor %}
+
+<!--                         {% thumbnail news.image "550" crop="center" as im %}
+                          <img class="rounded first_news_post_img" alt="{{ news.title}}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+                        {% endthumbnail %} -->
+                      <!-- </a> -->
                       {% else %}
-                        <img class="rounded float-left news_post_imgs" alt="{{ news.title}}" src="/media/{{ news.image}}" data-holder-rendered="true" width="60%" height="auto">
+                      {% thumbnail news.image "300" crop="center" as im %}
+                        <img class="rounded float-left news_post_imgs" alt="{{ news.title}}" src="{{ im.url }}" data-holder-rendered="true" width="{{ im.width }}" height="{{ im.height }}">
+                      {% endthumbnail %}
                       {% endif %}
                     {% endif %}
 
@@ -46,7 +89,9 @@
                     <a href="{{ publication.get_absolute_url}}">{{ publication.title}}</a>
                   </div>
                   {% if publication.image %}
-                    <img class="rounded float-left" alt="" src="/media/{{ publication.image}}" data-holder-rendered="true" width="100%" height="auto">
+                  {% thumbnail publication.image "255" crop="center" as im %}
+                    <img class="rounded float-left" alt="" src="{{ im.url }}" data-holder-rendered="true" width="{{ im.width }}" height="{{ im.height }}">
+                  {% endthumbnail %}
                   {% endif %}
                   <div class="content">
                     <p>
