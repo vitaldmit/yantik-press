@@ -1,14 +1,40 @@
 {% extends 'base.html' %}
-{% block title %}Структура / ЯЛ ӖҪЧЕНӖ - Янтиковская районная газета "Селький труженик"{% endblock %}
+{% load thumbnail %}
+{% block title %} Структура / ЯЛ ӖҪЧЕНӖ - Янтиковская районная газета "Селький труженик" {% endblock %}
 
 {% block main %}
-<div class="row">
-    <div class="col-3">
-        menu
+<div class="row about">
+    <div class="col-3 about__menu">
+        <ul>
+            <li><a href="{% url 'about:structure' %}">Структура</li></a>
+            <li><a href="{% url 'about:vacancies' %}">Вакансии</li></a>
+            <li><a href="{% url 'about:documents' %}">Документы</li></a>
+            <li><a href="">Редакция газеты: вчера и сегодня</li></a>
+        </ul>
     </div>
-    <div class="col-9">
+    <div class="col-9 about__content">
         {% for employee in all_employees %}
-            <h1>{{ employee.name }}</h1>
+            <div class="row employee">
+                <div class="col-2 employee-photo">
+                        {% thumbnail employee.photo "100" crop="center" as im %}
+                          <img class="w-100 rounded" alt="{{ employee.name }}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+                        {% endthumbnail %}
+                        {% comment %}
+                            <img src="/media/{{ employee.photo }}">
+                        {% endcomment %}
+                </div>
+                <div class="col-9 employee-details">
+                    <div class="employee-details__name">{{ employee.name }}</div>
+                    <div class="employee-details__post">{{ employee.post }}</div>
+                    <div class="employee-details__phone">{{ employee.phone }}</div>
+                    {% if employee.email %}
+                        <div class="employee-details__email">{{ employee.email }}</div>
+                    {% endif %}
+                    {% if employee.education %}
+                        <div class="employee-details__education">{{ employee.education }}</div>
+                    {% endif %}
+                </div>
+            </div>
         {% endfor %}
     </div>
 </div>

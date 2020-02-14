@@ -20,14 +20,14 @@
 <!--                         <a href="/media/{{ photogallery.image }}" rel="gallery" class="swipebox" title="{{ photogallery_article.title}}"> -->
     <div class="carousel-item active">
       <a href="/media/{{ news.image }}" rel="gallery" class="swipebox" title="{{ news.title}}">
-                        {% thumbnail news.image "550" crop="center" as im %}
+                        {% thumbnail news.image "500" crop="center" as im %}
                           <img class="d-block w-100 rounded" alt="{{ news.title}}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
                         {% endthumbnail %}
       </a>
     </div>
     <div class="carousel-item">
       <a href="/media/{{ photogallery.image }}" rel="gallery" class="swipebox" title="{{ news.title}}">
-                      {% thumbnail photogallery.image "550" crop="center" as im %}
+                      {% thumbnail photogallery.image "500" crop="center" as im %}
                           <img class="d-block w-100 rounded" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="{{ photogallery.title }}">
                       {% endthumbnail %}
       </a>
@@ -37,7 +37,7 @@
                               <!-- <a href="/media/{{ imgs.image }}" rel="gallery" class="swipebox" title="{{ photogallery_article.title}}"> -->
     <div class="carousel-item">
       <a href="/media/{{ imgs.image }}" rel="gallery" class="swipebox" title="{{ news.title}}">
-                                  {% thumbnail imgs.image "550" crop="center" as im %}
+                                  {% thumbnail imgs.image "500" crop="center" as im %}
                                       <img class="d-block w-100 rounded" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="{{ photogallery.title }}">
                                   {% endthumbnail %}
       </a>

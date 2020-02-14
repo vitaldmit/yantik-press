@@ -250,6 +250,27 @@ p {
     margin-bottom: 10px;
 }
 
+.about__menu{}
+.about__content{}
+.employee{
+    margin-bottom:15px;
+
+}
+.employee-photo{}
+.employee-details{
+    border-bottom: darkgrey 1px solid;
+}
+.employee-details__name{
+    font-weight:700;
+}
+.employee-details__post{}
+.employee-details__phone{}
+.employee-details__email{}
+.employee-details__education{}
+
+
+
+
 footer .footer {
     background: #cccccc;
 }

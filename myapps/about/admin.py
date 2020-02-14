@@ -5,7 +5,7 @@ from .models import Employees, Vacancies, Documents
 
 @admin.register(Employees)
 class EmployeesAdmin(admin.ModelAdmin):
-    list_display = ('name', 'post', 'visible')
+    list_display = ('name', 'post', 'phone', 'email', 'visible')
 
 
 @admin.register(Vacancies)

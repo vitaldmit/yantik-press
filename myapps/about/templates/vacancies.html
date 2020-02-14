@@ -2,13 +2,19 @@
 {% block title %}Вакансии / ЯЛ ӖҪЧЕНӖ - Янтиковская районная газета "Селький труженик"{% endblock %}
 
 {% block main %}
-<div class="row">
-    <div class="col-3">
-        menu
+<div class="row about">
+    <div class="col-3 about__menu">
+        <ul>
+            <li><a href="{% url 'about:structure' %}">Структура</li></a>
+            <li><a href="{% url 'about:vacancies' %}">Вакансии</li></a>
+            <li><a href="{% url 'about:documents' %}">Документы</li></a>
+            <li><a href="">Редакция газеты: вчера и сегодня</li></a>
+        </ul>
     </div>
-    <div class="col-9">
+    <div class="col-9 about__content">
         {% for vacancy in all_vacancies %}
-            <h1>{{ vacancy.post }}</h1>
+            <div class="vacancy-details__post">{{ vacancy.post }}</div>
+            <div class="vacancy-details__post">{{ vacancy.content|safe }}<div>
         {% endfor %}
     </div>
 </div>

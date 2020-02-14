@@ -1,13 +1,16 @@
 from django.db import models
 
+from tinymce.models import HTMLField
+
 
 class Employees(models.Model):
     name = models.CharField('ФИО', max_length=100)
     post = models.CharField('Должность', max_length=100)
     photo = models.ImageField('Фото', upload_to='about/structure/',
                               blank=True, null=True)
+    show_photo = models.BooleanField('Показывать фото', default=1)
     phone = models.CharField('Телефон', max_length=20)
-    email = models.EmailField('Почта', max_length=100)
+    email = models.EmailField('Почта', max_length=100, blank=True, null=True)
     education = models.TextField('Образование', blank=True, null=True)
     visible = models.BooleanField('Показывать', default=1)
     ontop = models.BooleanField('Размещать сверху', )
@@ -21,12 +24,12 @@ class Employees(models.Model):
         verbose_name_plural = 'Сотрудники'
 
     def __str__(self):
-        return self.title
+        return self.name
 
 
 class Vacancies(models.Model):
     post = models.CharField('Должность', max_length=100)
-    content = models.TextField('Контент', )
+    content = HTMLField('Контент', )
     visible = models.BooleanField('Показывать', default=1)
     ontop = models.BooleanField('Размещать сверху', )
     created = models.DateTimeField('Создан', auto_now=False, auto_now_add=True)

@@ -3,7 +3,7 @@ from django.shortcuts import render
 from .models import Employees, Vacancies, Documents
 
 
-def employees(request):
+def structure(request):
     """Страница структуры"""
     all_employees = Employees.objects.all()
     return render(request, 'structure.html', {'all_employees': all_employees})
