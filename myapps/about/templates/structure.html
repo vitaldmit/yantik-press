@@ -12,7 +12,7 @@
             <div class="row employee">
                 <div class="col-3 employee-photo">
                         {% thumbnail employee.photo "140" crop="center" as im %}
-                          <img class="w-100 rounded-circle" alt="{{ employee.name }}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+                          <img class="w-100 rounded" alt="{{ employee.name }}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
                         {% endthumbnail %}
                         {% comment %}
                             <img src="/media/{{ employee.photo }}">

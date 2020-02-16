@@ -75,7 +75,7 @@
                         {% endif %}
                       </p>
                     </div>
-                    <div class="created">{{ news.created }}</div>
+                    <div class="created"><i class="far fa-calendar-alt"></i>{{ news.created }}</div>
                 </div>
                 {% endfor %}
                 <div class="all_publications"><a href="{% url 'news:news' %}" class="btn btn-danger btn-sm">Перейти к новостям</a></div>
@@ -99,7 +99,7 @@
                       <a href="{{ publication.get_absolute_url}}"> тĕплĕнрех</a>
                     </p>
                   </div>
-                  <div class="created">{{ publication.created }}</div>
+                  <div class="created"><i class="far fa-calendar-alt"></i>{{ publication.created }}</div>
                 </div>
                 {% endfor %}
                 <div class="all_publications"><a href="{% url 'news:publications' %}" class="btn btn-danger btn-sm">Перейти к публикациям</a></div>
