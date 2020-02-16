@@ -250,7 +250,13 @@ p {
     margin-bottom: 10px;
 }
 
-.about__menu{}
+.about {
+
+}
+
+.about__menu{
+
+}
 .about__content{}
 .employee{
     margin-bottom:15px;
@@ -272,7 +278,9 @@ p {
 
 
 footer .footer {
-    background: #cccccc;
+    background: #111;
+    margin-top: 20px;
+    color: #d6d6d6;
 }
 footer .footer-left, .footer-center, .footer-right {
     font-size: 12px;

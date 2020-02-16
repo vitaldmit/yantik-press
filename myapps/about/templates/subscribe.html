@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}Подписка / ЯЛ ӖҪЧЕНӖ - Янтиковская районная газета "Селький труженик"{% endblock %}
+
+{% block main %}
+<div class="row about">
+    <div class="col-3 about__menu">
+        {% include "include_about_menu.html" %}
+    </div>
+    <div class="col-9 about__content">
+        {% for subscribe in all_subscribe %}
+            <div class="subscribe-details__post">{{ subscribe.title }}</div>
+            <div class="subscribe-details__post">{{ subscribe.content|safe }}<div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

@@ -5,25 +5,20 @@
 {% block main %}
 <div class="row about">
     <div class="col-3 about__menu">
-        <ul>
-            <li><a href="{% url 'about:structure' %}">Структура</li></a>
-            <li><a href="{% url 'about:vacancies' %}">Вакансии</li></a>
-            <li><a href="{% url 'about:documents' %}">Документы</li></a>
-            <li><a href="">Редакция газеты: вчера и сегодня</li></a>
-        </ul>
+        {% include "include_about_menu.html" %}
     </div>
     <div class="col-9 about__content">
         {% for employee in all_employees %}
             <div class="row employee">
-                <div class="col-2 employee-photo">
-                        {% thumbnail employee.photo "100" crop="center" as im %}
-                          <img class="w-100 rounded" alt="{{ employee.name }}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+                <div class="col-3 employee-photo">
+                        {% thumbnail employee.photo "140" crop="center" as im %}
+                          <img class="w-100 rounded-circle" alt="{{ employee.name }}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
                         {% endthumbnail %}
                         {% comment %}
                             <img src="/media/{{ employee.photo }}">
                         {% endcomment %}
                 </div>
-                <div class="col-9 employee-details">
+                <div class="col-8 employee-details">
                     <div class="employee-details__name">{{ employee.name }}</div>
                     <div class="employee-details__post">{{ employee.post }}</div>
                     <div class="employee-details__phone">{{ employee.phone }}</div>

@@ -4,6 +4,7 @@ from tinymce.models import HTMLField
 
 
 class Employees(models.Model):
+    """ Страница 'Структура' """
     name = models.CharField('ФИО', max_length=100)
     post = models.CharField('Должность', max_length=100)
     photo = models.ImageField('Фото', upload_to='about/structure/',
@@ -28,6 +29,7 @@ class Employees(models.Model):
 
 
 class Vacancies(models.Model):
+    """ Страница 'Вакансии' """
     post = models.CharField('Должность', max_length=100)
     content = HTMLField('Контент', )
     visible = models.BooleanField('Показывать', default=1)
@@ -46,9 +48,10 @@ class Vacancies(models.Model):
 
 
 class Documents(models.Model):
+    """ Страница 'Документы' """
     name = models.CharField('Название', max_length=100)
     file = models.FileField('Файл', upload_to='about/documents/%Y-%m-%d/',
-                              max_length=100)
+                            max_length=100)
     visible = models.BooleanField('Показывать', default=1)
     ontop = models.BooleanField('Размещать сверху', )
     created = models.DateTimeField('Создан', auto_now=False, auto_now_add=True)
@@ -62,3 +65,79 @@ class Documents(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Subscribe(models.Model):
+    """ Страница 'Подписка' """
+    title = models.CharField('Заголовок', max_length=100)
+    content = HTMLField('Контент', )
+    visible = models.BooleanField('Показывать', default=1)
+    ontop = models.BooleanField('Размещать сверху', )
+    created = models.DateTimeField('Создан', auto_now=False, auto_now_add=True)
+    updated = models.DateTimeField('Обновлен',
+                                   auto_now=True, auto_now_add=False)
+
+    class Meta:
+        ordering = ('created', )
+        verbose_name = 'Подписка'
+        verbose_name_plural = 'Подписки'
+
+    def __str__(self):
+        return self.title
+
+
+class Advertising(models.Model):
+    """ Страница 'Реклама' """
+    title = models.CharField('Заголовок', max_length=100)
+    content = HTMLField('Контент', )
+    visible = models.BooleanField('Показывать', default=1)
+    ontop = models.BooleanField('Размещать сверху', )
+    created = models.DateTimeField('Создан', auto_now=False, auto_now_add=True)
+    updated = models.DateTimeField('Обновлен',
+                                   auto_now=True, auto_now_add=False)
+
+    class Meta:
+        ordering = ('created', )
+        verbose_name = 'Реклама'
+        verbose_name_plural = 'Рекламы'
+
+    def __str__(self):
+        return self.title
+
+
+class Announcing(models.Model):
+    """ Страница 'Объявления' """
+    title = models.CharField('Заголовок', max_length=100)
+    content = HTMLField('Контент', )
+    visible = models.BooleanField('Показывать', default=1)
+    ontop = models.BooleanField('Размещать сверху', )
+    created = models.DateTimeField('Создан', auto_now=False, auto_now_add=True)
+    updated = models.DateTimeField('Обновлен',
+                                   auto_now=True, auto_now_add=False)
+
+    class Meta:
+        ordering = ('created', )
+        verbose_name = 'Объявление'
+        verbose_name_plural = 'Объявления'
+
+    def __str__(self):
+        return self.title
+
+
+class Contacts(models.Model):
+    """ Страница 'Контакты' """
+    title = models.CharField('Заголовок', max_length=100)
+    content = HTMLField('Контент', )
+    visible = models.BooleanField('Показывать', default=1)
+    ontop = models.BooleanField('Размещать сверху', )
+    created = models.DateTimeField('Создан', auto_now=False, auto_now_add=True)
+    updated = models.DateTimeField('Обновлен',
+                                   auto_now=True, auto_now_add=False)
+
+    class Meta:
+        ordering = ('created', )
+        verbose_name = 'Контакт'
+        verbose_name_plural = 'Контакты'
+
+    def __str__(self):
+        return self.title

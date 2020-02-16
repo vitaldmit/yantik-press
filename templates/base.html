@@ -74,7 +74,7 @@
                       <span class="since_rus">(Газета издается с 17 февраля 1935 года)</span>
                   </div>
                   <div class="subscribe">
-                      <a class="btn btn_subscribe" href="subscribe/" role="button">Подписка на газету &raquo;</a>
+                      <a class="btn btn_subscribe" href="{% url 'about:subscribe' %}" role="button">Подписка на газету &raquo;</a>
                       <div class="vk">
                         <a href="https://vk.com/seltruzh" target="_blank"><img class="rounded" alt="вконтакте" src="{% static 'images/vk.png' %}" data-holder-rendered="true"></a>
                       </div>
@@ -118,16 +118,16 @@
                       </li>
  
                       <li class="nav-item">
-                        <a class="nav-link" href="#">Подписка</a>
+                        <a class="nav-link" href="{% url 'about:subscribe' %}">Подписка</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" href="#">Реклама</a>
+                        <a class="nav-link" href="{% url 'about:advertising' %}">Реклама</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" href="#">Объявления</a>
+                        <a class="nav-link" href="{% url 'about:announcing' %}">Объявления</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" href="#">Контакты</a>
+                        <a class="nav-link" href="{% url 'about:contacts' %}">Контакты</a>
 <!--                       <li class="nav-item">
                         <a class="nav-link" href="#">Предложить новость</a>
                       </li> -->
@@ -135,7 +135,7 @@
                     </ul>
                     <form class="form-inline my-2 my-lg-0">
                       <input class="form-control mr-sm-2" type="Поиск" placeholder="Поиск" aria-label="Поиск">
-                      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Поиск</button>
+                      <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Поиск</button>
                     </form>
                   </div>
                 </nav>

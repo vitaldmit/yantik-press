@@ -4,12 +4,7 @@
 {% block main %}
 <div class="row about">
     <div class="col-3 about__menu">
-        <ul>
-            <li><a href="{% url 'about:structure' %}">Структура</li></a>
-            <li><a href="{% url 'about:vacancies' %}">Вакансии</li></a>
-            <li><a href="{% url 'about:documents' %}">Документы</li></a>
-            <li><a href="">Редакция газеты: вчера и сегодня</li></a>
-        </ul>
+        {% include "include_about_menu.html" %}
     </div>
     <div class="col-9 about__content">
         {% for vacancy in all_vacancies %}

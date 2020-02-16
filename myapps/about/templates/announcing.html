@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}Объявления / ЯЛ ӖҪЧЕНӖ - Янтиковская районная газета "Селький труженик"{% endblock %}
+
+{% block main %}
+<div class="row about">
+    <div class="col-3 about__menu">
+        {% include "include_about_menu.html" %}
+    </div>
+    <div class="col-9 about__content">
+        {% for announcing in all_announcing %}
+            <div class="announcing-details__post">{{ announcing.title }}</div>
+            <div class="announcing-details__post">{{ announcing.content|safe }}<div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
