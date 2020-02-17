@@ -87,6 +87,15 @@ body {
     display: inline-block;
 }
 
+.search {
+}
+.search__input {
+    font-size: 12px;
+}
+.search__button {
+    font-size: 12px;
+}
+
 .header {
     font-size: 22px;
     font-style: italic;
