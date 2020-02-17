@@ -24,7 +24,7 @@
               <div class="col-6 header-left">
                 <div class="logo">
                   <div class="logoexpand">Янтиковская районная газета "Сельский труженик"</div>
-                  <div class="logo"><a href="{% url 'index' %}">ЯЛ ӖҪЧЕНӖ</a></div>
+                    <a class="logo__text" href="{% url 'index' %}">ЯЛ ӖҪЧЕНӖ</a>
                   {# <img src="{% static 'images/logo.png'%}" width="540" height="115"> #}
                 </div>
               </div>
@@ -63,20 +63,22 @@
                     <script async src="https://www.gismeteo.ru/api/informer/getinformer/?hash=5FBglbu3SoP5s1"></script>
                     <!-- Gismeteo informer END -->
                 </div>
-                <div class="today_data_time"><i class="far fa-calendar-alt"></i> {% now "l\, j F Y \г." %}</div>
               </div>
 
               <div class="col-3 header-right">
                   <div class="since">
-                      <span class="since_chuv">1935 ÇУЛТА ФЕВРАЛĔН 17-МĔШĔНЧЕ ТУХМА ПУÇЛАНĂ</span>
-                      <span class="since_rus">(Газета издается с 17 февраля 1935 года)</span>
+                      <span class="since__since-chuv">1935 ÇУЛТА ФЕВРАЛĔН 17-МĔШĔНЧЕ ТУХМА ПУÇЛАНĂ</span>
+                      <span class="since__since-rus">(Газета издается с 17 февраля 1935 года)</span>
                   </div>
                   <div class="subscribe">
-                      <a class="btn btn_subscribe" href="{% url 'about:subscribe' %}" role="button">Подписка на газету &raquo;</a>
-                      <div class="vk">
-                        <a href="https://vk.com/seltruzh" target="_blank"><img class="rounded" alt="вконтакте" src="{% static 'images/vk.png' %}" data-holder-rendered="true"></a>
+                      <a class="btn subscribe__btn" href="{% url 'about:subscribe' %}" role="button">Подписка на газету &raquo;</a>
+                      <div class="subscribe__vk">
+                        <a href="https://vk.com/seltruzh" target="_blank">
+                          <img alt="мы в контакте" src="{% static 'images/vk.png' %}">
+                        </a>
                       </div>
                   </div>
+                  <div class="today_data_time"><i class="far fa-calendar-alt"></i> {% now "l\, j F Y \г." %}</div>
               </div>
 
             </div>
@@ -84,7 +86,7 @@
 
             <div class="row">
               <div class="col">
-                <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
+                <nav class="navbar navbar-expand-lg navbar-dark menu">
                   <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
                       <li class="nav-item active">
@@ -136,7 +138,7 @@
                 </nav>
               </div>
           </div>
-
+{% comment %}
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{% url 'index' %}">Главная</a></li>
@@ -144,6 +146,8 @@
             <li class="breadcrumb-item active" aria-current="page">Вакансии</li>
           </ol>
         </nav>
+{% endcomment %}
+
 
         <main>
           {% block main %}{% endblock %}

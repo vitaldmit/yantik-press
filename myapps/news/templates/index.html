@@ -4,113 +4,120 @@
 {% block main %}
             <div class="row">
               <div class="col-6 news">
-                <div class="badge_all_publications"><a href="{% url 'news:news' %}"><span class="badge badge-danger">Все новости</span></a></div>
-                {% for news in all_news %}
-                <div class="news_post">
-                    <div class="header">
-                        <a href="{{ news.get_absolute_url }}">{{ news.title }}</a>
-                    </div>
+                <div class="news__badge-all-news">
+                  <a href="{% url 'news:news' %}">
+                    <span class="badge badge-danger">Все новости</span>
+                  </a>
+                </div>
 
+                {% for news in all_news %}
+                <div class="news__post">
+                    <div class="news__header">
+                        <a class="news__header-link" href="{{ news.get_absolute_url }}">{{ news.title }}</a>
+                    </div>
                     {% if news.image %}
                       {% if forloop.first %}
-                      <!-- <a href="/media/{{ news.image }}" rel="gallery" class="swipebox" title="{{ news.title }}"> -->
                         <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                           <div class="carousel-inner">
-                                            {% for photogallery in news.photogallery.all %}
-                        <!--                         <a href="/media/{{ photogallery.image }}" rel="gallery" class="swipebox" title="{{ photogallery_article.title }}"> -->
+                            {% for photogallery in news.photogallery.all %}
                             <div class="carousel-item active">
                               <a href="/media/{{ news.image }}" rel="gallery" class="swipebox" title="{{ news.title }}">
-                                                {% thumbnail news.image "500" crop="center" as im %}
-                                                  <img class="d-block w-100 rounded" alt="{{ news.title }}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
-                                                {% endthumbnail %}
+                                {% thumbnail news.image "500" crop="center" as im %}
+                                  <img class="d-block w-100 rounded" alt="{{ news.title }}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+                                {% endthumbnail %}
                               </a>
                             </div>
                             <div class="carousel-item">
                               <a href="/media/{{ photogallery.image }}" rel="gallery" class="swipebox" title="{{ news.title }}">
-                                              {% thumbnail photogallery.image "500" crop="center" as im %}
-                                                  <img class="d-block w-100 rounded" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="{{ photogallery.title }}">
-                                              {% endthumbnail %}
+                                {% thumbnail photogallery.image "500" crop="center" as im %}
+                                    <img class="d-block w-100 rounded" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="{{ photogallery.title }}">
+                                {% endthumbnail %}
                               </a>
                             </div>
-                                                <!-- </a> -->
-                                                  {% for imgs in photogallery.news_images.all %}
-                                                      <!-- <a href="/media/{{ imgs.image }}" rel="gallery" class="swipebox" title="{{ photogallery_article.title }}"> -->
-                            <div class="carousel-item">
-                              <a href="/media/{{ imgs.image }}" rel="gallery" class="swipebox" title="{{ news.title }}">
-                                                          {% thumbnail imgs.image "500" crop="center" as im %}
-                                                              <img class="d-block w-100 rounded" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="{{ photogallery.title }}">
-                                                          {% endthumbnail %}
-                              </a>
-                            </div>
-                                                      <!-- </a> -->
-                                                  {% endfor %}
+                            {% for imgs in photogallery.news_images.all %}
+                              <div class="carousel-item">
+                                <a href="/media/{{ imgs.image }}" rel="gallery" class="swipebox" title="{{ news.title }}">
+                                  {% thumbnail imgs.image "500" crop="center" as im %}
+                                      <img class="d-block w-100 rounded" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="{{ photogallery.title }}">
+                                  {% endthumbnail %}
+                                </a>
+                              </div>
+                            {% endfor %}
                           </div>
                           <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Previous</span>
+                            <span class="sr-only">Назад</span>
                           </a>
                           <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Next</span>
+                            <span class="sr-only">Вперед</span>
                           </a>
                         </div>
                     {% endfor %}
-
-<!--                         {% thumbnail news.image "550" crop="center" as im %}
-                          <img class="rounded first_news_post_img" alt="{{ news.title }}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
-                        {% endthumbnail %} -->
-                      <!-- </a> -->
                       {% else %}
-                      {% thumbnail news.image "300" crop="center" as im %}
-                        <img class="rounded float-left news_post_imgs" alt="{{ news.title }}" src="{{ im.url }}" data-holder-rendered="true" width="{{ im.width }}" height="{{ im.height }}">
-                      {% endthumbnail %}
+                        {% thumbnail news.image "300" crop="center" as im %}
+                          <img class="rounded float-left news__post-imgs" alt="{{ news.title }}" src="{{ im.url }}" data-holder-rendered="true" width="{{ im.width }}" height="{{ im.height }}">
+                        {% endthumbnail %}
                       {% endif %}
                     {% endif %}
 
-                    <div class="content">
-                      <p>
-                        {{ news.content|safe|truncatewords_html:50 }}
-                        {% if news.content|wordcount > 100 %}
+                    <div class="news__content news__content_justify">
+                      {% if news.image %}
+                        <p>
+                          {{ news.content|safe|truncatewords_html:50 }}
                           <a href="{{ news.get_absolute_url }}"> подробнее</a>
+                        </p>
+                      {% else %}
+                        <p>
+                          {{ news.content|safe|truncatewords_html:30 }}
+                          <a href="{{ news.get_absolute_url }}"> подробнее</a>
+                        </p>
                         {% endif %}
-                      </p>
                     </div>
-                    <div class="created"><i class="far fa-calendar-alt"></i> {{ news.created }}</div>
+                    <div class="news__created"><i class="far fa-calendar-alt"></i> {{ news.created }}</div>
                 </div>
                 {% endfor %}
-                <div class="all_publications"><a href="{% url 'news:news' %}" class="btn btn-danger btn-sm">Перейти к новостям</a></div>
+                {% comment %}
+                  <div class="all_publications"><a href="{% url 'news:news' %}" class="btn btn-danger btn-sm">Перейти к новостям</a></div>
+                {% endcomment %}
               </div>
 
-              <div class="col-3 publications">
-                <div class="badge_all_publications"><a href="{% url 'news:publications' %}"><span class="badge badge-danger">Все публикации</span></a></div>
+              <div class="col-3 news">
+                <div class="news__badge-all-news">
+                  <a href="{% url 'news:publications' %}">
+                    <span class="badge badge-danger">Все публикации</span>
+                  </a>
+                </div>
                 {% for publication in all_publications %}
-                <div class="publication_post">
-                  <div class="header">
-                    <a href="{{ publication.get_absolute_url }}">{{ publication.title }}</a>
+                <div class="news__post">
+                  <div class="news__header">
+                    <a class="news__header-link" href="{{ publication.get_absolute_url }}">{{ publication.title }}</a>
                   </div>
                   {% if publication.image %}
-                  {% thumbnail publication.image "230" crop="center" as im %}
-                    <img class="rounded float-left w-100" alt="" src="{{ im.url }}" data-holder-rendered="true" width="{{ im.width }}" height="{{ im.height }}">
-                  {% endthumbnail %}
+                    {% thumbnail publication.image "230" crop="center" as im %}
+                      <img class="rounded w-100" alt="" src="{{ im.url }}" data-holder-rendered="true" width="{{ im.width }}" height="{{ im.height }}">
+                    {% endthumbnail %}
                   {% endif %}
-                  <div class="content">
+                  <div class="news__content news__content_center">
                     <p>
-                      {{ publication.content|safe|truncatewords_html:24 }}
+                      {{ publication.content|safe|truncatewords_html:20 }}
                       <a href="{{ publication.get_absolute_url }}"> тĕплĕнрех</a>
                     </p>
                   </div>
-                  <div class="created"><i class="far fa-calendar-alt"></i> {{ publication.created }}</div>
+                  <div class="news__created"><i class="far fa-calendar-alt"></i> {{ publication.created }}</div>
                 </div>
                 {% endfor %}
-                <div class="all_publications"><a href="{% url 'news:publications' %}" class="btn btn-danger btn-sm">Перейти к публикациям</a></div>
+                {% comment %}
+                  <div class="all_publications"><a href="{% url 'news:publications' %}" class="btn btn-danger btn-sm">Перейти к публикациям</a></div>
+                {% endcomment %}
               </div>
 
               <div class="col-3 banners">
                 {% for banners in all_banners %}
-                <div class="banners_post">
+                <div class="banners__post">
                   {% if banners.image %}
                     <a href="{{ banners.link }}" target="_blank">
-                      <img class="rounded" alt="{{ banners.title }}" src="/media/{{ banners.image }}" data-holder-rendered="true">
+                      <img class="rounded banners__post-img" alt="{{ banners.title }}" src="/media/{{ banners.image }}" data-holder-rendered="true">
                     </a>
                   {% endif %}
                 </div>
