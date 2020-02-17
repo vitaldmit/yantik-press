@@ -90,14 +90,13 @@ body {
 .header {
     font-size: 22px;
     font-style: italic;
-    font-weight: 600;
+    font-weight: bold;
     line-height: 24px;
     text-align: center;
     color: rgb(33, 37, 41);
     font-family: unset;
     line-height: 24px;
     margin-bottom: 5px;
-
 }
 .header a {
     color: rgb(33, 37, 41);

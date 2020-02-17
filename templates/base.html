@@ -13,27 +13,21 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
     <link rel="stylesheet" href="{% static 'css/swipebox.min.css' %}">
     <link href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" rel="stylesheet">
-
-
-
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
   </head>
   <body>
     <div class="container">
         <header>
             <div class="row align-items-center">
-
               <div class="col-6 header-left">
-                
                 <div class="logo">
                   <div class="logoexpand">Янтиковская районная газета "Сельский труженик"</div>
                   <div class="logo"><a href="{% url 'index' %}">ЯЛ ӖҪЧЕНӖ</a></div>
                   {# <img src="{% static 'images/logo.png'%}" width="540" height="115"> #}
                 </div>
               </div>
-
               <div class="col-3 header-center">
                 <div class="gismeteo">
                     <!-- Gismeteo informer START -->
@@ -69,7 +63,7 @@
                     <script async src="https://www.gismeteo.ru/api/informer/getinformer/?hash=5FBglbu3SoP5s1"></script>
                     <!-- Gismeteo informer END -->
                 </div>
-                <div class="today_data_time"><i class="far fa-calendar-alt"></i>{% now "l\, j F Y \г." %}</div>
+                <div class="today_data_time"><i class="far fa-calendar-alt"></i> {% now "l\, j F Y \г." %}</div>
               </div>
 
               <div class="col-3 header-right">
@@ -110,7 +104,7 @@
                       </li>
                       <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          О редакции
+                          Редакция
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                           <a class="dropdown-item" href="{% url 'about:structure' %}">Структура</a>
@@ -132,9 +126,6 @@
                       </li>
                       <li class="nav-item">
                         <a class="nav-link" href="{% url 'about:contacts' %}">Контакты</a>
-<!--                       <li class="nav-item">
-                        <a class="nav-link" href="#">Предложить новость</a>
-                      </li> -->
                       </li>
                     </ul>
                     <form class="form-inline my-2 my-lg-0">
