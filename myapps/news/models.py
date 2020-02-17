@@ -31,7 +31,7 @@ class News(models.Model):
     imagesign = models.CharField('Подпись к главному фото', max_length=100,
                                  blank=True, null=True)
     content = HTMLField('Контент', )
-    source = models.CharField('Первоисточник', max_length=100,
+    source = models.CharField('Первоисточник', max_length=150,
                               blank=True, null=True)
     visible = models.BooleanField('Показывать', default=1)
     ontop = models.BooleanField('Размещать сверху', )

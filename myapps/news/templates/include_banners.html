@@ -1,0 +1,11 @@
+<div class="col-3 banners">
+  {% for banners in all_banners %}
+  <div class="banners__post">
+    {% if banners.image %}
+      <a href="{{ banners.link }}" target="_blank">
+        <img class="rounded banners__post-img" alt="{{ banners.title }}" src="/media/{{ banners.image }}" data-holder-rendered="true">
+      </a>
+    {% endif %}
+  </div>
+  {% endfor %}
+</div>

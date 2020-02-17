@@ -1,64 +1,29 @@
 {% extends 'base.html' %}
-{% load static %}
-
+{% load thumbnail %}
 {% block title %}Фотогалереи / ЯЛ ӖҪЧЕНӖ - Янтиковская районная газета "Селький труженик"{% endblock %}
-
 {% block main %}
             <div class="row">
-              <div class="col-9 photogallery">
+              <div class="col-9">
                 {% for photogallery in all_photogallery %}
-                <div class="photogallery-post">
-                  <div class="row">
-                    <div class="col-3 photogallery-post__image">
-                        <img class="rounded float-left photogallery-post__image_width100" alt="" src="/media/{{ photogallery.image}}" data-holder-rendered="true">
+                <div class="news__post">
+                  <div class="row news">
+                    <div class="col-3">
+                      {% thumbnail photogallery.image "200" crop="center" as im %}
+                          <img class="rounded float-left w-100" alt="" src="{{ im.url }}" data-holder-rendered="true" width="{{ im.width }}" height="{{ im.height }}">
+                      {% endthumbnail %}
                     </div>
                   <div class="col-6">
-                      <a href="{{ photogallery.get_absolute_url }}" class="photogallery-post__title">{{ photogallery.title }}</a>
+                      <a class="news__header-text news__header-text_small news__header-text_va-bottom" href="{{ photogallery.get_absolute_url }}">{{ photogallery.title }}</a>
                   </div>
                     
                     <div class="col-3 photogallery-post_additional">
-                      <div class="created">{{ photogallery.created }}</div>
+                      <div class="news__created">{{ photogallery.created }}</div>
                   </div>
                   </div>
                 </div>
                 {% endfor %}
+                {% include "include_paginations.html" with page=all_photogallery %}
               </div>
 
-<!--               <div class="col-3 publications">
-                <div class="badge_all_publications"><a href="/news/"><span class="badge badge-info">Все новости</span></a></div>
-                {% for news in all_news %}
-                <div class="publication_post">
-                  <div class="header">
-                    <a href="{{ news.get_absolute_url}}">{{ news.title}}</a>
-                  </div>
-                  {% if news.image %}
-                    <img class="rounded float-left" alt="" src="/media/{{ news.image}}" data-holder-rendered="true" width="100%" height="auto">
-                  {% endif %}
-                  <p>
-                    {{ news.content|safe|truncatewords_html:43 }}<a href="{{ news.get_absolute_url}}"> подробнее</a>
-                  </p>
-                  <div class="created">{{ news.created }}</div>
-                </div>
-                {% endfor %}
-                <div class="all_publications"><a href="/news/" class="btn btn-info btn-sm">Перейти к новостям</a></div>
-              </div>
--->
-
-              <div class="col-3 banners">
-                {% for banners in all_banners %}
-                <div class="banners_post">
-                  {% if banners.image %}
-                    <a href="{{ banners.link}}" target="_blank">
-                      <img class="rounded" alt="{{ banners.title}}" src="/media/{{ banners.image}}" data-holder-rendered="true">
-                    </a>
-                  {% endif %}
-                </div>
-                {% endfor %}
-              </div>
-            </div>
-
-            {% include "include_paginations.html" with page=all_publications %}
-
-
-
+            {% include "include_banners.html" %}
 {% endblock %}

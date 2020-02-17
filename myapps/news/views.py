@@ -83,12 +83,15 @@ def actuals(request):
                    'all_banners': all_banners})
 
 
-def news_article(request, year, month, day, slug):
-    news_article = get_object_or_404(News, slug=slug, visible=True,
-                                     publish__year=year, publish__month=month,
-                                     publish__day=day)
+def news_actuals_publications_article(request, year, month, day, slug):
+    news_actuals_publications_article = get_object_or_404(News, slug=slug,
+                                                          visible=True,
+                                                          publish__year=year,
+                                                          publish__month=month,
+                                                          publish__day=day)
     return render(request, 'news_actuals_publications_article.html',
-                  {'news_article': news_article})
+                  {'news_actuals_publications_article':
+                   news_actuals_publications_article})
 
 
 def photogallery(request):

@@ -13,13 +13,14 @@
                 {% for news in all_news %}
                 <div class="news__post">
                     <div class="news__header">
-                        <a class="news__header-link" href="{{ news.get_absolute_url }}">{{ news.title }}</a>
+                        <a class="news__header-text" href="{{ news.get_absolute_url }}">{{ news.title }}</a>
                     </div>
                     {% if news.image %}
                       {% if forloop.first %}
                         <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                           <div class="carousel-inner">
                             {% for photogallery in news.photogallery.all %}
+                            {# Главное фотогалереи #}
                             <div class="carousel-item active">
                               <a href="/media/{{ news.image }}" rel="gallery" class="swipebox" title="{{ news.title }}">
                                 {% thumbnail news.image "500" crop="center" as im %}
@@ -35,6 +36,7 @@
                               </a>
                             </div>
                             {% for imgs in photogallery.news_images.all %}
+                            {# Фотографии фотогалереи #}
                               <div class="carousel-item">
                                 <a href="/media/{{ imgs.image }}" rel="gallery" class="swipebox" title="{{ news.title }}">
                                   {% thumbnail imgs.image "500" crop="center" as im %}
@@ -91,7 +93,7 @@
                 {% for publication in all_publications %}
                 <div class="news__post">
                   <div class="news__header">
-                    <a class="news__header-link" href="{{ publication.get_absolute_url }}">{{ publication.title }}</a>
+                    <a class="news__header-text" href="{{ publication.get_absolute_url }}">{{ publication.title }}</a>
                   </div>
                   {% if publication.image %}
                     {% thumbnail publication.image "230" crop="center" as im %}
@@ -111,22 +113,6 @@
                   <div class="all_publications"><a href="{% url 'news:publications' %}" class="btn btn-danger btn-sm">Перейти к публикациям</a></div>
                 {% endcomment %}
               </div>
-
-              <div class="col-3 banners">
-                {% for banners in all_banners %}
-                <div class="banners__post">
-                  {% if banners.image %}
-                    <a href="{{ banners.link }}" target="_blank">
-                      <img class="rounded banners__post-img" alt="{{ banners.title }}" src="/media/{{ banners.image }}" data-holder-rendered="true">
-                    </a>
-                  {% endif %}
-                </div>
-                {% endfor %}
-              </div>
+              {% include "include_banners.html" %}
             </div>
-
-            {# {% include "include_paginations.html" with page=all_news %} #}
-
-
-
 {% endblock %}

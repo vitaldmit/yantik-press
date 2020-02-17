@@ -1,65 +1,30 @@
 {% extends 'base.html' %}
-{% load static %}
-
+{% load thumbnail %}
 {% block title %}Публикации / ЯЛ ӖҪЧЕНӖ - Янтиковская районная газета "Селький труженик"{% endblock %}
-
 {% block main %}
             <div class="row">
               <div class="col-9 news">
                 {% for actual in all_actuals %}
-                <div class="news_post">
-                    <div class="header">
-                        <a href="{{ actual.get_absolute_url}}">{{ actual.title}}</a>
+                <div class="news__post">
+                    <div class="news__header">
+                        <a class="news__header-text" href="{{ actual.get_absolute_url}}">{{ actual.title}}</a>
                     </div>
                     {% if actual.image %}
-                      <img class="rounded float-left news_post_imgs" alt="" src="/media/{{ actual.image}}" data-holder-rendered="true">
+                      {% thumbnail actual.image "350" crop="center" as im %}
+                          <img class="rounded float-left news__post-imgs" alt="" src="{{ im.url }}" data-holder-rendered="true" width="{{ im.width }}" height="{{ im.height }}">
+                      {% endthumbnail %}
                     {% endif %}
-                    <p>
-                        {{ actual.content|safe|truncatewords_html:150 }}
-                        {% if actual.content|wordcount > 150 %}
-                          <a href="{{ actual.get_absolute_url}}"> тĕплĕнрех</a>
+                    <div class="news__content news__content_justify">
+                        {{ actual.content|safe|truncatewords_html:100 }}
+                        {% if actual.content|wordcount > 100 %}
+                          <a href="{{ actual.get_absolute_url}}"> подробнее</a>
                         {% endif %}
-                    </p>
-                    <div class="created">{{ actual.created }}</div>
+                    </div>
+                    <div class="news__created"><i class="far fa-calendar-alt"></i> {{ actual.created }}</div>
                 </div>
                 {% endfor %}
+                {% include "include_paginations.html" with page=all_actuals %}
               </div>
 
-<!--               <div class="col-3 actuals">
-                <div class="badge_all_actuals"><a href="/news/"><span class="badge badge-info">Все новости</span></a></div>
-                {% for news in all_news %}
-                <div class="actual_post">
-                  <div class="header">
-                    <a href="{{ news.get_absolute_url}}">{{ news.title}}</a>
-                  </div>
-                  {% if news.image %}
-                    <img class="rounded float-left" alt="" src="/media/{{ news.image}}" data-holder-rendered="true" width="100%" height="auto">
-                  {% endif %}
-                  <p>
-                    {{ news.content|safe|truncatewords_html:43 }}<a href="{{ news.get_absolute_url}}"> подробнее</a>
-                  </p>
-                  <div class="created">{{ news.created }}</div>
-                </div>
-                {% endfor %}
-                <div class="all_actuals"><a href="/news/" class="btn btn-info btn-sm">Перейти к новостям</a></div>
-              </div>
--->
-
-              <div class="col-3 banners">
-                {% for banners in all_banners %}
-                <div class="banners_post">
-                  {% if banners.image %}
-                    <a href="{{ banners.link}}" target="_blank">
-                      <img class="rounded" alt="{{ banners.title}}" src="/media/{{ banners.image}}" data-holder-rendered="true">
-                    </a>
-                  {% endif %}
-                </div>
-                {% endfor %}
-              </div>
-            </div>
-
-            {% include "include_paginations.html" with page=all_actuals %}
-
-
-
+            {% include "include_banners.html" %}
 {% endblock %}
