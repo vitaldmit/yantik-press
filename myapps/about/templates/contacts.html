@@ -3,14 +3,15 @@
 
 {% block main %}
 <div class="row about">
-    <div class="col-3 about__menu">
+{% comment %}
+        <div class="col-3 about__menu">
         {% include "include_about_menu.html" %}
     </div>
-    <div class="col-9 about__content">
+{% endcomment %}
+    <div class="col-12 about__content">
         {% for contacts in all_contacts %}
-            <div class="contacts-details__post">{{ contacts.title }}</div>
+            <div class="about__title">{{ contacts.title }}</div>
             <div class="contacts-details__post">{{ contacts.content|safe }}<div>
-
         {% endfor %}
 <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A98308fdfb6d76ece12d73780c3ab9e45d1162b227971510aa97ba97a190135cc&amp;width=100%25&amp;height=583&amp;lang=ru_RU&amp;scroll=true"></script>
 {% comment %}

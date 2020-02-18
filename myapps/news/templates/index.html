@@ -68,12 +68,12 @@
                       {% if news.image %}
                         <p>
                           {{ news.content|safe|truncatewords_html:50 }}
-                          <a href="{{ news.get_absolute_url }}"> подробнее</a>
+                          <a class="font-weight-bold" href="{{ news.get_absolute_url }}"> подробнее</a>
                         </p>
                       {% else %}
                         <p>
                           {{ news.content|safe|truncatewords_html:30 }}
-                          <a href="{{ news.get_absolute_url }}"> подробнее</a>
+                          <a class="font-weight-bold" href="{{ news.get_absolute_url }}"> подробнее</a>
                         </p>
                         {% endif %}
                     </div>
@@ -104,7 +104,7 @@
                   <div class="text-center news__content">
                     <p>
                       {{ publication.content|safe|truncatewords_html:20 }}
-                      <a href="{{ publication.get_absolute_url }}"> тĕплĕнрех</a>
+                      <a class="font-weight-bold" href="{{ publication.get_absolute_url }}"> тĕплĕнрех</a>
                     </p>
                   </div>
                   <div class="news__created"><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i> <i class="far fa-calendar-alt"></i> {{ publication.created }}</div>

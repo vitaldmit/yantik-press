@@ -3,13 +3,17 @@
 
 {% block main %}
 <div class="row about">
+{% comment %}
     <div class="col-3 about__menu">
         {% include "include_about_menu.html" %}
     </div>
-    <div class="col-9 about__content">
+{% endcomment %}
+    <div class="col-12 about__content">
         {% for subscribe in all_subscribe %}
-            <div class="subscribe-details__post">{{ subscribe.title }}</div>
-            <div class="subscribe-details__post">{{ subscribe.content|safe }}<div>
+            <div class="news__post">
+                <div class="news__header news__header-text news__header-text_lh-24">{{ subscribe.title }}</div>
+                <div class="news__article-content">{{ subscribe.content|safe }}</div>
+            </div>
         {% endfor %}
     </div>
 </div>
