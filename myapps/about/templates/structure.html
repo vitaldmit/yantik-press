@@ -11,22 +11,19 @@
         {% for employee in all_employees %}
             <div class="row employee">
                 <div class="col-3 employee-photo">
-                        {% thumbnail employee.photo "140" crop="center" as im %}
-                          <img class="w-100 rounded" alt="{{ employee.name }}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
-                        {% endthumbnail %}
-                        {% comment %}
-                            <img src="/media/{{ employee.photo }}">
-                        {% endcomment %}
+                    {% thumbnail employee.photo "140" crop="center" as im %}
+                      <img class="w-100" alt="{{ employee.name }}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+                    {% endthumbnail %}
                 </div>
                 <div class="col-8 employee-details">
-                    <div class="employee-details__name">{{ employee.name }}</div>
-                    <div class="employee-details__post">{{ employee.post }}</div>
-                    <div class="employee-details__phone">{{ employee.phone }}</div>
+                    <div class="employee__detail font-weight-bold">{{ employee.name }}</div>
+                    <div class="employee-detail">{{ employee.post }}</div>
+                    <div class="employee-detail">{{ employee.phone }}</div>
                     {% if employee.email %}
-                        <div class="employee-details__email">{{ employee.email }}</div>
+                        <div class="employee-detail">{{ employee.email }}</div>
                     {% endif %}
                     {% if employee.education %}
-                        <div class="employee-details__education">{{ employee.education }}</div>
+                        <div class="employee-detail">{{ employee.education }}</div>
                     {% endif %}
                 </div>
             </div>

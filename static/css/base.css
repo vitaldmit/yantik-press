@@ -1,5 +1,5 @@
 body {
-
+    min-width: 1110px;
 }
 
 .container {
@@ -226,26 +226,20 @@ a.list-group-item.list-group-item-action.active {
     text-align: center;
 }
 .about__content{}
-.employee{
-    margin-bottom:15px;
 
+
+
+
+
+.employee {
+    margin-bottom:15px;
 }
-.employee-photo{
+.employee-photo {
     
 }
-.employee-details{
+.employee-details {
     border-bottom: darkgrey 1px solid;
 }
-.employee-details__name{
-    font-weight:700;
-}
-.employee-details__post{}
-.employee-details__phone{}
-.employee-details__email{}
-.employee-details__education{}
-
-
-
 
 .footer {
     margin-top: 20px;

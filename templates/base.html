@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" >
     <link rel="stylesheet" href="{% static 'css/swipebox.min.css' %}" type="text/css" >
-    <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css"  />
+    <link rel="stylesheet" href="{% static 'css/base.css' %}" type="text/css"  />
   </head>
   <body>
     <div class="container">
@@ -92,7 +92,7 @@
                         <a class="nav-link" href="{% url 'index' %}">Главная<span class="sr-only">(current)</span></a>
                       </li>
                       <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="/news/" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                           Пресс-центр
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -104,7 +104,7 @@
                         </div>
                       </li>
                       <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="/about/" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                           О редакции
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -185,6 +185,7 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <script src="{% static 'js/jquery.swipebox.min.js' %}"></script>
+    <script src="{% static 'js/base.js' %}"></script>
 
     <!-- Gismeteo Informer (begin) -->
     <script type="text/javascript">
@@ -210,31 +211,6 @@
     })();
     </script>
     <!-- Gismeteo Informer (finish) -->
-
-    <script type="text/javascript">
-        ;( function( $ ) {
-
-          $('.swipebox').swipebox({
-            hideBarsDelay : 0,
-            loopAtEnd: true
-          });
-
-        } )( jQuery );
-    </script>
-
-    <script type="text/javascript">
-        $('.carousel').carousel({
-          interval: 3000
-        });
-    </script>
-
-    <script type="text/javascript">
-      $(document).ready(function(){
-        var link = window.location.pathname;
-        $('a[href="'+link+'"]').addClass('active');
-      });
-    </script>
-
 
   </body>
 </html>
