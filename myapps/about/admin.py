@@ -30,7 +30,7 @@ class AdvertisingAdmin(admin.ModelAdmin):
 
 @admin.register(Announcing)
 class AnnouncingAdmin(admin.ModelAdmin):
-    list_display = ('title', 'created', 'visible')
+    list_display = ('title', 'ontop', 'created', 'visible')
 
 
 @admin.register(Contacts)

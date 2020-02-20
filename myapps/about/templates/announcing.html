@@ -10,10 +10,17 @@
     {% endcomment %}
     <div class="col-12 about__content">
         {% for announcing in all_announcing %}
+        {% if announcing.ontop %}
             <div class="news__post">
                 <div class="news__header news__header-text news__header-text_lh-24">{{ announcing.title }}</div>
                 <div class="news__article-content">{{ announcing.content|safe }}</div>
             </div>
+            {% else %}
+            <div class="news__post">
+                <div class="news__header news__header-text news__header-text_lh-24">{{ announcing.title }}</div>
+                <div class="news__article-content">{{ announcing.content|safe }}</div>
+            </div>
+        {% endif %}
         {% endfor %}
     </div>
 </div>

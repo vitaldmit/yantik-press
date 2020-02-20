@@ -18,7 +18,7 @@
   </head>
   <body>
     <div class="container">
-        <header>
+        <header class="header">
             <div class="row align-items-center">
               <div class="col-6 header-left">
                 <div class="logo">
@@ -77,10 +77,11 @@
                         </a>
                       </div>
                   </div>
-                  <div class="today_data_time"><i class="far fa-calendar-alt"></i> {% now "l\, j F Y \г." %}</div>
+                  
               </div>
 
             </div>
+            <div class="today_data_time"><i class="far fa-calendar-alt"></i> {% now "l\, j F Y \г." %}</div>
         </header>
 
             <div class="row">
@@ -104,15 +105,14 @@
                         </div>
                       </li>
                       <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="/about/" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          О редакции
+                        <a class="nav-link dropdown-toggle" href="/about/" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Редакция
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                          <a class="dropdown-item" href="#">О редакции</a>
+                          <div class="dropdown-divider"></div>
                           <a class="dropdown-item" href="{% url 'about:structure' %}">Структура</a>
                           <a class="dropdown-item" href="{% url 'about:vacancies' %}">Вакансии</a>
                           <a class="dropdown-item" href="{% url 'about:documents' %}">Документы</a>
-                          <div class="dropdown-divider"></div>
-                          <a class="dropdown-item" href="#">Редакция газеты: вчера и сегодня</a>
                         </div>
                       </li>
  
@@ -138,15 +138,13 @@
               </div>
           </div>
 
-        <nav aria-label="breadcrumb">
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{% url 'index' %}">Главная</a></li>
-            <li class="breadcrumb-item"><a href="#">О редакции</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Вакансии</li>
-          </ol>
-        </nav>
-
-
+          {% block breadcrumb %}
+                  <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                      <li class="breadcrumb-item"><i class="fas fa-home"></i> <a href="{% url 'index' %}">Главная</a></li>
+                    </ol>
+                  </nav>
+          {% endblock breadcrumb %}
 
         <main>
           {% block main %}{% endblock %}
@@ -214,3 +212,13 @@
 
   </body>
 </html>
+
+{% comment %}
+<i class="fas fa-home"></i> 
+<i class="far fa-newspaper"></i> 
+<i class="fas fa-info-circle"></i> 
+<i class="far fa-bell"></i> 
+<i class="fas fa-bullhorn"></i> 
+<i class="fas fa-broadcast-tower"></i> 
+<i class="fas fa-map-marker-alt"></i> 
+{% endcomment %}
