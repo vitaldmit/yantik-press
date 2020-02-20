@@ -15,48 +15,52 @@
                     <div class="news__header">
                         <a class="news__header-text" href="{{ news.get_absolute_url }}">{{ news.title }}</a>
                     </div>
-                    {% if news.image %}
-                      {% if forloop.first %}
+
+                    {% if news.image %} {# Если новость имеет изображение #}
+                      {% if forloop.first %} {# Если новость первая в forloop (у первой новости ширина изображения 100%) #}
                         <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                           <div class="carousel-inner">
-                            {% for photogallery in news.photogallery.all %}
-                            {# Главное фото новости #}
-                            <div class="carousel-item active">
-                              <a href="/media/{{ news.image }}" rel="gallery" class="swipebox" title="{{ news.title }}">
-                                {% thumbnail news.image "500" crop="center" as im %}
-                                  <img class="d-block w-100 rounded" alt="{{ news.title }}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
-                                {% endthumbnail %}
-                              </a>
-                            </div>
-                            <div class="carousel-item">
-                              <a href="/media/{{ photogallery.image }}" rel="gallery" class="swipebox" title="{{ news.title }}">
-                                {# Главное фото фотогалереи #}
-                                {% thumbnail photogallery.image "500" crop="center" as im %}
-                                    <img class="d-block w-100 rounded" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="{{ photogallery.title }}">
-                                {% endthumbnail %}
-                              </a>
-                            </div>
-                            {% for imgs in photogallery.news_images.all %}
-                            {# Фотографии фотогалереи #}
-                              <div class="carousel-item">
-                                <a href="/media/{{ imgs.image }}" rel="gallery" class="swipebox" title="{{ news.title }}">
-                                  {% thumbnail imgs.image "500" crop="center" as im %}
-                                      <img class="d-block w-100 rounded" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="{{ photogallery.title }}">
-                                  {% endthumbnail %}
-                                </a>
-                              </div>
+                                <div class="carousel-item active">
+                                  <a href="/media/{{ news.image }}" rel="gallery" class="swipebox" title="{{ news.title }}">
+                                    {% thumbnail news.image "500" crop="center" as im %}
+                                    {# Главное фото новости #}
+                                      <img class="d-block w-100 rounded" alt="{{ news.title }}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+                                    {% endthumbnail %}
+                                  </a>
+                                </div>
+                            {% for photogallery in news.photogallery.all %} 
+                            {# Главное фото фотогалереи #}
+                                  <div class="carousel-item">
+                                    <a href="/media/{{ photogallery.image }}" rel="gallery" class="swipebox" title="{{ news.title }}">
+                                      {% thumbnail photogallery.image "500" crop="center" as im %}
+                                          <img class="d-block w-100 rounded" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="{{ photogallery.title }}">
+                                      {% endthumbnail %}
+                                    </a>
+                                  </div>
+                                  {% for imgs in photogallery.news_images.all %}
+                                    {# Фотографии фотогалереи #}
+                                    <div class="carousel-item">
+                                      <a href="/media/{{ imgs.image }}" rel="gallery" class="swipebox" title="{{ news.title }}">
+                                        {% thumbnail imgs.image "500" crop="center" as im %}
+                                            <img class="d-block w-100 rounded" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="{{ photogallery.title }}">
+                                        {% endthumbnail %}
+                                      </a>
+                                    </div>
+                                  {% endfor %}
                             {% endfor %}
-                          </div>
-                          <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Назад</span>
-                          </a>
-                          <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Вперед</span>
-                          </a>
-                        </div>
-                    {% endfor %}
+                                </div>
+                                {# Навигация #}
+                                {% comment %}
+                                  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Назад</span>
+                                  </a>
+                                  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Вперед</span>
+                                  </a>
+                                {% endcomment %}
+                              </div>
                       {% else %}
                         {% thumbnail news.image "300" crop="center" as im %}
                           <img class="rounded float-left news__post-imgs" alt="{{ news.title }}" src="{{ im.url }}" data-holder-rendered="true" width="{{ im.width }}" height="{{ im.height }}">
@@ -77,7 +81,7 @@
                         </p>
                         {% endif %}
                     </div>
-                    <div class="news__created"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> <i class="far fa-calendar-alt"></i> {{ news.created }}</div>
+                    <div class="news__created"><i class="far fa-calendar-alt"></i> {{ news.created }}</div>
                 </div>
                 {% endfor %}
                 {% comment %}
@@ -107,7 +111,7 @@
                       <a class="font-weight-bold" href="{{ publication.get_absolute_url }}"> тĕплĕнрех</a>
                     </p>
                   </div>
-                  <div class="news__created"><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i> <i class="far fa-calendar-alt"></i> {{ publication.created }}</div>
+                  <div class="news__created"><i class="far fa-calendar-alt"></i> {{ publication.created }}</div>
                 </div>
                 {% endfor %}
                 {% comment %}
