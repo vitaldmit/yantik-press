@@ -1,12 +1,13 @@
 from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.db.models import Q
 
 from .models import News, Banners, PhotoGallery
 
 
 def index(request):
     # Главная страница
-    all_news = News.objects.filter(type='news').order_by('-created')[:5]
+    all_news = News.objects.filter(Q(type='news') | Q(type='actuals')).order_by('-created')[:5]
     all_publications = News.objects.filter(type='publications').order_by('-created')[:4]
     all_photogallery = PhotoGallery.objects.all().order_by('-created')[:5]
     all_banners = Banners.objects.all()

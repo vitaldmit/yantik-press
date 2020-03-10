@@ -27,7 +27,7 @@
                                       <a href="/media/{{ news.image }}" rel="gallery" class="swipebox" title="{{ news.title }}">
                                         {% thumbnail news.image "500" crop="center" as im %}
                                         {# Главное фото новости #}
-                                          <img class="d-block w-100 rounded" alt="{{ news.title }}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+                                          <img class="d-block w-100 rounded" alt="{{ news.title }}" src="{{ im.url }}" width="{{ im.width }}" height="350">
                                         {% endthumbnail %}
                                       </a>
                                     </div>
@@ -36,7 +36,7 @@
                                       <div class="carousel-item">
                                         <a href="/media/{{ photogallery.image }}" rel="gallery" class="swipebox" title="{{ news.title }}">
                                           {% thumbnail photogallery.image "500" crop="center" as im %}
-                                              <img class="d-block w-100 rounded" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="{{ photogallery.title }}">
+                                              <img class="d-block w-100 rounded" src="{{ im.url }}" width="{{ im.width }}" height="350" alt="{{ photogallery.title }}">
                                           {% endthumbnail %}
                                         </a>
                                       </div>
@@ -45,7 +45,7 @@
                                         <div class="carousel-item">
                                           <a href="/media/{{ imgs.image }}" rel="gallery" class="swipebox" title="{{ news.title }}">
                                             {% thumbnail imgs.image "500" crop="center" as im %}
-                                                <img class="d-block w-100 rounded" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="{{ photogallery.title }}">
+                                                <img class="d-block w-100 rounded" src="{{ im.url }}" width="{{ im.width }}" height="350" alt="{{ photogallery.title }}">
                                             {% endthumbnail %}
                                           </a>
                                         </div>
@@ -74,12 +74,12 @@
                         <div class="news__content news__content_justify">
                           {% if news.image %}
                             <p>
-                              {{ news.content|safe|truncatewords_html:50 }}
+                              {{ news.content|safe|striptags|truncatewords_html:50 }}
                               <a class="font-weight-bold" href="{{ news.get_absolute_url }}"> подробнее</a>
                             </p>
                           {% else %}
                             <p>
-                              {{ news.content|safe|truncatewords_html:30 }}
+                              {{ news.content|safe|striptags|truncatewords_html:30 }}
                               <a class="font-weight-bold" href="{{ news.get_absolute_url }}"> подробнее</a>
                             </p>
                             {% endif %}
@@ -110,7 +110,7 @@
                       {% endif %}
                       <div class="text-center news__content">
                         <p>
-                          {{ publication.content|safe|truncatewords_html:20 }}
+                          {{ publication.content|safe|striptags|truncatewords_html:20 }}
                           <a class="font-weight-bold" href="{{ publication.get_absolute_url }}"> тĕплĕнрех</a>
                         </p>
                       </div>
