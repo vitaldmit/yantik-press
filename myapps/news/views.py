@@ -6,13 +6,15 @@ from .models import News, Banners, PhotoGallery
 
 def index(request):
     # Главная страница
-    all_news = News.objects.filter(type='news').order_by('-created')[:10]
-    all_publications = News.objects.filter(type='publications').order_by('-created')[:8]
+    all_news = News.objects.filter(type='news').order_by('-created')[:5]
+    all_publications = News.objects.filter(type='publications').order_by('-created')[:4]
+    all_photogallery = PhotoGallery.objects.all().order_by('-created')[:5]
     all_banners = Banners.objects.all()
     return render(request, 'index.html',
                   {'all_news': all_news,
                    'all_publications': all_publications,
-                   'all_banners': all_banners})
+                   'all_banners': all_banners,
+                   'all_photogallery': all_photogallery})
 
 
 def news(request):

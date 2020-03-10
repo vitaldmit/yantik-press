@@ -124,7 +124,7 @@ body {
 }
 .news__header {
     text-align: center;
-    margin-bottom: 5px; 
+    margin-bottom: 10px;
 }
 .news__header-text {
     font-size: 22px;
@@ -134,6 +134,7 @@ body {
     color: rgb(33, 37, 41);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    margin-bottom: 31px;
 }
 .news__header-text:hover {
     color: rgb(33, 37, 41);
@@ -200,7 +201,7 @@ body {
 }
 
 .banners {
-
+margin-bottom: 15px;
 }
 .banners__post {
     margin-bottom: 5px;

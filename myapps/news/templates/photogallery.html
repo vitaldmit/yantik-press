@@ -1,6 +1,15 @@
 {% extends 'base.html' %}
 {% load thumbnail %}
 {% block title %}Фотогалереи / ЯЛ ӖҪЧЕНӖ - Янтиковская районная газета "Селький труженик"{% endblock %}
+{% block breadcrumb %}
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><i class="fas fa-home"></i> <a href="{% url 'index' %}">Главная</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Пресс-центр</li>
+    <li class="breadcrumb-item active" aria-current="page">Фотогалереи</li>
+  </ol>
+</nav>
+{% endblock breadcrumb %}
 {% block main %}
             <div class="row">
               <div class="col-9">

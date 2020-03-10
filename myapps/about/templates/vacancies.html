@@ -1,6 +1,14 @@
 {% extends 'base.html' %}
 {% block title %}Вакансии / ЯЛ ӖҪЧЕНӖ - Янтиковская районная газета "Селький труженик"{% endblock %}
-
+{% block breadcrumb %}
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><i class="fas fa-home"></i> <a href="{% url 'index' %}">Главная</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Редакция</li>
+    <li class="breadcrumb-item active" aria-current="page">Вакансии</li>
+  </ol>
+</nav>
+{% endblock breadcrumb %}
 {% block main %}
 <div class="row about">
     <div class="col-3 about__menu">
