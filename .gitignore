@@ -2,8 +2,8 @@
 __pycache__/
 *.py[cod]
 
-media/*
-!media/about/*
+media/
+!media/about/
 # static/images
 static_collected/
 project/settings/production.py
