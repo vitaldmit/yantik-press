@@ -29,7 +29,7 @@
                           <a href="{{ news.get_absolute_url}}"> подробнее</a>
                         {% endif %}
                     </div>
-                    <div class="news__created"><i class="far fa-calendar-alt"></i> {{ news.created }}</div>
+                    <div class="news__created"><i class="far fa-calendar-alt"></i> {{ news.publish }}</div>
                 </div>
                 {% endfor %}
                 {% include "include_paginations.html" with page=all_news %}
