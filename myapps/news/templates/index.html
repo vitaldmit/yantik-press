@@ -84,7 +84,7 @@
                             </p>
                             {% endif %}
                         </div>
-                        <div class="news__created"><i class="far fa-calendar-alt"></i> {{ news.created }}</div>
+                        <div class="news__created"><i class="far fa-calendar-alt"></i> {{ news.publish }}</div>
                     </div>
                     {% endfor %}
                     {% comment %}
@@ -114,7 +114,7 @@
                           <a class="font-weight-bold" href="{{ publication.get_absolute_url }}"> тĕплĕнрех</a>
                         </p>
                       </div>
-                      <div class="news__created"><i class="far fa-calendar-alt"></i> {{ publication.created }}</div>
+                      <div class="news__created"><i class="far fa-calendar-alt"></i> {{ publication.publish }}</div>
                     </div>
                     {% endfor %}
                     {% comment %}
@@ -145,7 +145,7 @@
                   </div>
                     
                     <div class="col-3 photogallery-post_additional">
-                      <div class="news__created">{{ photogallery.created }}</div>
+                      <div class="news__created">{{ photogallery.publish }}</div>
                   </div>
                   </div>
                 </div>
