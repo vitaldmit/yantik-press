@@ -7,9 +7,9 @@ from .models import News, Banners, PhotoGallery
 
 def index(request):
     # Главная страница
-    all_news = News.objects.filter(Q(type='news') | Q(type='actuals')).order_by('-created')[:5]
-    all_publications = News.objects.filter(type='publications').order_by('-created')[:4]
-    all_photogallery = PhotoGallery.objects.all().order_by('-created')[:5]
+    all_news = News.objects.filter(Q(type='news') | Q(type='actuals')).order_by('-publish')[:5]
+    all_publications = News.objects.filter(type='publications').order_by('-publish')[:4]
+    all_photogallery = PhotoGallery.objects.all().order_by('-publish')[:5]
     all_banners = Banners.objects.all()
     return render(request, 'index.html',
                   {'all_news': all_news,
@@ -20,7 +20,7 @@ def index(request):
 
 def news(request):
     # Тип новости 'Новости'
-    all_news = News.objects.filter(type='news').order_by('-created')
+    all_news = News.objects.filter(type='news').order_by('-publish')
     paginator = Paginator(all_news, 10)
     page = request.GET.get('page')
     try:
@@ -32,7 +32,7 @@ def news(request):
         # Если номер страницы больше, чем общее количество страниц,
         # возвращаем последнюю.
         all_news = paginator.page(paginator.num_pages)
-    # Тип новости 'Публикация'
+    # Баннеры
     all_banners = Banners.objects.all()
     return render(request, 'news.html',
                   {'page': page,
@@ -42,7 +42,7 @@ def news(request):
 
 def publications(request):
     # Тип новости 'Публикации'
-    all_publications = News.objects.filter(type='publications').order_by('-created')
+    all_publications = News.objects.filter(type='publications').order_by('-publish')
     paginator = Paginator(all_publications, 10)
     page = request.GET.get('page')
     try:
@@ -54,8 +54,7 @@ def publications(request):
         # Если номер страницы больше, чем общее количество страниц,
         # возвращаем последнюю.
         all_publications = paginator.page(paginator.num_pages)
-    # Тип новости 'Публикация'
-    # all_news = News.objects.filter(type='news').order_by('-created')[:8]
+    # Баннеры
     all_banners = Banners.objects.all()
     return render(request, 'publications.html',
                   {'page': page,
@@ -65,7 +64,7 @@ def publications(request):
 
 def actuals(request):
     # Тип новости 'Публикации'
-    all_actuals = News.objects.filter(type='actuals').order_by('-created')
+    all_actuals = News.objects.filter(type='actuals').order_by('-publish')
     paginator = Paginator(all_actuals, 10)
     page = request.GET.get('page')
     try:
@@ -77,8 +76,7 @@ def actuals(request):
         # Если номер страницы больше, чем общее количество страниц,
         # возвращаем последнюю.
         all_actuals = paginator.page(paginator.num_pages)
-    # Тип новости 'Публикация'
-    # all_news = News.objects.filter(type='news').order_by('-created')[:8]
+    # Баннеры
     all_banners = Banners.objects.all()
     return render(request, 'actuals.html',
                   {'page': page,
@@ -99,7 +97,7 @@ def news_actuals_publications_article(request, year, month, day, slug):
 
 def photogallery(request):
     # Фотогалерея
-    all_photogallery = PhotoGallery.objects.all().order_by('-created')
+    all_photogallery = PhotoGallery.objects.all().order_by('-publish')
     paginator = Paginator(all_photogallery, 10)
     page = request.GET.get('page')
     try:
@@ -111,7 +109,7 @@ def photogallery(request):
         # Если номер страницы больше, чем общее количество страниц,
         # возвращаем последнюю.
         all_photogallery = paginator.page(paginator.num_pages)
-    # Тип новости 'Публикация'
+    # Баннеры
     all_banners = Banners.objects.all()
     return render(request, 'photogallery.html',
                   {'page': page,
