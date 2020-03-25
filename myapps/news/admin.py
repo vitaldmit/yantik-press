@@ -14,13 +14,13 @@ class PhotoGalleryInline(admin.StackedInline):
 
 @admin.register(News)
 class NewsAdmin(admin.ModelAdmin):
-    list_display = ('title', 'author', 'type', 'created', 'visible')
+    list_display = ('title', 'author', 'type', 'publish', 'created', 'visible')
     list_filter = ('visible', 'created', 'publish', 'author')
     search_fields = ('title', 'content')
     prepopulated_fields = {'slug': ('title',)}
     # raw_id_fields = ('author',)
     date_hierarchy = 'publish'
-    ordering = ('-created', '-publish')
+    ordering = ('-publish', '-created')
     inlines = [PhotoGalleryInline, ]
 
 
