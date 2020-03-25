@@ -16,6 +16,4 @@
   $('a[href="'+link+'"]').addClass('active');
   if(link.startsWith('/news/'))
     $('a[href="/news/"]').addClass('active');
-  if(link.startsWith('/about/'))
-    $('a[href="/about/"]').addClass('active');
 });
