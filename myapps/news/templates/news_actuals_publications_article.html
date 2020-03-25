@@ -1,8 +1,19 @@
 {% extends 'base.html' %}
 {% load thumbnail %}
+
 {% block title %} {{ news_actuals_publications_article.title}} {% endblock %}
 
+{% block breadcrumb %}
 
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><i class="fas fa-home"></i> Главная</li>
+    <li class="breadcrumb-item" aria-current="page">Пресс-центр</li>
+    <li class="breadcrumb-item" aria-current="page">{{ news_actuals_publications_article.get_type_display }}</li>
+    <li class="breadcrumb-item active" aria-current="page">{{ news_actuals_publications_article.title|truncatewords:5 }}</li>
+  </ol>
+</nav>
+{% endblock breadcrumb %}
 
 {% block main %}
     <div class="row">

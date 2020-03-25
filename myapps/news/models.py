@@ -13,7 +13,7 @@ class News(models.Model):
     TYPE_CHOICES = (
       ('actuals', 'Актуально'),
       ('news', 'Новости'),
-      ('publications', 'Публикация'),
+      ('publications', 'Публикации'),
       ('announcements', 'Объявление'),
     )
     author = models.ForeignKey(User, on_delete=models.PROTECT,
