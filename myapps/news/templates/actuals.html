@@ -26,7 +26,7 @@
                     <div class="news__content news__content_justify">
                         {{ actual.content|safe|truncatewords_html:100 }}
                         {% if actual.content|wordcount > 100 %}
-                          <a href="{{ actual.get_absolute_url}}"> подробнее</a>
+                          <a class="font-weight-bold" href="{{ actual.get_absolute_url}}"> подробнее</a>
                         {% endif %}
                     </div>
                     <div class="news__created"><i class="far fa-calendar-alt"></i> {{ actual.publish }}</div>
