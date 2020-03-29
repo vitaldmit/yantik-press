@@ -20,7 +20,7 @@
                     </div>
                     {% if news.image %}
                     {# Если есть изображение то выводим его и текст толжен быть больше условно 100 #}
-                      {% thumbnail news.image "350" crop="center" as im %}
+                      {% thumbnail news.image "320" crop="center" as im %}
                           <img class="rounded float-left news__post-imgs" alt="" src="{{ im.url }}" data-holder-rendered="true" width="{{ im.width }}" height="{{ im.height }}">
                       {% endthumbnail %}
                       <div class="news__content news__content_justify">

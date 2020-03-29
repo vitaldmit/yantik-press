@@ -16,6 +16,13 @@
                     {% for news in all_news %}
                       {% if news.visible %}
                       <div class="news__post">
+                        {% if news.type == "actuals" %}
+                        {# <div class="news__badge-all-news"> #}
+                          <a href="{% url 'news:actuals' %}">
+                            <span class="badge badge-info">Актуально</span>
+                          </a>
+                        {# </div> #}
+                    {% endif %}
                           <div class="news__header">
                               <a class="news__header-text" href="{{ news.get_absolute_url }}">{{ news.title }}</a>
                           </div>
@@ -106,7 +113,7 @@
                         <a class="news__header-text" href="{{ publication.get_absolute_url }}">{{ publication.title }}</a>
                       </div>
                       {% if publication.image %}
-                        {% thumbnail publication.image "230" crop="center" as im %}
+                        {% thumbnail publication.image "250" crop="center" as im %}
                           <img class="rounded w-100" alt="" src="{{ im.url }}" data-holder-rendered="true" width="{{ im.width }}" height="{{ im.height }}">
                         {% endthumbnail %}
                       {% endif %}

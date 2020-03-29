@@ -19,8 +19,8 @@
     <div class="row">
         <div class="col-9 news">
             <div class="news__created"><i class="far fa-calendar-alt"></i> {{ news_actuals_publications_article.publish }}</div>
-                <div class="news__header news__header-text news__header-text_lh-24">
-                    {{ news_actuals_publications_article.title}}
+                <div class="news__header">
+                      <span class="news__header-text">{{ news_actuals_publications_article.title }}</span>
                 </div>
                 {% if news_actuals_publications_article.image %}
                       <a href="/media/{{ news_actuals_publications_article.image }}" rel="gallery" class="swipebox" title="{{ news_actuals_publications_article.title }}">
@@ -33,21 +33,25 @@
                     <div class="news__article-content text-justify">
                         {{ news_actuals_publications_article.content|safe }}
                     </div>
-                <div class="news__gallery">
+                <div class="news__photo-gallery">
                     {% for photogallery in news_actuals_publications_article.photogallery.all %}
                     {# Главное фото фотогалереи #}
+                    <div class="photo float-left">
                         <a href="/media/{{ photogallery.image }}" rel="gallery" class="swipebox" title="{{ photogallery_article.title}}">
                             {% thumbnail photogallery.image "200" crop="center" as im %}
-                                <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="{{ photogallery.title }}">
+                                <img src="{{ im.url }}" width="{{ im.width }}" height="135px" alt="{{ photogallery.title }}">
                             {% endthumbnail %}
                         </a>
+                    </div>
                         {% for imgs in photogallery.news_images.all %}
                         {# Фотографии фотогалереи #}
-                            <a href="/media/{{ imgs.image }}" rel="gallery" class="swipebox" title="{{ photogallery_article.title}}">
-                                {% thumbnail imgs.image "200" crop="center" as im %}
-                                    <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="{{ photogallery.title }}">
-                                {% endthumbnail %}
-                            </a>
+                            <div class="photo float-left">
+                                <a href="/media/{{ imgs.image }}" rel="gallery" class="swipebox" title="{{ photogallery_article.title}}">
+                                    {% thumbnail imgs.image "200" crop="center" as im %}
+                                        <img src="{{ im.url }}" width="{{ im.width }}" height="135px" alt="{{ photogallery.title }}">
+                                    {% endthumbnail %}
+                                </a>
+                            </div>
                         {% endfor %}
                     {% endfor %}
                 </div>
@@ -68,20 +72,22 @@
                         </a>
                     {% endfor %}
 {% endcomment %}
-
+                <div class="clearfix"></div>
                 {% if news_actuals_publications_article.source %}
                     <div class="news__source">Первоисточник: {{ news_actuals_publications_article.source }} </div>
                 {% endif %}
-
         </div>
+
         <div class="col-3">
             <div class="news_share">
                 <script src="https://yastatic.net/es5-shims/0.0.2/es5-shims.min.js"></script>
                 <script src="https://yastatic.net/share2/share.js"></script>
-                Поделиться: <div class="ya-share2" data-services="vkontakte,facebook,odnoklassniki,twitter,viber,whatsapp,telegram"></div>
+                Поделиться: 
+                <div class="ya-share2" data-services="vkontakte,facebook,odnoklassniki,twitter,viber,whatsapp,telegram"></div>
             </div>
             <a href="#" class="btn btn-danger" onclick="window.print()">Распечатать</a>
         </div>
+
     </div>
 
 {% endblock %}

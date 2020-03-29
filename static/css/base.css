@@ -122,6 +122,7 @@ body {
 .news__header {
     text-align: center;
     margin-bottom: 10px;
+    margin-top: 10px;
 }
 .news__header-text {
     font-size: 22px;
@@ -177,6 +178,7 @@ body {
     font-family:Georgia!important;
     font-size: 16px!important;
     background-color: inherit;
+    border-color: #afafaf;
 }
 
 .news__created {
@@ -185,13 +187,18 @@ body {
     text-align: right;
     margin-top: 5px;
 }
-.news__gallery {
+.news__photo-gallery {
     margin-bottom: 15px;
     margin-top: 15px;
+}
+.photo {
+    margin-right: 5px;
+    margin-bottom: 5px;
 }
 .news__source {
     font-size: 12px;
     font-style: italic;
+    margin-top: 20px;
 }
 .news_share {
     margin-bottom: 10px;
