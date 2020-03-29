@@ -3,18 +3,16 @@
 {% load static %}
   <head>
     <title>{% block title %}ЯЛ ӖҪЧЕНӖ - Янтиковская районная газета "Селький труженик"{% endblock %}</title>
-    <!-- Required meta tags -->
     <meta http-equiv="Content-Language" content="ru">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=1110">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="X-UA-Compatible" content="IE=8"/>
-    <!--[if lte IE 9]><script src="http://phpbbex.com/oldies/oldies.js" charset="utf-8"></script><![endif]-->
-
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" >
-    <link rel="stylesheet" href="{% static 'css/swipebox.min.css' %}" type="text/css" >
-    <link rel="stylesheet" href="{% static 'css/base.css' %}" type="text/css"  />
+    <!--[if lte IE 9]><script src="{% static 'js/oldies.js' %}" charset="utf-8"></script><![endif]-->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" type="text/css" />
+    <link rel="stylesheet" href="{% static 'css/fontawesome/css/all.css' %}" type="text/css" />
+    <link rel="stylesheet" href="{% static 'css/swipebox.min.css' %}" type="text/css" />
+    <link rel="stylesheet" href="{% static 'css/base.css' %}" type="text/css" />
   </head>
   <body>
     <div class="container">
@@ -29,7 +27,7 @@
               </div>
               <div class="col-3 header-center">
                 <div class="gismeteo">
-                    <!-- Gismeteo informer START -->
+                    {# <!-- Gismeteo informer START --> #}
                     <link rel="stylesheet" type="text/css" href="https://nst1.gismeteo.ru/assets/flat-ui/legacy/css/informer.min.css">
                     <div id="gsInformerID-5FBglbu3SoP5s1" class="gsInformer">
                       <div class="gsIContent">
@@ -60,7 +58,7 @@
                       </div>
                     </div>
                     <script async src="https://www.gismeteo.ru/api/informer/getinformer/?hash=5FBglbu3SoP5s1"></script>
-                    <!-- Gismeteo informer END -->
+                    {# <!-- Gismeteo informer END --> #}
                 </div>
               </div>
 
@@ -159,14 +157,8 @@
 
               <div class="col-4 footer-center">
                   <div class="copyright">© При использовании материалов ссылка на данный сайт обязательна</div>
-                  <div style="text-align:center;">
-                      <!--TopList COUNTER-->
-                      <a target="_top" href="http://top.list.ru/jump?from=29373"><img src="http://top.list.ru/counter?id=29373;t=52" border="0" height="31" width="88" alt="TopList"></a> 
-                      <!--TopList COUNTER-->
-                      <a href="http://gov.cap.ru/stat/svod.asp"><img src="data:image/gif;base64,R0lGODlhWAAfALMAAHeTqWybwVd5m4q21/7FAZPM89amEK7c+ENXbGFYPzFDXqqHHqrH14ZyMhcjQTNmmSH5BAAAAAAALAAAAABYAB8AAAT/8MlJq7046827/2AojmQGDEGprqDAHPAxDILA3nj9xkURAwAbbhgCMAi83qHH8B0YQaI0IwDElr2sVgtDTb8PAQoVKD/KaAF6fS4PomBcAEiv2+94Yfx2CpDRf2t+g2t6ezcMA1AOCFACCQkNCw2QVQwKDi4MDIaHKz4FAZlvCwSmpwYGagoKAjChnjgDPQiMDae4qA0OCggDB2axLL8FmAm5yAQGDazEncIjVsUKyJMNBrgGzTLP0CG/AwqluLsODsfkCi803irECNi4kAkKCfGmCwrg3e0eswUIkglUpo9bPxLv7g1Epc7gQREJs1GaRxFSwQEPRxATl4seK3GpcRYsu8gvY4aN6OTVG3eK2TqT32RgYomqWi9wMEFsZEUzWb5eTQrk9BDgRQEAmQCITLYMACtXSwAM5SAgFA0HDUI9krTAGgI/mAAUmFFyqgQxcwA08AMgQA23VdgGaUAGjlkMbgWpEcSX792/gAMLvhEBADs=" width="88" height="31" border="0" alt="Сводная статистика портала"></a>
-                      <img src="http://www.ranker.ru/scripts/rcounter.dll?ID=8594&image=316" border="0" width="1" height="1">
-                </div>
               </div>
+
               <div class="col-4 footer-right">
                 Телефон: 8 (83548) 2-11-10, 2-15-64
                 Факс: 8(83548) 2-11-10
@@ -178,10 +170,10 @@
     </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-2.0.3.min.js" integrity="sha256-sTy1mJ4I/LAjFCCdEB4RAvPSmRCb3CU7YqodohyeOLo="crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="{% static 'js/jquery-3.4.1.slim.min.js' %}"></script>
+    <script src="{% static 'js/jquery-2.0.3.min.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
     <script src="{% static 'js/jquery.swipebox.min.js' %}"></script>
     <script src="{% static 'js/base.js' %}"></script>
 
@@ -192,33 +184,20 @@
             d = this.document,
             o = this.navigator.userAgent.match(/MSIE (6|7|8)/) ? true : false,
             s = d.createElement('script');
-     
-        s.src  = 'https://www.gismeteo.ru/informers/simple/install/';
-        s.type = 'text/javascript';
-        s[(o ? 'defer' : 'async')] = true;
-        s[(o ? 'onreadystatechange' : 'onload')] = function() {
-            try {new GmI({
-                slug : 'fbe2ee01c6b2a0dd0f3ef73c04bc49fd',
-                type : '240x90-2',
-                city : '236694',
-                lang : 'ru'
-            })} catch (e) {}
-        }
-     
-        d.body.appendChild(s);
+            s.src  = 'https://www.gismeteo.ru/informers/simple/install/';
+            s.type = 'text/javascript';
+            s[(o ? 'defer' : 'async')] = true;
+            s[(o ? 'onreadystatechange' : 'onload')] = function() {
+                try {new GmI({
+                    slug : 'fbe2ee01c6b2a0dd0f3ef73c04bc49fd',
+                    type : '240x90-2',
+                    city : '236694',
+                    lang : 'ru'
+                })} catch (e) {}
+            }
+            d.body.appendChild(s);
     })();
     </script>
     <!-- Gismeteo Informer (finish) -->
-
   </body>
 </html>
-
-{% comment %}
-<i class="fas fa-home"></i> 
-<i class="far fa-newspaper"></i> 
-<i class="fas fa-info-circle"></i> 
-<i class="far fa-bell"></i> 
-<i class="fas fa-bullhorn"></i> 
-<i class="fas fa-broadcast-tower"></i> 
-<i class="fas fa-map-marker-alt"></i> 
-{% endcomment %}
