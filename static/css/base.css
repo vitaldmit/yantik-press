@@ -56,15 +56,13 @@ body {
     width:100%;
     height:auto;
 }
-.today_data_time {
-    font-size: 12px;
-    text-align: right;
-}
-.subscribe {
+.social {
     text-align: center;
-    margin-bottom: 10px;
 }
-.subscribe__btn {
+.social a:hover {
+    text-decoration: none;
+}
+/*.subscribe__btn {
     color: #fff;
     background-color: #1a736c;
     border-color: #1a736c;
@@ -77,12 +75,11 @@ body {
     background-color: #1f8078;
     border-color: #1f8078;
 }
-.subscribe__vk {
-    display: inline-block;
+*/
+.today_date {
+    font-size: 12px;
+    text-align: right;
 }
-/*.subscribe__vk-icon {
-
-}*/
 
 .menu {
     background-color: #1a736c;
