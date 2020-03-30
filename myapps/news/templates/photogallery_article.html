@@ -5,8 +5,8 @@
 {% block main %}
     <div class="row">
         <div class="col-9 news">
-            <div class="news__header news__header-text news__header-text_lh-24">
-                {{ photogallery_article.title}}
+            <div class="news__header">
+                  <span class="news__header-text">{{ photogallery_article.title}}</span>
             </div>
             {# Главное фото фотогалереи #}
             <a href="/media/{{ photogallery_article.image}}" rel="gallery" class="swipebox" title="{{ photogallery_article.title}}">

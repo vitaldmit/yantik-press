@@ -18,7 +18,9 @@
     <div class="col-12 about__content">
         {% for subscribe in all_subscribe %}
             <div class="news__post">
-                <div class="news__header news__header-text news__header-text_lh-24">{{ subscribe.title }}</div>
+                <div class="news__header">
+                      <span class="news__header-text">{{ subscribe.title }}</span>
+                </div>
                 <div class="news__article-content">{{ subscribe.content|safe }}</div>
             </div>
         {% endfor %}

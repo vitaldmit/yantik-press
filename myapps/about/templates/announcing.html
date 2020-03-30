@@ -18,7 +18,6 @@
     {% endcomment %}
     <div class="col-12 about__content">
             {% for announcing in all_announcing %}
-                {% if announcing.visible %}
                     {% if announcing.ontop %}
                         <div class="news__post">
                             <div class="news__header">
@@ -36,11 +35,9 @@
                             {% endif %}
                         </div>
                     {% endif %}
-                {% endif %}
             {% endfor %}
 
             {% for announcing in all_announcing %}
-                {% if announcing.visible %}
                     {% if announcing.ontop is not True %}
                         <div class="news__post">
                             <div class="news__header">
@@ -58,7 +55,6 @@
                             {% endif %}
                         </div>
                     {% endif %}
-                {% endif %}
             {% endfor %}
             {# из myapps.news.templates #}
             {% include "include_paginations.html" with page=all_announcing %}
