@@ -35,8 +35,11 @@ class AdvertisingAdmin(admin.ModelAdmin):
 
 @admin.register(Announcing)
 class AnnouncingAdmin(admin.ModelAdmin):
-    list_display = ('title', 'ontop', 'created', 'visible')
-    ordering = ('-created', )
+    list_display = ('title', 'ontop', 'publish', 'created', 'visible')
+    list_filter = ('visible', 'created', 'publish')
+    search_fields = ('title', 'content')
+    date_hierarchy = 'publish'
+    ordering = ('-publish', '-created')
 
 
 @admin.register(Contacts)
