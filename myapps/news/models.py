@@ -23,9 +23,6 @@ class News(models.Model):
                             choices=TYPE_CHOICES)
     title = models.CharField('Заголовок', max_length=200)
     slug = models.SlugField('ЧПУ', max_length=200, unique_for_date='publish')
-    keywords = models.CharField('Ключевые слова', max_length=100,
-                                blank=True, null=True)
-    description = models.TextField('Описание', blank=True, null=True)
     image = models.ImageField('Главное фото', upload_to='newsimages/%Y/%m/%d/',
                               blank=True, null=True)
     imagesign = models.CharField('Подпись к главному фото', max_length=100,
@@ -39,6 +36,9 @@ class News(models.Model):
     updated = models.DateTimeField('Обновлен',
                                    auto_now=True, auto_now_add=False)
     publish = models.DateTimeField("Дата публикации", default=timezone.now)
+    keywords = models.CharField('Ключевые слова', max_length=100,
+                                blank=True, null=True)
+    description = models.TextField('Описание', blank=True, null=True)
 
     def get_absolute_url(self):
         return reverse('news:news_article', args=[self.publish.year,
