@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from .models import Employees, Vacancies, Documents, Subscribe, Advertising, Announcing, Contacts
 
@@ -35,8 +36,21 @@ def advertising(request):
 
 def announcing(request):
     """ Страница 'Объявления' """
-    all_announcing = Announcing.objects.all().order_by('-created')
-    return render(request, 'announcing.html', {'all_announcing': all_announcing})
+    all_announcing = Announcing.objects.all().order_by('-publish')
+    paginator = Paginator(all_announcing, 10)
+    page = request.GET.get('page')
+    try:
+        all_announcing = paginator.page(page)
+    except PageNotAnInteger:
+        # Если страница не является целым числом,возвращаем первую страницу.
+        all_announcing = paginator.page(1)
+    except EmptyPage:
+        # Если номер страницы больше, чем общее количество страниц,
+        # возвращаем последнюю.
+        all_announcing = paginator.page(paginator.num_pages)
+    return render(request, 'announcing.html',
+                  {'page': page,
+                   'all_announcing': all_announcing})
 
 
 def contacts(request):

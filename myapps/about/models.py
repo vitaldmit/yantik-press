@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 from tinymce.models import HTMLField
 
@@ -107,13 +108,18 @@ class Advertising(models.Model):
 
 class Announcing(models.Model):
     """ Страница 'Объявления' """
-    title = models.CharField('Заголовок', max_length=100)
+    title = models.CharField('Заголовок', max_length=200)
     content = HTMLField('Контент', )
+    image = models.ImageField('Главное фото', upload_to='announcing/%Y/%m/%d/',
+                              blank=True, null=True)
+    source = models.CharField('Первоисточник', max_length=150,
+                              blank=True, null=True)
     visible = models.BooleanField('Показывать', default=1)
     ontop = models.BooleanField('Размещать сверху', )
     created = models.DateTimeField('Создан', auto_now=False, auto_now_add=True)
     updated = models.DateTimeField('Обновлен',
                                    auto_now=True, auto_now_add=False)
+    publish = models.DateTimeField("Дата публикации", default=timezone.now)
 
     class Meta:
         ordering = ('created', )

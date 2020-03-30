@@ -18,7 +18,7 @@
     <div class="col-12 about__content">
         {% for advertising in all_advertising %}
             <div class="news__post">
-                <div class="news__header news__header-text news__header-text_lh-24">{{ advertising.title }}</div>
+                <div class="news__header news__header-text">{{ advertising.title }}</div>
                 <div class="news__article-content">{{ advertising.content|safe }}</div>
             </div>
         {% endfor %}
