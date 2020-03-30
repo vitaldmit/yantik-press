@@ -20,13 +20,20 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 from myapps.news.views import index
+from myapps.about.views import subscribe, advertising, announcing, contacts
 
 
 urlpatterns = [
     path('', index, name='index'),
     path('news/', include('myapps.news.urls')),
     path('about/', include('myapps.about.urls')),
-    path('admin/', admin.site.urls),
+
+    path('subscribe/', subscribe, name='subscribe'),
+    path('advertising/', advertising, name='advertising'),
+    path('announcing/', announcing, name='announcing'),
+    path('contacts/', contacts, name='contacts'),
+
+    path('administrat/', admin.site.urls),
     url(r'^tinymce/', include('tinymce.urls')),
 ]
 # handle /media/, /static/ static files (only if DEBUG is True)

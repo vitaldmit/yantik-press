@@ -132,33 +132,31 @@
                   </div>
                 </div>
                 <div class="row">
-
                   <div class="col-12">
+                    <div>ФОТОГАЛЕРЕИ</div>
                     <div class="news__badge-all-news">
                       <a href="/news/news/">
                         <span class="badge badge-danger">Все фотогалереи</span>
                       </a>
                     </div>
-                    {# <div>ФОТОГАЛЕРЕЯ</div> #}
-
-                {% for photogallery in all_photogallery %}
-                <div class="news__post">
-                  <div class="row news">
-                    <div class="col-3">
-                      {% thumbnail photogallery.image "200" crop="center" as im %}
-                          <img class="rounded float-left w-100" alt="" src="{{ im.url }}" data-holder-rendered="true" width="{{ im.width }}" height="{{ im.height }}">
-                      {% endthumbnail %}
-                    </div>
-                  <div class="col-6">
-                      <a class="news__header-text news__header-text_small news__header-text_va-bottom" href="{{ photogallery.get_absolute_url }}">{{ photogallery.title }}</a>
-                  </div>
-                    
-                    <div class="col-3 photogallery-post_additional">
-                      <div class="news__created">{{ photogallery.publish }}</div>
-                  </div>
-                  </div>
-                </div>
-                {% endfor %}
+                    {% for photogallery in all_photogallery %}
+                      <div class="news__post">
+                        <div class="row news">
+                          <div class="col-3">
+                            {% thumbnail photogallery.image "200" crop="center" as im %}
+                                <img class="rounded float-left w-100" alt="" src="{{ im.url }}" data-holder-rendered="true" width="{{ im.width }}" height="{{ im.height }}">
+                            {% endthumbnail %}
+                          </div>
+                        <div class="col-6">
+                            <a class="news__header-text news__header-text_small news__header-text_va-bottom" href="{{ photogallery.get_absolute_url }}">{{ photogallery.title }}</a>
+                        </div>
+                          
+                          <div class="col-3 photogallery-post_additional">
+                            <div class="news__created">{{ photogallery.publish }}</div>
+                        </div>
+                        </div>
+                      </div>
+                    {% endfor %}
                   </div>
                 </div>
               </div>

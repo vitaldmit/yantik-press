@@ -12,8 +12,9 @@ urlpatterns = [
     # path('history/', views.history, name='history'),
     # path('documents/<int:year>-<int:month>-<int:day>/<slug:slug>.docx',
     #      views.documents, name='documents'),
-    path('subscribe/', views.subscribe, name='subscribe'),
-    path('advertising/', views.advertising, name='advertising'),
-    path('announcing/', views.announcing, name='announcing'),
-    path('contacts/', views.contacts, name='contacts'),
+
+    # path('subscribe/', views.subscribe, name='subscribe'),
+    # path('advertising/', views.advertising, name='advertising'),
+    # path('announcing/', views.announcing, name='announcing'),
+    # path('contacts/', views.contacts, name='contacts'),
 ]

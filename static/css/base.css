@@ -112,7 +112,7 @@ body {
     margin-bottom: 15px;
 }
 .news__badge-all-news {
-    /* text-align: right; */
+    text-align: right;
     margin-bottom: 5px;
 }
 .news__post {
