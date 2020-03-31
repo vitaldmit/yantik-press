@@ -1,11 +1,33 @@
+{% load thumbnail %}
 <div class="col-3 banners">
   {% for banners in all_banners %}
-  <div class="banners__post">
-    {% if banners.image %}
-      <a href="{{ banners.link }}" target="_blank">
-        <img class="rounded banners__post-img" alt="{{ banners.title }}" src="/media/{{ banners.image }}" data-holder-rendered="true">
-      </a>
+    {% if banners.type == 'with_image' %}
+        <div class="banners__post">
+          <a href="{{ banners.link }}" target="_blank">
+            {% thumbnail banners.image "255" crop="center" as im %}
+              <img class="banners__post-img w-100" alt="{{ banners.title}}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+            {% endthumbnail %}
+          </a>
+        </div>
+    {% elif banners.type == 'with_text' %}
+        <div class="banners__post">
+            <a href="{{ banners.link }}" target="_blank">
+                {{ banners.title }}
+            </a>
+        </div>
+    {% elif banners.type == 'with_image_text' %}
+        <div class="row banners__post">
+            <div class="col-6">
+            <a href="{{ banners.link }}" target="_blank">
+                {% thumbnail banners.image "150" crop="center" as im %}
+                  <img class="banners__post-img" alt="{{ banners.title}}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+                {% endthumbnail %}
+            </a>
+            </div>
+            <div class="col-6">
+            <a href="{{ banners.link }}" class="banners__title">{{ banners.title }}</a>
+            </div>
+        </div>
     {% endif %}
-  </div>
   {% endfor %}
 </div>

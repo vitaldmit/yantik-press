@@ -218,12 +218,15 @@ margin-bottom: 15px;
 }
 .banners__post {
     margin-bottom: 5px;
-    /*border-bottom: 1px solid #a7a7a7;*/
-    text-align: center;
+    border-bottom: 1px solid #a7a7a7;
+    /* text-align: center; */
 }
 .banners__post-img {
-    width: 100%;
+    /* width: 100%; */
     height: fit-content;
+}
+.banners__title {
+    font-size: 10px;
 }
 
 /*About*/

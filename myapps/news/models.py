@@ -114,7 +114,8 @@ class NewsImages(models.Model):
 class Banners(models.Model):
     TYPE_CHOICES = (
       ('with_image', 'Графический'),
-      ('with_text_image', 'Текстографический'),
+      ('with_text', 'Текстовый'),
+      ('with_image_text', 'Текстографический'),
     )
     type = models.CharField("Тип баннера", max_length=15,
                             choices=TYPE_CHOICES, default='image')
