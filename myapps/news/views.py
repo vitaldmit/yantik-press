@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Q
-from django.contrib.postgres.search import SearchVector
+from django.contrib.postgres.search import SearchVector, SearchQuery, SearchRank
 
 from .models import News, Banners, PhotoGallery
 
@@ -124,8 +124,7 @@ def photogallery_article(request, year, month, day, slug):
                                              publish__month=month,
                                              publish__day=day,
                                              slug=slug,
-                                             visible=True,
-                                             )
+                                             visible=True,)
 
     return render(request, 'photogallery_article.html',
                   {'photogallery_article': photogallery_article})
@@ -133,8 +132,26 @@ def photogallery_article(request, year, month, day, slug):
 def search(request):
     query = request.GET.get('q')
     if query:
-        # results = News.objects.all().filter(title__contains=query)
-        # results = News.objects.filter(content__search=query)
-        results = News.objects.annotate(search=SearchVector('content', 'title')).filter(search=query)
+        # all_results = News.objects.filter(content__contains=query)
+        # all_results = News.objects.filter(content__search=query)
+        # all_results = News.objects.annotate(search=SearchVector('content', 'title')).filter(search=query)
+        search_vector = SearchVector('title', 'content')
+        search_query = SearchQuery(query)
+        all_results = News.objects.annotate(
+            search=search_vector,
+            rank=SearchRank(search_vector, search_query)
+        ).filter(search=search_query).order_by('-rank')
+        paginator = Paginator(all_results, 1)
+        page = request.GET.get('page')
+        try:
+            all_results = paginator.page(page)
+        except PageNotAnInteger:
+            # Если страница не является целым числом,возвращаем первую страницу.
+            all_results = paginator.page(1)
+        except EmptyPage:
+            # Если номер страницы больше, чем общее количество страниц,
+            # возвращаем последнюю.
+            all_results = paginator.page(paginator.num_pages)
         return render(request, 'search.html', {'query': query,
-                                               'results': results})
+                                               'all_results': all_results,
+                                               'page': page})

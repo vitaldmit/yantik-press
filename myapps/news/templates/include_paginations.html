@@ -1,34 +1,29 @@
-<!-- <div class="pagination">
-    <span class="step-links">
-        {% if page.has_previous %}
-            <a href="?page={{page.previous_page_number}}">Назад</a>
-        {% endif %}
-        <span class="current">
-            Страница {{ page.number }} из {{ page.paginator.num_pages }}.
-        </span>
-        {% if page.has_next %}
-            <a href="?page={{ page.next_page_number }}">Вперед</a>
-        {% endif %}
-    </span>
-</div>  -->
-
-            {% block pagination %}
-            <div class="row">
-                <div class="col-12">
-                  <nav aria-label="Постраничная навигация">
-                    <ul class="pagination">
-                    {% if page.has_previous %}
-                        <li class="page-item"><a class="page-link" href="?page={{page.previous_page_number}}">Назад</a></li>
-                        <li class="page-item"><a class="page-link" href="?page={{page.previous_page_number}}">{{ page.number|add:"-1" }}</a></li>
-                    {% endif %}
-                      <li class="page-item"><a class="page-link" href="?page={{page.number}}">{{ page.number }}</a></li>
-                      {% if page.has_next %}
-                      <li class="page-item"><a class="page-link" href="?page={{ page.next_page_number }}">{{ page.number|add:"+1" }}</a></li>
-                        <li class="page-item"><a class="page-link" href="?page={{ page.next_page_number }}">Вперед</a></li>
-                      {% endif %}
-                      
-                    </ul>
-                  </nav>
-                </div>
-            </div>
-            {% endblock %}
+{% block pagination %}
+  <div class="row">
+      <div class="col-12">
+        <nav aria-label="Постраничная навигация">
+          <ul class="pagination">
+            {% if page.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{page.previous_page_number}}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">Назад</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="?page={{page.previous_page_number}}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">{{ page.number|add:"-1" }}</a>
+                </li>
+            {% endif %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{page.number}}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">{{ page.number }}</a>
+            </li>
+            {% if page.has_next %}
+              <li class="page-item">
+                <a class="page-link" href="?page={{ page.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">{{ page.number|add:"+1" }}</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" href="?page={{ page.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">Вперед</a>
+              </li>
+            {% endif %}
+          </ul>
+        </nav>
+      </div>
+  </div>
+{% endblock %}
