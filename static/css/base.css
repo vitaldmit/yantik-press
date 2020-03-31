@@ -79,6 +79,7 @@ body {
 .today_date {
     font-size: 12px;
     text-align: right;
+    margin-bottom: 1px;
 }
 
 .menu {
@@ -164,13 +165,12 @@ body {
     font-style: normal;
     font-weight: 100;
 }
-.news__content_justify {
-    text-align: justify!important;
+.news__imagesign {
+    font-size: 12px;
+    text-align: center;
+    font-style: italic;
+    color: #525252;
 }
-.news__content_center{
-    text-align: center!important;
-}
-
 .news__article-content, .news__article-content * {
     font-family:Georgia!important;
     font-size: 16px!important;
@@ -183,6 +183,7 @@ body {
     color: #5a5a5a;
     text-align: right;
     margin-top: 5px;
+    margin-bottom: 5px;
 }
 .news__photo-gallery {
     margin-bottom: 15px;
@@ -200,6 +201,7 @@ body {
 .news_share {
     margin-bottom: 10px;
 }
+.news_image {}
 
 .banners {
 margin-bottom: 15px;
@@ -267,6 +269,3 @@ a.list-group-item.list-group-item-action.active {
 
 .footer-right {
 }
-
-
-/*0f6d66*/

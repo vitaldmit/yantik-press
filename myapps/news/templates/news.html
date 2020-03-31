@@ -23,7 +23,7 @@
                       {% thumbnail news.image "320" crop="center" as im %}
                           <img class="rounded float-left news__post-imgs" alt="" src="{{ im.url }}" data-holder-rendered="true" width="{{ im.width }}" height="{{ im.height }}">
                       {% endthumbnail %}
-                      <div class="news__content news__content_justify">
+                      <div class="text-justify news__content ">
                           {{ news.content|safe|truncatewords_html:100 }}
                           {% if news.content|wordcount > 100 %}
                             <a class="font-weight-bold" href="{{ news.get_absolute_url}}"> подробнее</a>
@@ -31,7 +31,7 @@
                       </div>
                     {% else %}
                     {# Если нет изображения то размер текста делаем меньше почти в 1.5 раза #}
-                      <div class="news__content news__content_justify">
+                      <div class="text-justify news__content">
                           {{ news.content|safe|truncatewords_html:70 }}
                           {% if news.content|wordcount > 70 %}
                             <a class="font-weight-bold" href="{{ news.get_absolute_url}}"> подробнее</a>

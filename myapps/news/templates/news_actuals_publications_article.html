@@ -22,14 +22,22 @@
                 <div class="news__header">
                       <span class="news__header-text">{{ news_actuals_publications_article.title }}</span>
                 </div>
-                {% if news_actuals_publications_article.image %}
-                      <a href="/media/{{ news_actuals_publications_article.image }}" rel="gallery" class="swipebox" title="{{ news_actuals_publications_article.title }}">
-                        {% thumbnail news_actuals_publications_article.image "400" crop="center" as im %}
-                          <img class="rounded float-left news__post-imgs" alt="{{ news_actuals_publications_article.title}}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
-                        {% endthumbnail %}
-                      </a>
-                {% endif %}
-                
+                <div class="row float-left">
+                    <div class="col-12">
+                        {% if news_actuals_publications_article.image %}
+                              <a href="/media/{{ news_actuals_publications_article.image }}" rel="gallery" class="swipebox" title="{{ news_actuals_publications_article.title }}">
+                                {% thumbnail news_actuals_publications_article.image "400" crop="center" as im %}
+                                  <img class="rounded news__post-imgs" alt="{{ news_actuals_publications_article.title}}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+                                {% endthumbnail %}
+                              </a>
+                              {% if news_actuals_publications_article.imagesign %}
+                                <div class="news__imagesign">
+                                    {{ news_actuals_publications_article.imagesign }}
+                                </div>
+                              {% endif %}
+                        {% endif %}
+                    </div>
+                </div>
                     <div class="news__article-content text-justify">
                         {{ news_actuals_publications_article.content|safe }}
                     </div>

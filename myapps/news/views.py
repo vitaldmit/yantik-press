@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Q
+from django.contrib.postgres.search import SearchVector
 
 from .models import News, Banners, PhotoGallery
 
@@ -10,7 +11,7 @@ def index(request):
     all_news = News.objects.filter(Q(type='news') | Q(type='actuals')).filter(visible=True).order_by('-publish')[:5]
     all_publications = News.objects.filter(type='publications').order_by('-publish')[:4]
     all_photogallery = PhotoGallery.objects.all().order_by('-publish')[:5]
-    all_banners = Banners.objects.all()
+    all_banners = Banners.objects.all().filter(visible=True)
     return render(request, 'index.html',
                   {'all_news': all_news,
                    'all_publications': all_publications,
@@ -33,7 +34,7 @@ def news(request):
         # возвращаем последнюю.
         all_news = paginator.page(paginator.num_pages)
     # Баннеры
-    all_banners = Banners.objects.all()
+    all_banners = Banners.objects.all().filter(visible=True)
     return render(request, 'news.html',
                   {'page': page,
                    'all_news': all_news,
@@ -55,7 +56,7 @@ def publications(request):
         # возвращаем последнюю.
         all_publications = paginator.page(paginator.num_pages)
     # Баннеры
-    all_banners = Banners.objects.all()
+    all_banners = Banners.objects.all().filter(visible=True)
     return render(request, 'publications.html',
                   {'page': page,
                    'all_publications': all_publications,
@@ -77,7 +78,7 @@ def actuals(request):
         # возвращаем последнюю.
         all_actuals = paginator.page(paginator.num_pages)
     # Баннеры
-    all_banners = Banners.objects.all()
+    all_banners = Banners.objects.all().filter(visible=True)
     return render(request, 'actuals.html',
                   {'page': page,
                    'all_actuals': all_actuals,
@@ -110,7 +111,7 @@ def photogallery(request):
         # возвращаем последнюю.
         all_photogallery = paginator.page(paginator.num_pages)
     # Баннеры
-    all_banners = Banners.objects.all()
+    all_banners = Banners.objects.all().filter(visible=True)
     return render(request, 'photogallery.html',
                   {'page': page,
                    'all_photogallery': all_photogallery,
@@ -128,3 +129,12 @@ def photogallery_article(request, year, month, day, slug):
 
     return render(request, 'photogallery_article.html',
                   {'photogallery_article': photogallery_article})
+
+def search(request):
+    query = request.GET.get('q')
+    if query:
+        results = News.objects.all().filter(title__contains=query)
+        # results = News.objects.filter(content__search=query)
+        # results = News.objects.annotate(search=SearchVector('content', 'title')).filter(search=query)
+        return render(request, 'search.html', {'query': query,
+                                               'results': results})

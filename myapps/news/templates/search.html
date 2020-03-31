@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load thumbnail %}
+{% block title %}Поиск {{ query }} / ЯЛ ӖҪЧЕНӖ - Янтиковская районная газета "Селький труженик"{% endblock %}
+{% block breadcrumb %}
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><i class="fas fa-home"></i> Главная</li>
+    <li class="breadcrumb-item active" aria-current="page">Поиск</li>
+  </ol>
+</nav>
+{% endblock breadcrumb %}
+{% block main %}
+            <div class="row">
+              <div class="col-9 news">
+                {% if results %}
+                Вы искали "{{ query }}" вот результаты...
+                      {% for result in results %}
+                      <div class="news__post">
+                          <div class="news__header">
+                              <a class="news__header-text" href="{{ result.get_absolute_url}}">{{ result.title}}</a>
+                          </div>
+                          {% if result.image %}
+                          {# Если есть изображение то выводим его и текст толжен быть больше условно 100 #}
+                            {% thumbnail result.image "320" crop="center" as im %}
+                                <img class="rounded float-left news__post-imgs" alt="" src="{{ im.url }}" data-holder-rendered="true" width="{{ im.width }}" height="{{ im.height }}">
+                            {% endthumbnail %}
+                            <div class="text-justify news__content ">
+                                {{ result.content|safe|truncatewords_html:100 }}
+                                {% if result.content|wordcount > 100 %}
+                                  <a class="font-weight-bold" href="{{ result.get_absolute_url}}"> подробнее</a>
+                                {% endif %}
+                            </div>
+                          {% else %}
+                          {# Если нет изображения то размер текста делаем меньше почти в 1.5 раза #}
+                            <div class="text-justify news__content">
+                                {{ result.content|safe|truncatewords_html:70 }}
+                                {% if result.content|wordcount > 70 %}
+                                  <a class="font-weight-bold" href="{{ result.get_absolute_url}}"> подробнее</a>
+                                {% endif %}
+                            </div>
+                          {% endif %}
+                          <div class="news__created"><i class="far fa-calendar-alt"></i> {{ result.publish }}</div>
+                      </div>
+                      {% endfor %}
+                      {% include "include_paginations.html" with page=results %}
+                    </div>
+
+                  {% include "include_banners.html" %}
+                {% else %}
+                По вашему запросу "{{ query }}" ничего не найдено.
+                {% endif %}
+
+{% endblock %}

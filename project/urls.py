@@ -19,7 +19,7 @@ from django.conf.urls import url
 from django.conf import settings
 from django.conf.urls.static import static
 
-from myapps.news.views import index
+from myapps.news.views import index, search
 from myapps.about.views import subscribe, advertising, announcing, contacts
 
 
@@ -32,6 +32,8 @@ urlpatterns = [
     path('advertising/', advertising, name='advertising'),
     path('announcing/', announcing, name='announcing'),
     path('contacts/', contacts, name='contacts'),
+
+    path('search', search, name='search'),
 
     path('administrat/', admin.site.urls),
     url(r'^tinymce/', include('tinymce.urls')),

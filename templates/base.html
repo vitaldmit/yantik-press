@@ -131,8 +131,8 @@
                         <a class="nav-link" href="{% url 'contacts' %}">Контакты</a>
                       </li>
                     </ul>
-                    <form class="form-inline my-2 my-lg-0 search">
-                      <input class="form-control mr-sm-2 search__input" type="Поиск" placeholder="Поиск" aria-label="Поиск">
+                    <form class="form-inline my-2 my-lg-0 search" action="{% url 'search' %}">
+                      <input class="form-control mr-sm-2 search__input" name="q" type="Поиск" placeholder="Поиск" aria-label="Поиск">
                       <button class="btn btn-outline-light my-2 my-sm-0 search__button" type="submit">Найти</button>
                     </form>
                   </div>
