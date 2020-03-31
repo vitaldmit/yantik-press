@@ -7,17 +7,27 @@
                 <li class="page-item">
                     <a class="page-link" href="?page={{page.previous_page_number}}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">Назад</a>
                 </li>
+                {% comment %}
+                  <li class="page-item">
+                    <a class="page-link" href="?page={{ page.number|add:'-2' }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">{{ page.number|add:"-2" }}</a>
+                  </li>
+                {% endcomment %}
                 <li class="page-item">
                     <a class="page-link" href="?page={{page.previous_page_number}}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">{{ page.number|add:"-1" }}</a>
                 </li>
             {% endif %}
-            <li class="page-item">
+            <li class="page-item active">
                 <a class="page-link" href="?page={{page.number}}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">{{ page.number }}</a>
             </li>
             {% if page.has_next %}
               <li class="page-item">
                 <a class="page-link" href="?page={{ page.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">{{ page.number|add:"+1" }}</a>
               </li>
+              {% comment %}
+                <li class="page-item">
+                  <a class="page-link" href="?page={{ page.number|add:'+2' }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">{{ page.number|add:"+2" }}</a>
+                </li>
+              {% endcomment %}
               <li class="page-item">
                 <a class="page-link" href="?page={{ page.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">Вперед</a>
               </li>

@@ -22,7 +22,7 @@ def index(request):
 def news(request):
     # Тип новости 'Новости'
     all_news = News.objects.filter(type='news').filter(visible=True).order_by('-publish')
-    paginator = Paginator(all_news, 10)
+    paginator = Paginator(all_news, 1)
     page = request.GET.get('page')
     try:
         all_news = paginator.page(page)
@@ -141,7 +141,7 @@ def search(request):
             search=search_vector,
             rank=SearchRank(search_vector, search_query)
         ).filter(search=search_query).order_by('-rank')
-        paginator = Paginator(all_results, 1)
+        paginator = Paginator(all_results, 10)
         page = request.GET.get('page')
         try:
             all_results = paginator.page(page)
