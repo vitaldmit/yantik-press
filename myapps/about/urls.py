@@ -9,7 +9,7 @@ urlpatterns = [
     path('structure/', views.structure, name='structure'),
     path('vacancies/', views.vacancies, name='vacancies'),
     path('documents/', views.documents, name='documents'),
-    # path('history/', views.history, name='history'),
+    path('history/', views.history, name='history'),
     # path('documents/<int:year>-<int:month>-<int:day>/<slug:slug>.docx',
     #      views.documents, name='documents'),
 

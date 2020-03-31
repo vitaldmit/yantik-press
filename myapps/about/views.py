@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
-from .models import Employees, Vacancies, Documents, Subscribe, Advertising, Announcing, Contacts
+from .models import *
 
 
 def structure(request):
@@ -21,6 +21,10 @@ def documents(request):
     all_documents = Documents.objects.filter(visible=True).order_by('-created')
     return render(request, 'documents.html', {'all_documents': all_documents})
 
+def history(request):
+    """ Страница 'История' """
+    all_history = History.objects.filter(visible=True).order_by('-created')
+    return render(request, 'history.html', {'all_history': all_history})
 
 def subscribe(request):
     """ Страница 'Подписка' """
@@ -51,7 +55,6 @@ def announcing(request):
     return render(request, 'announcing.html',
                   {'page': page,
                    'all_announcing': all_announcing})
-
 
 def contacts(request):
     """ Страница 'Контакты' """

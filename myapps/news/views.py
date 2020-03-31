@@ -22,7 +22,7 @@ def index(request):
 def news(request):
     # Тип новости 'Новости'
     all_news = News.objects.filter(type='news').filter(visible=True).order_by('-publish')
-    paginator = Paginator(all_news, 1)
+    paginator = Paginator(all_news, 10)
     page = request.GET.get('page')
     try:
         all_news = paginator.page(page)

@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Employees, Vacancies, Documents, Subscribe, Advertising, Announcing, Contacts
+from .models import Employees, Vacancies, Documents, Subscribe, Advertising, Announcing, Contacts, History
 
 
 @admin.register(Employees)
@@ -19,6 +19,15 @@ class VacanciesAdmin(admin.ModelAdmin):
 class DocumentsAdmin(admin.ModelAdmin):
     list_display = ('name', 'visible')
     ordering = ('-created', )
+
+
+@admin.register(History)
+class HistoryAdmin(admin.ModelAdmin):
+    list_display = ('title', 'publish', 'created')
+    list_filter = ('visible', 'created', 'publish')
+    search_fields = ('title', 'content')
+    date_hierarchy = 'publish'
+    ordering = ('-publish', '-created')
 
 
 @admin.register(Subscribe)

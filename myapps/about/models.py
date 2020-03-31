@@ -67,6 +67,26 @@ class Documents(models.Model):
     def __str__(self):
         return self.name
 
+class History(models.Model):
+    """ Страница 'Документы' """
+    title = models.CharField('Заголовок', max_length=100)
+    image = models.ImageField('Фото', upload_to='history/%Y/%m/%d/',
+                              blank=True, null=True)
+    content = HTMLField('Контент', )
+    visible = models.BooleanField('Показывать', default=1)
+    created = models.DateTimeField('Создан', auto_now=False, auto_now_add=True)
+    updated = models.DateTimeField('Обновлен',
+                                   auto_now=True, auto_now_add=False)
+    publish = models.DateTimeField("Дата публикации", default=timezone.now)
+
+    class Meta:
+        ordering = ('created', )
+        verbose_name = 'История'
+        verbose_name_plural = 'Истории'
+
+    def __str__(self):
+        return self.title
+
 
 class Subscribe(models.Model):
     """ Страница 'Подписка' """
@@ -110,7 +130,7 @@ class Announcing(models.Model):
     """ Страница 'Объявления' """
     title = models.CharField('Заголовок', max_length=200)
     content = HTMLField('Контент', )
-    image = models.ImageField('Главное фото', upload_to='announcing/%Y/%m/%d/',
+    image = models.ImageField('Фото', upload_to='announcing/%Y/%m/%d/',
                               blank=True, null=True)
     source = models.CharField('Первоисточник', max_length=150,
                               blank=True, null=True)
