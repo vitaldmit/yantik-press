@@ -133,8 +133,8 @@ def photogallery_article(request, year, month, day, slug):
 def search(request):
     query = request.GET.get('q')
     if query:
-        results = News.objects.all().filter(title__contains=query)
+        # results = News.objects.all().filter(title__contains=query)
         # results = News.objects.filter(content__search=query)
-        # results = News.objects.annotate(search=SearchVector('content', 'title')).filter(search=query)
+        results = News.objects.annotate(search=SearchVector('content', 'title')).filter(search=query)
         return render(request, 'search.html', {'query': query,
                                                'results': results})
