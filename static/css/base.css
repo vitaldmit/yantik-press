@@ -227,6 +227,8 @@ margin-bottom: 15px;
 }
 .banners__title {
     font-size: 10px;
+    vertical-align: super;
+    line-height: 0px;
 }
 
 /*About*/
