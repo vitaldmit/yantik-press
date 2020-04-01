@@ -3,26 +3,33 @@
   {% for banners in all_banners %}
     {% if banners.type == 'with_image' %}
         <div class="banners__post">
-          <a href="{{ banners.link }}" target="_blank">
-            {% thumbnail banners.image "255" crop="center" as im %}
-              <img class="banners__post-img w-100" alt="{{ banners.title}}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
-            {% endthumbnail %}
-          </a>
+          <div class="banner with_image">
+            <a href="{{ banners.link }}" target="_blank">
+              {% thumbnail banners.image "255" crop="center" as im %}
+                <img class="banners__post-img w-100" alt="{{ banners.title}}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+              {% endthumbnail %}
+            </a>
+          </div>
         </div>
     {% elif banners.type == 'with_text' %}
-        <div class="banners__post">
-            <a href="{{ banners.link }}" target="_blank">
+        <div class="banners__post with_text">
+          <div class="banner">
+            <a href="{{ banners.link }}" class="font-weight-bold" target="_blank">
                 {{ banners.title }}
             </a>
+          </div>
         </div>
     {% elif banners.type == 'with_image_text' %}
         <div class="banners__post">
+          <div class="banner with_image_text">
             <a href="{{ banners.link }}" target="_blank">
-                {% thumbnail banners.image "150" crop="center" as im %}
-                  <img class="banners__post-img float-left mr-1" alt="{{ banners.title}}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+                {% thumbnail banners.image "255" crop="center" as im %}
+                  <img class="banners__post-img" alt="{{ banners.title}}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
                 {% endthumbnail %}
             </a>
             <a href="{{ banners.link }}" class="banners__title">{{ banners.title }}</a>
+            {# <div class="news__created"><i class="far fa-calendar-alt"></i> {{ banners.publish }}</div> #}
+          </div>
         </div>
     {% endif %}
   {% endfor %}

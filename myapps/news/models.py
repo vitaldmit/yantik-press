@@ -14,11 +14,11 @@ class News(models.Model):
       ('actuals', 'Актуально'),
       ('news', 'Новости'),
       ('publications', 'Публикации'),
-      ('announcements', 'Объявление'),
     )
     author = models.ForeignKey(User, on_delete=models.PROTECT,
                                related_name='related_news',
-                               verbose_name='Автор')
+                               verbose_name='Автор',
+                               default='')
     type = models.CharField("Тип", max_length=13,
                             choices=TYPE_CHOICES)
     title = models.CharField('Заголовок', max_length=200)

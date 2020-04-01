@@ -214,21 +214,27 @@ a.page-link {
 }
 
 .banners {
-margin-bottom: 15px;
+    margin-bottom: 15px;
+}
+.banners a {
+    color: #212529;
+}
+.banner {
+    margin-bottom: 10px;
 }
 .banners__post {
-    margin-bottom: 5px;
+    margin-bottom: 10px;
     border-bottom: 1px solid #a7a7a7;
-    /* text-align: center; */
+    text-align: center;
 }
 .banners__post-img {
-    /* width: 100%; */
-    height: fit-content;
 }
 .banners__title {
-    font-size: 10px;
-    vertical-align: super;
-    line-height: 0px;
+    font-size: 13px;
+    font-weight: bold;
+}
+.with_image_text {
+    line-height: 1;
 }
 
 /*About*/

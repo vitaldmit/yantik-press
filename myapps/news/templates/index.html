@@ -16,17 +16,15 @@
                     {% for news in all_news %}
                       {% if news.visible %}
                       <div class="news__post">
-                        {% if news.type == "actuals" %}
-                        {# <div class="news__badge-all-news"> #}
-                          <a href="{% url 'news:actuals' %}">
-                            <span class="badge badge-info">Актуально</span>
-                          </a>
-                        {# </div> #}
-                    {% endif %}
+
                           <div class="news__header">
                               <a class="news__header-text" href="{{ news.get_absolute_url }}">{{ news.title }}</a>
+                              {% if news.type == "actuals" %}
+                                  <a href="{% url 'news:actuals' %}">
+                                    <span class="badge badge-info">Актуально</span>
+                                  </a>
+                              {% endif %}
                           </div>
-
                           {% if news.image %} {# Если новость имеет изображение #}
                             {% if forloop.first %} {# Если новость первая в forloop (у первой новости ширина изображения 100%) #}
                               <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
