@@ -9,20 +9,27 @@
                   <span class="news__header-text">{{ photogallery_article.title}}</span>
             </div>
             {# Главное фото фотогалереи #}
-            <a href="/media/{{ photogallery_article.image}}" rel="gallery" class="swipebox" title="{{ photogallery_article.title}}">
-                {% thumbnail photogallery_article.image "200" crop="center" as im %}
-                    <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
-                {% endthumbnail %}
-            </a>
-
-            {% for images in photogallery_article.news_images.all %}
-            {# Фотографии фотогалереи #}
-                <a href="/media/{{ images.image }}" class="swipebox" rel="gallery" title="{{ photogallery_article.title}}">
-                    {% thumbnail images.image "200" crop="center" as im %}
-                        <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+            <div class="photo float-left">
+                <a href="/media/{{ photogallery_article.image }}" rel="gallery" class="swipebox" title="{{ photogallery_article.title}}">
+                    {% thumbnail photogallery_article.image "200x150" crop="center" as im %}
+                        <img src="{{ im.url }}" width="{{ im.width }}"alt="{{ photogallery.title }}">
                     {% endthumbnail %}
                 </a>
+            </div>
+            {% for imgs in photogallery_article.news_images.all %}
+            {# Фотографии фотогалереи #}
+                <div class="photo float-left">
+                    <a href="/media/{{ imgs.image }}" rel="gallery" class="swipebox" title="{{ photogallery_article.title}}">
+                        {% thumbnail imgs.image "200x150" crop="center" as im %}
+                            <img src="{{ im.url }}" width="{{ im.width }}" alt="{{ photogallery_article.title }}">
+                        {% endthumbnail %}
+                    </a>
+                </div>
             {% endfor %}
+            <div class="clearfix"></div>
+            {% if photogallery_article.source %}
+                <div class="news__source">Первоисточник: {{ photogallery_article.source }} </div>
+            {% endif %}
         </div>
         <div class="col-3">
             <div class="news_share">

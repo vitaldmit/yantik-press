@@ -19,8 +19,7 @@ class News(models.Model):
                                related_name='related_news',
                                verbose_name='Автор',
                                default='')
-    type = models.CharField("Тип", max_length=13,
-                            choices=TYPE_CHOICES)
+    type = models.CharField("Тип", max_length=13, choices=TYPE_CHOICES)
     title = models.CharField('Заголовок', max_length=200)
     slug = models.SlugField('ЧПУ', max_length=200, unique_for_date='publish')
     image = models.ImageField('Главное фото', upload_to='newsimages/%Y/%m/%d/',
@@ -41,9 +40,11 @@ class News(models.Model):
     description = models.TextField('Описание', blank=True, null=True)
 
     def get_absolute_url(self):
-        return reverse('news:news_article', args=[self.publish.year,
+        return reverse('news:news_article', args=[self.type,
+                                                  self.publish.year,
                                                   self.publish.month,
-                                                  self.publish.day, self.slug])
+                                                  self.publish.day,
+                                                  self.slug])
 
     class Meta:
         ordering = ('created', )
@@ -58,8 +59,8 @@ class PhotoGallery(models.Model):
     """
     Фотогалерея
     """
-    news = models.ForeignKey(News, on_delete=models.CASCADE, blank=True,
-                             null=True, default=None,
+    news = models.ForeignKey(News, on_delete=models.CASCADE,
+                             blank=True, null=True, default=None,
                              verbose_name='Связанная новость',
                              related_name='photogallery')
     title = models.CharField('Заголовок', max_length=200)
@@ -67,6 +68,8 @@ class PhotoGallery(models.Model):
     image = models.ImageField('Главное фото', upload_to='newsimages/%Y/%m/%d/',
                               null=True, blank=True)
     visible = models.BooleanField('Показывать', default=1)
+    source = models.CharField('Первоисточник', max_length=150,
+                              blank=True, null=True)
     created = models.DateTimeField('Создан', auto_now=False, auto_now_add=True)
     updated = models.DateTimeField('Обновлен',
                                    auto_now=True, auto_now_add=False)

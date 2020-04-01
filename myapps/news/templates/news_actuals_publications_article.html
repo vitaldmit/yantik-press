@@ -46,8 +46,8 @@
                     {# Главное фото фотогалереи #}
                     <div class="photo float-left">
                         <a href="/media/{{ photogallery.image }}" rel="gallery" class="swipebox" title="{{ photogallery_article.title}}">
-                            {% thumbnail photogallery.image "200" crop="center" as im %}
-                                <img src="{{ im.url }}" width="{{ im.width }}" height="135px" alt="{{ photogallery.title }}">
+                            {% thumbnail photogallery.image "200x150" crop="center" as im %}
+                                <img src="{{ im.url }}" width="{{ im.width }}" alt="{{ photogallery.title }}">
                             {% endthumbnail %}
                         </a>
                     </div>
@@ -55,8 +55,8 @@
                         {# Фотографии фотогалереи #}
                             <div class="photo float-left">
                                 <a href="/media/{{ imgs.image }}" rel="gallery" class="swipebox" title="{{ photogallery_article.title}}">
-                                    {% thumbnail imgs.image "200" crop="center" as im %}
-                                        <img src="{{ im.url }}" width="{{ im.width }}" height="135px" alt="{{ photogallery.title }}">
+                                    {% thumbnail imgs.image "200x150" crop="center" as im %}
+                                        <img src="{{ im.url }}" width="{{ im.width }}" alt="{{ photogallery.title }}">
                                     {% endthumbnail %}
                                 </a>
                             </div>

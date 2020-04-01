@@ -85,12 +85,13 @@ def actuals(request):
                    'all_banners': all_banners})
 
 
-def news_actuals_publications_article(request, year, month, day, slug):
+def news_actuals_publications_article(request, type, year, month, day, slug):
     news_actuals_publications_article = get_object_or_404(News, slug=slug,
                                                           visible=True,
                                                           publish__year=year,
                                                           publish__month=month,
-                                                          publish__day=day)
+                                                          publish__day=day,
+                                                          type=type)
     return render(request, 'news_actuals_publications_article.html',
                   {'news_actuals_publications_article':
                    news_actuals_publications_article})
@@ -119,12 +120,11 @@ def photogallery(request):
 
 
 def photogallery_article(request, year, month, day, slug):
-    photogallery_article = get_object_or_404(PhotoGallery,
+    photogallery_article = get_object_or_404(PhotoGallery, slug=slug,
+                                             visible=True,
                                              publish__year=year,
                                              publish__month=month,
-                                             publish__day=day,
-                                             slug=slug,
-                                             visible=True,)
+                                             publish__day=day)
 
     return render(request, 'photogallery_article.html',
                   {'photogallery_article': photogallery_article})
