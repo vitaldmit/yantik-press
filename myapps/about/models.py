@@ -154,6 +154,7 @@ class Contacts(models.Model):
     """ Страница 'Контакты' """
     title = models.CharField('Заголовок', max_length=100)
     content = HTMLField('Контент', )
+    map = models.TextField('Карта', blank=True, null=True)
     visible = models.BooleanField('Показывать', default=1)
     ontop = models.BooleanField('Размещать сверху', )
     created = models.DateTimeField('Создан', auto_now=False, auto_now_add=True)
