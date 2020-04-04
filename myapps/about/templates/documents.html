@@ -11,14 +11,12 @@
 {% endblock breadcrumb %}
 {% block main %}
 <div class="row about">
-    <div class="col-3 about__menu">
-        {% include "include_about_menu.html" %}
-    </div>
-    <div class="col-9 about__content">
+    {% include "include_about_menu.html" %}
+    <div class="col-6 about__content">
         {% for documents in all_documents %}
             <div class="documents-details__name">{{ documents.name }} <a href="/{{ documents.file }}" download>cкачать</a></div>
-            
         {% endfor %}
     </div>
+    {% include "include_banners.html" %}
 </div>
 {% endblock %}

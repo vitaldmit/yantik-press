@@ -77,7 +77,8 @@ class History(models.Model):
     created = models.DateTimeField('Создан', auto_now=False, auto_now_add=True)
     updated = models.DateTimeField('Обновлен',
                                    auto_now=True, auto_now_add=False)
-    publish = models.DateTimeField("Дата публикации", default=timezone.now)
+    publish = models.DateTimeField("Дата публикации", default=timezone.now,
+                                   help_text="Дата и время публикации")
 
     class Meta:
         ordering = ('created', )
@@ -139,7 +140,8 @@ class Announcing(models.Model):
     created = models.DateTimeField('Создан', auto_now=False, auto_now_add=True)
     updated = models.DateTimeField('Обновлен',
                                    auto_now=True, auto_now_add=False)
-    publish = models.DateTimeField("Дата публикации", default=timezone.now)
+    publish = models.DateTimeField("Дата публикации", default=timezone.now,
+                                   help_text="Дата и время публикации")
 
     class Meta:
         ordering = ('created', )
@@ -154,9 +156,10 @@ class Contacts(models.Model):
     """ Страница 'Контакты' """
     title = models.CharField('Заголовок', max_length=100)
     content = HTMLField('Контент', )
-    map = models.TextField('Карта', blank=True, null=True)
-    visible = models.BooleanField('Показывать', default=1)
-    ontop = models.BooleanField('Размещать сверху', )
+    map = models.TextField('Карта', blank=True, null=True,
+                            help_text="Конструктор: https://yandex.ru/maps/?um=constructor%3A98308fdfb6d76ece12d73780c3ab9e45d1162b227971510aa97ba97a190135cc&source=constructorLink")
+    # visible = models.BooleanField('Показывать', default=1)
+    # ontop = models.BooleanField('Размещать сверху', )
     created = models.DateTimeField('Создан', auto_now=False, auto_now_add=True)
     updated = models.DateTimeField('Обновлен',
                                    auto_now=True, auto_now_add=False)

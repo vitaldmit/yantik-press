@@ -1,7 +1,10 @@
+from datetime import datetime, timedelta
+
 from django.shortcuts import render
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from .models import *
+from myapps.news.models import Banners
 
 
 def structure(request):
@@ -13,18 +16,24 @@ def structure(request):
 def vacancies(request):
     """ Страница 'Вакансии' """
     all_vacancies = Vacancies.objects.filter(visible=True).order_by('-created')
-    return render(request, 'vacancies.html', {'all_vacancies': all_vacancies})
+    all_banners = Banners.objects.all().filter(visible=True)
+    return render(request, 'vacancies.html', {'all_vacancies': all_vacancies,
+                                              'all_banners': all_banners,})
 
 
 def documents(request):
     """ Страница 'Документы' """
     all_documents = Documents.objects.filter(visible=True).order_by('-created')
-    return render(request, 'documents.html', {'all_documents': all_documents})
+    all_banners = Banners.objects.all().filter(visible=True)
+    return render(request, 'documents.html', {'all_documents': all_documents,
+                                              'all_banners': all_banners,})
+
 
 def history(request):
     """ Страница 'История' """
     all_history = History.objects.filter(visible=True).order_by('-created')
     return render(request, 'history.html', {'all_history': all_history})
+
 
 def subscribe(request):
     """ Страница 'Подписка' """
@@ -40,7 +49,7 @@ def advertising(request):
 
 def announcing(request):
     """ Страница 'Объявления' """
-    all_announcing = Announcing.objects.filter(visible=True).order_by('-publish')
+    all_announcing = Announcing.objects.filter(visible=True).filter(publish__lt=datetime.now()).order_by('-publish')
     paginator = Paginator(all_announcing, 10)
     page = request.GET.get('page')
     try:
@@ -56,7 +65,8 @@ def announcing(request):
                   {'page': page,
                    'all_announcing': all_announcing})
 
+
 def contacts(request):
     """ Страница 'Контакты' """
-    all_contacts = Contacts.objects.filter(visible=True)
+    all_contacts = Contacts.objects.all()
     return render(request, 'contacts.html', {'all_contacts': all_contacts})

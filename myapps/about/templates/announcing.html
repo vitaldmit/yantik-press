@@ -3,10 +3,10 @@
 {% block title %}Объявления / ЯЛ ӖҪЧЕНӖ - Янтиковская районная газета "Селький труженик"{% endblock %}
 {% block breadcrumb %}
 <nav aria-label="breadcrumb">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item"><i class="fas fa-home"></i> Главная</li>
-    <li class="breadcrumb-item active" aria-current="page">Объявления</li>
-  </ol>
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><i class="fas fa-home"></i> Главная</li>
+        <li class="breadcrumb-item active" aria-current="page">Объявления</li>
+    </ol>
 </nav>
 {% endblock breadcrumb %}
 {% block main %}
@@ -17,47 +17,46 @@
     </div>
     {% endcomment %}
     <div class="col-12 about__content">
-            {% for announcing in all_announcing %}
-                    {% if announcing.ontop %}
-                        <div class="news__post">
-                            <div class="news__header">
-                                  <span class="news__header-text">{{ announcing.title }}</span>
-                            </div>
-                            {% if announcing.image %}
-                              {% thumbnail announcing.image "300" crop="center" as im %}
-                                  <img class="rounded float-left news__post-imgs" alt="" src="{{ im.url }}" data-holder-rendered="true" width="{{ im.width }}" height="{{ im.height }}">
-                              {% endthumbnail %}
-                            {% endif %}
-                            <div class="news__article-content">{{ announcing.content|safe }}</div>
-                            {% if announcing.source %}
-                                <div class="news__source">Первоисточник: {{ announcing.source }} </div>
-                            {% endif %}
-                            <div class="news__created"><i class="far fa-calendar-alt"></i> {{ announcing.publish }}</div>
-                        </div>
+        {% for announcing in all_announcing %}
+            {% if announcing.ontop %}
+                <div class="news__post">
+                    <div class="news__header">
+                        <span class="news__header-text">{{ announcing.title }}</span>
+                    </div>
+                    {% if announcing.image %}
+                        {% thumbnail announcing.image "300" crop="center" as im %}
+                            <img class="rounded float-left news__post-imgs" alt="" src="{{ im.url }}" data-holder-rendered="true" width="{{ im.width }}" height="{{ im.height }}">
+                        {% endthumbnail %}
                     {% endif %}
-            {% endfor %}
-
-            {% for announcing in all_announcing %}
-                    {% if announcing.ontop is not True %}
-                        <div class="news__post">
-                            <div class="news__header">
-                                  <span class="news__header-text">{{ announcing.title }}</span>
-                            </div>
-                            {% if announcing.image %}
-                              {% thumbnail announcing.image "300" crop="center" as im %}
-                                  <img class="rounded float-left news__post-imgs" alt="" src="{{ im.url }}" data-holder-rendered="true" width="{{ im.width }}" height="{{ im.height }}">
-                              {% endthumbnail %}
-                            {% endif %}
-                            <div class="news__article-content">{{ announcing.content|safe }}</div>
-                            {% if announcing.source %}
-                                <div class="news__source">Первоисточник: {{ announcing.source }} </div>
-                            {% endif %}
-                            <div class="news__created"><i class="far fa-calendar-alt"></i> {{ announcing.publish }}</div>
-                        </div>
+                    <div class="news__article-content">{{ announcing.content|safe }}</div>
+                    {% if announcing.source %}
+                        <div class="news__source">Первоисточник: {{ announcing.source }} </div>
                     {% endif %}
-            {% endfor %}
-            {# из myapps.news.templates #}
-            {% include "include_paginations.html" with page=all_announcing %}
+                    <div class="news__created"><i class="far fa-calendar-alt"></i> {{ announcing.publish }}</div>
+                </div>
+            {% endif %}
+        {% endfor %}
+        {% for announcing in all_announcing %}
+            {% if announcing.ontop is not True %}
+                <div class="news__post">
+                    <div class="news__header">
+                        <span class="news__header-text">{{ announcing.title }}</span>
+                    </div>
+                    {% if announcing.image %}
+                        {% thumbnail announcing.image "300" crop="center" as im %}
+                            <img class="rounded float-left news__post-imgs" alt="" src="{{ im.url }}" data-holder-rendered="true" width="{{ im.width }}" height="{{ im.height }}">
+                        {% endthumbnail %}
+                    {% endif %}
+                    <div class="news__article-content">{{ announcing.content|safe }}</div>
+                    {% if announcing.source %}
+                        <div class="news__source">Первоисточник: {{ announcing.source }} </div>
+                    {% endif %}
+                    <div class="news__created"><i class="far fa-calendar-alt"></i> {{ announcing.publish }}</div>
+                </div>
+            {% endif %}
+        {% endfor %}
+        {# из myapps.news.templates #}
+        {% include "include_paginations.html" with page=all_announcing %}
     </div>
 </div>
 {% endblock %}

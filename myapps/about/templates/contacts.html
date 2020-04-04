@@ -9,24 +9,20 @@
 </nav>
 {% endblock breadcrumb %}
 {% block main %}
-<div class="row about">
-{% comment %}
-        <div class="col-3 about__menu">
-        {% include "include_about_menu.html" %}
+    <div class="row about">
+        <div class="col-12 about__content">
+            {{ all_contacts.items }}
+            {% for contacts in all_contacts %}
+                <div class="about__title">{{ contacts.title }}</div>
+                <div class="contacts-details__post">{{ contacts.content|safe }}<div>
+                {% if contacts.map %}
+                    {{ contacts.map|safe }}
+                {% endif %}
+            {% endfor %}
+    {% comment %}
+        Ссылка на карту (конструктор)
+        https://yandex.ru/maps/?um=constructor%3A98308fdfb6d76ece12d73780c3ab9e45d1162b227971510aa97ba97a190135cc&source=constructorLink
+    {% endcomment %}
+        </div>
     </div>
-{% endcomment %}
-    <div class="col-12 about__content">
-        {% for contacts in all_contacts %}
-            <div class="about__title">{{ contacts.title }}</div>
-            <div class="contacts-details__post">{{ contacts.content|safe }}<div>
-            {{ contacts.map|safe }}
-        {% endfor %}
-{% comment %}
-    Ссылка на карту (конструктор)
-    https://yandex.ru/maps/?um=constructor%3A98308fdfb6d76ece12d73780c3ab9e45d1162b227971510aa97ba97a190135cc&source=constructorLink
-{% endcomment %}
-
-
-    </div>
-</div>
 {% endblock %}

@@ -3,35 +3,33 @@
 {% block title %}История редакции / ЯЛ ӖҪЧЕНӖ - Янтиковская районная газета "Селький труженик"{% endblock %}
 {% block breadcrumb %}
 <nav aria-label="breadcrumb">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item"><i class="fas fa-home"></i> Главная</li>
-    <li class="breadcrumb-item" aria-current="page">Редакция</li>
-    <li class="breadcrumb-item active" aria-current="page">История редакции</li>
-  </ol>
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><i class="fas fa-home"></i> Главная</li>
+        <li class="breadcrumb-item" aria-current="page">Редакция</li>
+        <li class="breadcrumb-item active" aria-current="page">История редакции</li>
+    </ol>
 </nav>
 {% endblock breadcrumb %}
 {% block main %}
 <div class="row about">
-    <div class="col-3 about__menu">
-        {% include "include_about_menu.html" %}
-    </div>
+    {% include "include_about_menu.html" %}
     <div class="col-9 about__content">
-            {% for history in all_history %}
-                        <div class="news__post">
-                            <div class="news__header">
-                                  <span class="news__header-text">{{ history.title }}</span>
-                            </div>
-                            {% if history.image %}
-                            <a href="/media/{{ history.image }}" rel="gallery" class="swipebox" title="{{ history.title }}">
-                              {% thumbnail history.image "300" crop="center" as im %}
-                                  <img class="rounded float-left news__post-imgs" alt="" src="{{ im.url }}" data-holder-rendered="true" width="{{ im.width }}" height="{{ im.height }}">
-                              {% endthumbnail %}
-                            {% endif %}
-                            </a>
-                            <div class="news__article-content text-justify">{{ history.content|safe }}</div>
-                            <div class="news__created"><i class="far fa-calendar-alt"></i> {{ history.publish }}</div>
-                        </div>
-            {% endfor %}
+        {% for history in all_history %}
+        <div class="news__post">
+            <div class="news__header">
+                <span class="news__header-text">{{ history.title }}</span>
+            </div>
+            {% if history.image %}
+            <a href="/media/{{ history.image }}" rel="gallery" class="swipebox" title="{{ history.title }}">
+                {% thumbnail history.image "300" crop="center" as im %}
+                <img class="rounded float-left news__post-imgs" alt="" src="{{ im.url }}" data-holder-rendered="true" width="{{ im.width }}" height="{{ im.height }}">
+                {% endthumbnail %}
+                {% endif %}
+            </a>
+            <div class="news__article-content text-justify">{{ history.content|safe }}</div>
+            <div class="news__created"><i class="far fa-calendar-alt"></i> {{ history.publish }}</div>
+        </div>
+        {% endfor %}
     </div>
 </div>
 {% endblock %}

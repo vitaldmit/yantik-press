@@ -53,5 +53,5 @@ class AnnouncingAdmin(admin.ModelAdmin):
 
 @admin.register(Contacts)
 class ContactsAdmin(admin.ModelAdmin):
-    list_display = ('title', 'created', 'visible')
+    list_display = ('title', 'created', 'updated')
     ordering = ('-created', )

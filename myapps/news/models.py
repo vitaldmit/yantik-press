@@ -34,7 +34,8 @@ class News(models.Model):
     created = models.DateTimeField('Создан', auto_now=False, auto_now_add=True)
     updated = models.DateTimeField('Обновлен',
                                    auto_now=True, auto_now_add=False)
-    publish = models.DateTimeField("Дата публикации", default=timezone.now)
+    publish = models.DateTimeField("Дата публикации", default=timezone.now,
+                                   help_text="Дата и время публикации")
     keywords = models.CharField('Ключевые слова', max_length=100,
                                 blank=True, null=True)
     description = models.TextField('Описание', blank=True, null=True)
@@ -73,7 +74,8 @@ class PhotoGallery(models.Model):
     created = models.DateTimeField('Создан', auto_now=False, auto_now_add=True)
     updated = models.DateTimeField('Обновлен',
                                    auto_now=True, auto_now_add=False)
-    publish = models.DateTimeField("Дата публикации", default=timezone.now)
+    publish = models.DateTimeField("Дата публикации", default=timezone.now,
+                                   help_text="Дата и время публикации")
 
     def get_absolute_url(self):
         return reverse('news:photogallery_article', args=[self.publish.year,
@@ -131,7 +133,8 @@ class Banners(models.Model):
     created = models.DateTimeField('Создан', auto_now=False, auto_now_add=True)
     updated = models.DateTimeField('Обновлен',
                                    auto_now=True, auto_now_add=False)
-    publish = models.DateTimeField("Дата публикации", default=timezone.now)
+    publish = models.DateTimeField("Дата публикации", default=timezone.now,
+                                   help_text="Дата и время публикации")
     end_publish = models.DateTimeField("Дата окончания публикации:",
                                        blank=True, null=True)
 

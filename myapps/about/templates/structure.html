@@ -12,9 +12,7 @@
 {% endblock breadcrumb %}
 {% block main %}
 <div class="row about">
-    <div class="col-3 about__menu">
-        {% include "include_about_menu.html" %}
-    </div>
+    {% include "include_about_menu.html" %}
     <div class="col-9 about__content">
         {% for employee in all_employees %}
             <div class="row employee">

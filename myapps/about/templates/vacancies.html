@@ -11,14 +11,14 @@
 {% endblock breadcrumb %}
 {% block main %}
 <div class="row about">
-    <div class="col-3 about__menu">
-        {% include "include_about_menu.html" %}
-    </div>
-    <div class="col-9 about__content">
+    {% include "include_about_menu.html" %}
+    <div class="col-6 about__content">
         {% for vacancy in all_vacancies %}
             <div class="vacancy-details__post">{{ vacancy.post }}</div>
-            <div class="vacancy-details__post">{{ vacancy.content|safe }}<div>
+            <div class="vacancy-details__post">{{ vacancy.content|safe }}</div>
         {% endfor %}
     </div>
+    {# из myapps.news.templates #}
+    {% include "include_banners.html" %}
 </div>
 {% endblock %}
