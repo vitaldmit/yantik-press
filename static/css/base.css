@@ -217,7 +217,7 @@ a.page-link {
     margin-bottom: 15px;
 }
 .banners a {
-    color: #636363;
+    color: #212529;
 }
 .banner {
     margin-bottom: 10px;
@@ -230,8 +230,8 @@ a.page-link {
 .banners__post-img {
 }
 .banners__title {
-    font-size: 13px;
-    font-weight: bold;
+    font-size: 14px;
+    /* font-weight: bold; */
 }
 .with_image_text {
     line-height: 1.1;
