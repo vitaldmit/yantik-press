@@ -49,7 +49,7 @@ def advertising(request):
 
 def announcing(request):
     """ Страница 'Объявления' """
-    all_announcing = Announcing.objects.filter(visible=True).filter(publish__lt=datetime.now()).order_by('-publish')
+    all_announcing = Announcing.objects.filter(visible=True).filter(publish__lte=datetime.now()).order_by('-publish')
     paginator = Paginator(all_announcing, 10)
     page = request.GET.get('page')
     try:

@@ -135,8 +135,8 @@ class Banners(models.Model):
                                    auto_now=True, auto_now_add=False)
     publish = models.DateTimeField("Дата публикации", default=timezone.now,
                                    help_text="Дата и время публикации")
-    end_publish = models.DateTimeField("Дата окончания публикации:",
-                                       blank=True, null=True)
+    # end_publish = models.DateTimeField("Дата окончания публикации:",
+                                       # blank=True, null=True)
 
     class Meta:
         ordering = ('created', )
