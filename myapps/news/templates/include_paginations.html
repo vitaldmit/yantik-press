@@ -7,29 +7,23 @@
                 <li class="page-item">
                     <a class="page-link" href="?page={{page.previous_page_number}}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">Назад</a>
                 </li>
-                {% comment %}
-                  <li class="page-item">
-                    <a class="page-link" href="?page={{ page.number|add:'-2' }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">{{ page.number|add:"-2" }}</a>
-                  </li>
-                {% endcomment %}
-                <li class="page-item">
-                    <a class="page-link" href="?page={{page.previous_page_number}}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">{{ page.number|add:"-1" }}</a>
+            {% else %}
+                <li class="page-item disabled">
+                    <a class="page-link" href="#">Назад</a>
                 </li>
             {% endif %}
-            <li class="page-item active">
-                <a class="page-link" href="?page={{page.number}}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">{{ page.number }}</a>
-            </li>
+
+            {% for l in  page.paginator.page_range %}
+                {% if l <= page.number|add:5 and l >= page.number|add:-5 %}
+                      <li class="page-item {% if forloop.counter == page.number %}active disabled{% endif %}">
+                        <a class="page-link" href="?page={{forloop.counter}}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">{{forloop.counter}}</a>
+                      </li>
+                {% endif %}
+            {% endfor %}
+
             {% if page.has_next %}
               <li class="page-item">
-                <a class="page-link" href="?page={{ page.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">{{ page.number|add:"+1" }}</a>
-              </li>
-              {% comment %}
-                <li class="page-item">
-                  <a class="page-link" href="?page={{ page.number|add:'+2' }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">{{ page.number|add:"+2" }}</a>
-                </li>
-              {% endcomment %}
-              <li class="page-item">
-                <a class="page-link" href="?page={{ page.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">Вперед</a>
+                <a class="page-link" href="?page={{ page.next_page_number }}">Вперед</a>
               </li>
             {% endif %}
           </ul>
@@ -39,24 +33,24 @@
 {% endblock %}
 {% comment %}
   {% if page.has_other_pages %}
-  <ul class="pagination">
-  {% if page.has_previous %}
-  <li><a href="?page={{ page.previous_page_number }}">&laquo;</a></li>
-  {% else %}
-  <li class="disabled"><span>&laquo;</span></li>
-  {% endif %}
-  {% for i in page.paginator.page_range %}
-  {% if page.number == i %}
-  <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
-  {% else %}
-  <li><a href="?page={{ i }}">{{ i }}</a></li>
-  {% endif %}
-  {% endfor %}
-  {% if users.has_next %}
-  <li><a href="?page={{ page.next_page_number }}">&raquo;</a></li>
-  {% else %}
-  <li class="disabled"><span>&raquo;</span></li>
-  {% endif %}
-  </ul>
+    <ul class="pagination">
+    {% if page.has_previous %}
+      <li><a href="?page={{ page.previous_page_number }}">&laquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&laquo;</span></li>
+    {% endif %}
+    {% for i in page.paginator.page_range %}
+      {% if page.number == i %}
+        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+      {% else %}
+        <li><a href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if users.has_next %}
+      <li><a href="?page={{ page.next_page_number }}">&raquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&raquo;</span></li>
+    {% endif %}
+    </ul>
   {% endif %}
 {% endcomment %}

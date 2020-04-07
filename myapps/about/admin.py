@@ -1,6 +1,10 @@
 from django.contrib import admin
 
-from .models import Employees, Vacancies, Documents, Subscribe, Advertising, Announcing, Contacts, History
+from .models import *
+
+
+class DocumentsFilesInline(admin.TabularInline):
+    model = DocumentsFiles
 
 
 @admin.register(Employees)
@@ -17,8 +21,9 @@ class VacanciesAdmin(admin.ModelAdmin):
 
 @admin.register(Documents)
 class DocumentsAdmin(admin.ModelAdmin):
-    list_display = ('name', 'visible')
+    list_display = ('title', 'visible', 'created', 'publish')
     ordering = ('-created', )
+    inlines = [DocumentsFilesInline, ]
 
 
 @admin.register(History)

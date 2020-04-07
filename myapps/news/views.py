@@ -129,9 +129,10 @@ def photogallery_article(request, year, month, day, slug):
                                              publish__year=year,
                                              publish__month=month,
                                              publish__day=day)
-
+    all_banners = Banners.objects.all().filter(visible=True).filter(publish__lte=datetime.now()).order_by('publish')[:10]
     return render(request, 'photogallery_article.html',
-                  {'photogallery_article': photogallery_article})
+                  {'photogallery_article': photogallery_article,
+                   'all_banners': all_banners})
 
 def search(request):
     query = request.GET.get('q')

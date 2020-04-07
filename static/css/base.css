@@ -196,7 +196,8 @@ body {
 .news__source {
     font-size: 12px;
     font-style: italic;
-    margin-top: 20px;
+    margin-top: 10px;
+    margin-bottom: 30px;
 }
 .news_share {
     margin-bottom: 10px;

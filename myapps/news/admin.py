@@ -1,10 +1,10 @@
 from django.contrib import admin
 
-from .models import News, NewsImages, Banners, PhotoGallery
+from .models import *
 
 
-class NewsImagesInline(admin.TabularInline):
-    model = NewsImages
+class PhotoGalleryImagesInline(admin.TabularInline):
+    model = PhotoGalleryImages
 
 
 class PhotoGalleryInline(admin.StackedInline):
@@ -33,7 +33,7 @@ class PhotoGalleryAdmin(admin.ModelAdmin):
     # raw_id_fields = ('news',)
     date_hierarchy = 'created'
     ordering = ('-created', )
-    inlines = [NewsImagesInline, ]
+    inlines = [PhotoGalleryImagesInline, ]
 
 
 # @admin.register(NewsImages)

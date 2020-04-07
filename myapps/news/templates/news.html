@@ -44,5 +44,5 @@
                 {% include "include_paginations.html" with page=all_news %}
               </div>
 
-            {% include "include_banners.html" %}
+            {% include "include_banners.html" with pages_to_show=5 %}
 {% endblock %}

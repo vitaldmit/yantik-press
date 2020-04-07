@@ -19,6 +19,8 @@ class Employees(models.Model):
     created = models.DateTimeField('Создан', auto_now=False, auto_now_add=True)
     updated = models.DateTimeField('Обновлен',
                                    auto_now=True, auto_now_add=False)
+    publish = models.DateTimeField("Дата публикации", default=timezone.now,
+                                   help_text="Дата и время публикации")
 
     class Meta:
         ordering = ('created', )
@@ -38,6 +40,8 @@ class Vacancies(models.Model):
     created = models.DateTimeField('Создан', auto_now=False, auto_now_add=True)
     updated = models.DateTimeField('Обновлен',
                                    auto_now=True, auto_now_add=False)
+    publish = models.DateTimeField("Дата публикации", default=timezone.now,
+                                   help_text="Дата и время публикации")
 
     class Meta:
         ordering = ('created', )
@@ -50,14 +54,15 @@ class Vacancies(models.Model):
 
 class Documents(models.Model):
     """ Страница 'Документы' """
-    name = models.CharField('Название', max_length=100)
-    file = models.FileField('Файл', upload_to='about/documents/%Y-%m-%d/',
-                            max_length=100)
+    title = models.CharField('Заголовок', max_length=100)
+
     visible = models.BooleanField('Показывать', default=1)
     ontop = models.BooleanField('Размещать сверху', )
     created = models.DateTimeField('Создан', auto_now=False, auto_now_add=True)
     updated = models.DateTimeField('Обновлен',
                                    auto_now=True, auto_now_add=False)
+    publish = models.DateTimeField("Дата публикации", default=timezone.now,
+                                   help_text="Дата и время публикации")
 
     class Meta:
         ordering = ('created', )
@@ -65,7 +70,33 @@ class Documents(models.Model):
         verbose_name_plural = 'Документы'
 
     def __str__(self):
-        return self.name
+        return self.title
+
+
+class DocumentsFiles(models.Model):
+    """
+    Изображения для фотогалереи
+    """
+    documents = models.ForeignKey(Documents, on_delete=models.CASCADE,
+                                  blank=True, null=True, default=None,
+                                  verbose_name='Связанные документы',
+                                  related_name='documents_files')
+    filename = models.CharField('Название документа', max_length=100)
+    file = models.FileField('Документ', upload_to='about/documents/%Y-%m-%d/',
+                            max_length=100)
+    visible = models.BooleanField('Показывать', default=1)
+    created = models.DateTimeField('Создан', auto_now=False, auto_now_add=True)
+    updated = models.DateTimeField('Обновлен',
+                                   auto_now=True, auto_now_add=False)
+
+    class Meta:
+        ordering = ('created', )
+        verbose_name = 'Файл'
+        verbose_name_plural = 'Файлы'
+
+    def __str__(self):
+        return self.documents.title
+
 
 class History(models.Model):
     """ Страница 'Документы' """
@@ -98,6 +129,8 @@ class Subscribe(models.Model):
     created = models.DateTimeField('Создан', auto_now=False, auto_now_add=True)
     updated = models.DateTimeField('Обновлен',
                                    auto_now=True, auto_now_add=False)
+    publish = models.DateTimeField("Дата публикации", default=timezone.now,
+                                   help_text="Дата и время публикации")
 
     class Meta:
         ordering = ('created', )
@@ -117,6 +150,8 @@ class Advertising(models.Model):
     created = models.DateTimeField('Создан', auto_now=False, auto_now_add=True)
     updated = models.DateTimeField('Обновлен',
                                    auto_now=True, auto_now_add=False)
+    publish = models.DateTimeField("Дата публикации", default=timezone.now,
+                                   help_text="Дата и время публикации")
 
     class Meta:
         ordering = ('created', )
@@ -163,6 +198,8 @@ class Contacts(models.Model):
     created = models.DateTimeField('Создан', auto_now=False, auto_now_add=True)
     updated = models.DateTimeField('Обновлен',
                                    auto_now=True, auto_now_add=False)
+    publish = models.DateTimeField("Дата публикации", default=timezone.now,
+                                   help_text="Дата и время публикации")
 
     class Meta:
         ordering = ('created', )

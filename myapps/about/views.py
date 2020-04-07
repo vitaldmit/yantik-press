@@ -9,21 +9,24 @@ from myapps.news.models import Banners
 
 def structure(request):
     """ Страница 'Структура' """
-    all_employees = Employees.objects.filter(visible=True)
-    return render(request, 'structure.html', {'all_employees': all_employees})
+    data = {
+        'all_employees': Employees.objects.filter(visible=True).filter(publish__lte=datetime.now())
+    }
+    return render(request, 'structure.html', data)
 
 
 def vacancies(request):
     """ Страница 'Вакансии' """
-    all_vacancies = Vacancies.objects.filter(visible=True).order_by('-created')
-    all_banners = Banners.objects.all().filter(visible=True)
-    return render(request, 'vacancies.html', {'all_vacancies': all_vacancies,
-                                              'all_banners': all_banners,})
+    data = {
+        'all_vacancies': Vacancies.objects.filter(visible=True).order_by('-created'),
+        'all_banners': Banners.objects.all().filter(visible=True)
+    }
+    return render(request, 'vacancies.html', data)
 
 
 def documents(request):
     """ Страница 'Документы' """
-    all_documents = Documents.objects.filter(visible=True).order_by('-created')
+    all_documents = Documents.objects.filter(visible=True).filter(publish__lte=datetime.now()).order_by('-publish')
     all_banners = Banners.objects.all().filter(visible=True)
     return render(request, 'documents.html', {'all_documents': all_documents,
                                               'all_banners': all_banners,})

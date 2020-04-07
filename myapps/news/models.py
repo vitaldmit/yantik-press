@@ -92,14 +92,14 @@ class PhotoGallery(models.Model):
         return self.title
 
 
-class NewsImages(models.Model):
+class PhotoGalleryImages(models.Model):
     """
     Изображения для фотогалереи
     """
     photogallery = models.ForeignKey(PhotoGallery, on_delete=models.CASCADE,
                                      blank=True, null=True, default=None,
                                      verbose_name='Связанная новость',
-                                     related_name='news_images')
+                                     related_name='photogallery_images')
     image = models.ImageField('Фото', upload_to='newsimages/%Y/%m/%d/',
                               null=True, blank=True)
     visible = models.BooleanField('Показывать', default=1)
