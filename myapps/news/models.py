@@ -24,8 +24,9 @@ class News(models.Model):
     slug = models.SlugField('ЧПУ', max_length=200, unique_for_date='publish')
     image = models.ImageField('Главное фото', upload_to='newsimages/%Y/%m/%d/',
                               blank=True, null=True)
-    imagesign = models.CharField('Подпись к главному фото', max_length=100,
-                                 blank=True, null=True)
+    imagesign = models.CharField('Подпись к главному фото', max_length=70,
+                                 blank=True, null=True,
+                                 help_text='Короткое описание к главному фото')
     content = HTMLField('Контент', )
     source = models.CharField('Первоисточник', max_length=150,
                               blank=True, null=True)
