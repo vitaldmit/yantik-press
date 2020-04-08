@@ -36,6 +36,18 @@ class PhotoGalleryAdmin(admin.ModelAdmin):
     inlines = [PhotoGalleryImagesInline, ]
 
 
+@admin.register(VideoGallery)
+class VideoGalleryAdmin(admin.ModelAdmin):
+    list_display = ('title', 'created', 'visible')
+    list_filter = ('visible', 'created',)
+    search_fields = ('title', )
+    prepopulated_fields = {'slug': ('title',)}
+    # raw_id_fields = ('news',)
+    date_hierarchy = 'created'
+    ordering = ('-created', )
+    # inlines = [VideoGalleryImagesInline, ]
+
+
 # @admin.register(NewsImages)
 # class NewsImagesAdmin(admin.ModelAdmin):
 #     list_display = ('news', 'created', 'updated', 'visible')

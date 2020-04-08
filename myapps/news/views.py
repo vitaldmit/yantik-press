@@ -5,7 +5,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Q
 from django.contrib.postgres.search import SearchVector, SearchQuery, SearchRank
 
-from .models import News, Banners, PhotoGallery
+from .models import *
 
 
 def index(request):
@@ -13,12 +13,14 @@ def index(request):
     all_news = News.objects.filter(Q(type='news') | Q(type='actuals')).filter(visible=True).filter(publish__lte=datetime.now()).order_by('-publish')[:5]
     all_publications = News.objects.filter(type='publications').filter(visible=True).filter(publish__lte=datetime.now()).order_by('-publish')[:4]
     all_photogallery = PhotoGallery.objects.all().filter(visible=True).filter(publish__lte=datetime.now()).order_by('-publish')[:5]
+    all_videogallery = VideoGallery.objects.all().filter(visible=True).filter(publish__lte=datetime.now()).order_by('-publish')[:5]
     all_banners = Banners.objects.all().filter(visible=True).filter(publish__lte=datetime.now()).order_by('publish')[:10]
     return render(request, 'index.html',
                   {'all_news': all_news,
                    'all_publications': all_publications,
                    'all_banners': all_banners,
-                   'all_photogallery': all_photogallery})
+                   'all_photogallery': all_photogallery,
+                   'all_videogallery': all_videogallery})
 
 
 def news(request):
@@ -108,7 +110,7 @@ def news_actuals_publications_article(request, type, year, month, day, slug):
 
 
 def photogallery(request):
-    # Фотогалерея
+    # видеогалерея
     all_photogallery = PhotoGallery.objects.all().filter(visible=True).filter(publish__lte=datetime.now()).order_by('-publish')
     paginator = Paginator(all_photogallery, 10)
     page = request.GET.get('page')
@@ -141,6 +143,43 @@ def photogallery_article(request, year, month, day, slug):
     return render(request, 'photogallery_article.html',
                   {'photogallery_article': photogallery_article,
                    'all_banners': all_banners})
+
+
+def videogallery(request):
+    # Видеогалерея
+    all_videogallery = VideoGallery.objects.all().filter(visible=True).filter(publish__lte=datetime.now()).order_by('-publish')
+    paginator = Paginator(all_videogallery, 10)
+    page = request.GET.get('page')
+    try:
+        all_videogallery = paginator.page(page)
+    except PageNotAnInteger:
+        # Если страница не является целым числом,возвращаем первую страницу.
+        all_videogallery = paginator.page(1)
+    except EmptyPage:
+        # Если номер страницы больше, чем общее количество страниц,
+        # возвращаем последнюю.
+        all_videogallery = paginator.page(paginator.num_pages)
+    num_pages = paginator.num_pages
+    # Баннеры
+    all_banners = Banners.objects.all().filter(visible=True)
+    return render(request, 'videogallery.html',
+                  {'page': page,
+                   'all_videogallery': all_videogallery,
+                   'all_banners': all_banners,
+                   'num_pages': num_pages})
+
+
+def videogallery_article(request, year, month, day, slug):
+    videogallery_article = get_object_or_404(VideoGallery, slug=slug,
+                                             visible=True,
+                                             publish__year=year,
+                                             publish__month=month,
+                                             publish__day=day)
+    all_banners = Banners.objects.all().filter(visible=True).filter(publish__lte=datetime.now()).order_by('publish')[:10]
+    return render(request, 'videogallery_article.html',
+                  {'videogallery_article': videogallery_article,
+                   'all_banners': all_banners})
+
 
 def search(request):
     query = request.GET.get('q')

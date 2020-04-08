@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load thumbnail %}
+{% block title %} {{ videogallery_article.title}} - фотогалерея {% endblock %}
+{% block main %}
+<div class="row">
+    <div class="col-9 news">
+        <div class="news__created"><i class="far fa-calendar-alt"></i> {{ videogallery_article.publish }}</div>
+        <div class="news__header">
+            <span class="news__header-text">{{ videogallery_article.title}}</span>
+        </div>
+
+        {% if videogallery_article.video %}
+            <p><iframe width="100%" height="500" src="/media/{{ videogallery_article.video}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></p>
+        {% endif %}
+
+        {% if videogallery_article.youtube %}
+            <p><iframe width="100%" height="500" src="{{ videogallery_article.youtube}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></p>
+        {% endif %}
+
+        {% if videogallery_article.cap %}
+            <p><iframe width="100%" height="500" src="{{ videogallery_article.cap}}" frameborder="0" allowfullscreen="allowfullscreen"></iframe></p>
+        {% endif %}
+
+        <p><iframe width="100%" height="500" src="https://www.youtube.com/watch?v=LJMFLwMgmhk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></p>
+
+
+        {% if videogallery_article.source %}
+        <div class="news__source">Первоисточник: {{ videogallery_article.source }} </div>
+        {% endif %}
+        <div class="news_share">
+            <script src="https://yastatic.net/es5-shims/0.0.2/es5-shims.min.js"></script>
+            <script src="https://yastatic.net/share2/share.js"></script>
+            Поделиться:
+            <div class="ya-share2" data-services="vkontakte,facebook,odnoklassniki,twitter,pocket,viber,whatsapp,skype,telegram"></div>
+        </div>
+        <a href="#" class="btn btn-danger" onclick="window.print()">Распечатать</a>
+    </div>
+    {% include "include_banners.html" %}
+</div>
+{% endblock %}

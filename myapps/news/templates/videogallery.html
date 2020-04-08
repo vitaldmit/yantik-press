@@ -1,0 +1,38 @@
+
+{% extends 'base.html' %}
+{% load thumbnail %}
+{% block title %}Фотогалереи / ЯЛ ӖҪЧЕНӖ - Янтиковская районная газета "Селький труженик"{% endblock %}
+{% block breadcrumb %}
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><i class="fas fa-home"></i> Главная</li>
+    <li class="breadcrumb-item" aria-current="page">Пресс-центр</li>
+    <li class="breadcrumb-item active" aria-current="page">Фотогалереи</li>
+  </ol>
+</nav>
+{% endblock breadcrumb %}
+{% block main %}
+            <div class="row">
+              <div class="col-9">
+                {% for videogallery in all_videogallery %}
+                  <div class="news__post">
+                    <div class="row news">
+                      <div class="col-3">
+                        {% thumbnail videogallery.image "200" crop="center" as im %}
+                            <img class="rounded float-left w-100" alt="" src="{{ im.url }}" data-holder-rendered="true" width="{{ im.width }}" height="{{ im.height }}">
+                        {% endthumbnail %}
+                      </div>
+                      <div class="col-6">
+                        <a class="news__header-text news__header-text_small news__header-text_va-bottom" href="{{ videogallery.get_absolute_url }}">{{ videogallery.title }}</a>
+                      </div>
+                      <div class="col-3 videogallery-post_additional">
+                        <div class="news__created">{{ videogallery.publish }}</div>
+                      </div>
+                    </div>
+                  </div>
+                {% endfor %}
+                {% include "include_paginations.html" with page=all_videogallery %}
+              </div>
+
+            {% include "include_banners.html" %}
+{% endblock %}

@@ -117,6 +117,46 @@ class PhotoGalleryImages(models.Model):
         return self.photogallery.title
 
 
+class VideoGallery(models.Model):
+    """
+    Видеогалерея
+    """
+    news = models.ForeignKey(News, on_delete=models.CASCADE,
+                             blank=True, null=True, default=None,
+                             verbose_name='Связанная новость',
+                             related_name='videogallery')
+    title = models.CharField('Заголовок', max_length=200)
+    slug = models.SlugField('ЧПУ', max_length=200, unique_for_date='publish')
+    video = models.FileField('Видео', upload_to='newsvideos/%Y/%m/%d/',
+                             null=True, blank=True)
+    youtube = models.CharField('Видео YouTube', max_length=100,
+                                     null=True, blank=True)
+    cap = models.CharField('Видео cap.ru', max_length=150,
+                                     null=True, blank=True)
+    visible = models.BooleanField('Показывать', default=1)
+    source = models.CharField('Первоисточник', max_length=150,
+                              blank=True, null=True)
+    created = models.DateTimeField('Создан', auto_now=False, auto_now_add=True)
+    updated = models.DateTimeField('Обновлен',
+                                   auto_now=True, auto_now_add=False)
+    publish = models.DateTimeField("Дата публикации", default=timezone.now,
+                                   help_text="Дата и время публикации")
+
+    def get_absolute_url(self):
+        return reverse('news:videogallery_article', args=[self.publish.year,
+                                                          self.publish.month,
+                                                          self.publish.day,
+                                                          self.slug])
+
+    class Meta:
+        ordering = ('-created', )
+        verbose_name = 'Видеогалерея'
+        verbose_name_plural = 'Видеогалереи'
+
+    def __str__(self):
+        return self.title
+
+
 class Banners(models.Model):
     TYPE_CHOICES = (
       ('with_image', 'Графический'),

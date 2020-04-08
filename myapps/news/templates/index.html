@@ -32,26 +32,26 @@
                                       <div class="carousel-item active">
                                         <a href="/media/{{ news.image }}" rel="gallery" class="swipebox" title="{{ news.title }}">
                                           {% thumbnail news.image "500x350" crop="center" as im %}
-                                          {# Главное фото новости #}
+                                          {# Главное видео новости #}
                                             <img class="d-block w-100 rounded" alt="{{ news.title }}" src="{{ im.url }}" width="{{ im.width }}">
                                           {% endthumbnail %}
                                         </a>
                                       </div>
-                                  {% for photogallery in news.photogallery.all %} 
-                                  {# Главное фото фотогалереи #}
+                                  {% for videogallery in news.videogallery.all %} 
+                                  {# Главное видео видеогалереи #}
                                         <div class="carousel-item">
-                                          <a href="/media/{{ photogallery.image }}" rel="gallery" class="swipebox" title="{{ news.title }}">
-                                            {% thumbnail photogallery.image "500x350" crop="center" as im %}
-                                                <img class="d-block w-100 rounded" src="{{ im.url }}" width="{{ im.width }}" alt="{{ photogallery.title }}">
+                                          <a href="/media/{{ videogallery.image }}" rel="gallery" class="swipebox" title="{{ news.title }}">
+                                            {% thumbnail videogallery.image "500x350" crop="center" as im %}
+                                                <img class="d-block w-100 rounded" src="{{ im.url }}" width="{{ im.width }}" alt="{{ videogallery.title }}">
                                             {% endthumbnail %}
                                           </a>
                                         </div>
-                                        {% for imgs in photogallery.news_images.all %}
-                                          {# Фотографии фотогалереи #}
+                                        {% for imgs in videogallery.news_images.all %}
+                                          {# видеографии видеогалереи #}
                                           <div class="carousel-item">
                                             <a href="/media/{{ imgs.image }}" rel="gallery" class="swipebox" title="{{ news.title }}">
                                               {% thumbnail imgs.image "500x350" crop="center" as im %}
-                                                  <img class="d-block w-100 rounded" src="{{ im.url }}" width="{{ im.width }}" alt="{{ photogallery.title }}">
+                                                  <img class="d-block w-100 rounded" src="{{ im.url }}" width="{{ im.width }}" alt="{{ videogallery.title }}">
                                               {% endthumbnail %}
                                             </a>
                                           </div>
@@ -129,11 +129,12 @@
                     {% endcomment %}
                   </div>
                 </div>
+                {# Фотогалереи #}
                 <div class="row">
                   <div class="col-12">
                     <div>ФОТОГАЛЕРЕИ</div>
                     <div class="news__badge-all-news">
-                      <a href="/news/news/">
+                      <a href="{% url 'news:photogallery' %}">
                         <span class="badge badge-danger">Все фотогалереи</span>
                       </a>
                     </div>
@@ -151,6 +152,35 @@
                           
                           <div class="col-3 photogallery-post_additional">
                             <div class="news__created">{{ photogallery.publish }}</div>
+                        </div>
+                        </div>
+                      </div>
+                    {% endfor %}
+                  </div>
+                </div>
+                {# Видеогалереи #}
+                <div class="row">
+                  <div class="col-12">
+                    <div>ВИДЕОГАЛЕРЕИ</div>
+                    <div class="news__badge-all-news">
+                      <a href="{% url 'news:videogallery' %}">
+                        <span class="badge badge-danger">Все видеогалереи</span>
+                      </a>
+                    </div>
+                    {% for videogallery in all_videogallery %}
+                      <div class="news__post">
+                        <div class="row news">
+                          <div class="col-3">
+                            {% thumbnail videogallery.image "200" crop="center" as im %}
+                                <img class="rounded float-left w-100" alt="" src="{{ im.url }}" data-holder-rendered="true" width="{{ im.width }}" height="{{ im.height }}">
+                            {% endthumbnail %}
+                          </div>
+                        <div class="col-6">
+                            <a class="news__header-text news__header-text_small news__header-text_va-bottom" href="{{ videogallery.get_absolute_url }}">{{ videogallery.title }}</a>
+                        </div>
+                          
+                          <div class="col-3 videogallery-post_additional">
+                            <div class="news__created">{{ videogallery.publish }}</div>
                         </div>
                         </div>
                       </div>
