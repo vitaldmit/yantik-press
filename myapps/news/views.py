@@ -35,12 +35,14 @@ def news(request):
         # Если номер страницы больше, чем общее количество страниц,
         # возвращаем последнюю.
         all_news = paginator.page(paginator.num_pages)
+    num_pages = paginator.num_pages
     # Баннеры
     all_banners = Banners.objects.all().filter(visible=True)
     return render(request, 'news.html',
                   {'page': page,
                    'all_news': all_news,
-                   'all_banners': all_banners})
+                   'all_banners': all_banners,
+                   'num_pages': num_pages})
 
 
 def publications(request):
@@ -57,12 +59,14 @@ def publications(request):
         # Если номер страницы больше, чем общее количество страниц,
         # возвращаем последнюю.
         all_publications = paginator.page(paginator.num_pages)
+    num_pages = paginator.num_pages
     # Баннеры
     all_banners = Banners.objects.all().filter(visible=True)
     return render(request, 'publications.html',
                   {'page': page,
                    'all_publications': all_publications,
-                   'all_banners': all_banners})
+                   'all_banners': all_banners,
+                   'num_pages': num_pages})
 
 
 def actuals(request):
@@ -79,12 +83,14 @@ def actuals(request):
         # Если номер страницы больше, чем общее количество страниц,
         # возвращаем последнюю.
         all_actuals = paginator.page(paginator.num_pages)
+    num_pages = paginator.num_pages
     # Баннеры
     all_banners = Banners.objects.all().filter(visible=True)
     return render(request, 'actuals.html',
                   {'page': page,
                    'all_actuals': all_actuals,
-                   'all_banners': all_banners})
+                   'all_banners': all_banners,
+                   'num_pages': num_pages})
 
 
 def news_actuals_publications_article(request, type, year, month, day, slug):
@@ -115,12 +121,14 @@ def photogallery(request):
         # Если номер страницы больше, чем общее количество страниц,
         # возвращаем последнюю.
         all_photogallery = paginator.page(paginator.num_pages)
+    num_pages = paginator.num_pages
     # Баннеры
     all_banners = Banners.objects.all().filter(visible=True)
     return render(request, 'photogallery.html',
                   {'page': page,
                    'all_photogallery': all_photogallery,
-                   'all_banners': all_banners})
+                   'all_banners': all_banners,
+                   'num_pages': num_pages})
 
 
 def photogallery_article(request, year, month, day, slug):
@@ -157,6 +165,8 @@ def search(request):
             # Если номер страницы больше, чем общее количество страниц,
             # возвращаем последнюю.
             all_results = paginator.page(paginator.num_pages)
+        num_pages = paginator.num_pages
         return render(request, 'search.html', {'query': query,
                                                'all_results': all_results,
-                                               'page': page})
+                                               'page': page,
+                                               'num_pages': num_pages})
