@@ -37,21 +37,21 @@
                                           {% endthumbnail %}
                                         </a>
                                       </div>
-                                  {% for videogallery in news.videogallery.all %} 
+                                  {% for photogallery in news.photogallery.all %} 
                                   {# Главное видео видеогалереи #}
                                         <div class="carousel-item">
-                                          <a href="/media/{{ videogallery.image }}" rel="gallery" class="swipebox" title="{{ news.title }}">
-                                            {% thumbnail videogallery.image "500x350" crop="center" as im %}
-                                                <img class="d-block w-100 rounded" src="{{ im.url }}" width="{{ im.width }}" alt="{{ videogallery.title }}">
+                                          <a href="/media/{{ photogallery.image }}" rel="gallery" class="swipebox" title="{{ news.title }}">
+                                            {% thumbnail photogallery.image "500x350" crop="center" as im %}
+                                                <img class="d-block w-100 rounded" src="{{ im.url }}" width="{{ im.width }}" alt="{{ photogallery.title }}">
                                             {% endthumbnail %}
                                           </a>
                                         </div>
-                                        {% for imgs in videogallery.news_images.all %}
+                                        {% for imgs in photogallery.news_images.all %}
                                           {# видеографии видеогалереи #}
                                           <div class="carousel-item">
                                             <a href="/media/{{ imgs.image }}" rel="gallery" class="swipebox" title="{{ news.title }}">
                                               {% thumbnail imgs.image "500x350" crop="center" as im %}
-                                                  <img class="d-block w-100 rounded" src="{{ im.url }}" width="{{ im.width }}" alt="{{ videogallery.title }}">
+                                                  <img class="d-block w-100 rounded" src="{{ im.url }}" width="{{ im.width }}" alt="{{ photogallery.title }}">
                                               {% endthumbnail %}
                                             </a>
                                           </div>
@@ -174,28 +174,11 @@
                         <div class="row news">
                           <div class="col-3">
                             {% if videogallery.video %}
-                                <video width="100%" height="120" controls>
-                                  <source src="/media/{{ videogallery.video }}" type="video/mp4">
-                                  <source src="/media/{{ videogallery.video }}" type="video/webm"><!-- WebM/VP8 для Firefox4, Opera, и Chrome -->
-                                  <source src="/media/{{ videogallery.video }}" type="video/ogg"><!-- Ogg/Vorbis для старых версий браузеров Firefox и Opera -->
-                                  <object data="/media/{{ videogallery.video }}" type="application/x-shockwave-flash"><!-- добавляем видеоконтент для устаревших браузеров, в которых нет поддержки элемента video -->
-                                      <param name="movie" value="video.swf">
-                                  </object>
-                                  <br>
-                                  Для воспроизведения видео требуется браузер с поддержкой HTML5 или Adobe Flash
-                                  <br>
-                                  Если вы не можете просмотреть видео на этой странице, скачайте его.
-                                  <br>
-                                  <a href="/media/{{ videogallery.video }}" download="download" target="_blank">Скачать видео</a>
-                                </video>
-                            {% endif %}
-
-                            {% if videogallery.cap %}
-                            <video width="100%" height="120" controls>
-                              <source src="/media/{{ videogallery.cap }}" type="video/mp4">
-                              <source src="/media/{{ videogallery.cap }}" type="video/webm"><!-- WebM/VP8 для Firefox4, Opera, и Chrome -->
-                              <source src="/media/{{ videogallery.cap }}" type="video/ogg"><!-- Ogg/Vorbis для старых версий браузеров Firefox и Opera -->
-                              <object data="/media/{{ videogallery.cap }}" type="application/x-shockwave-flash"><!-- добавляем видеоконтент для устаревших браузеров, в которых нет поддержки элемента video -->
+                            <video width="100%" height="120" controls >
+                              <source src="/media/{{ videogallery.video }}" type="video/mp4">
+                              <source src="/media/{{ videogallery.video }}" type="video/webm"><!-- WebM/VP8 для Firefox4, Opera, и Chrome -->
+                              <source src="/media/{{ videogallery.video }}" type="video/ogg"><!-- Ogg/Vorbis для старых версий браузеров Firefox и Opera -->
+                              <object data="/media/{{ videogallery.video }}" type="application/x-shockwave-flash"><!-- добавляем видеоконтент для устаревших браузеров, в которых нет поддержки элемента video -->
                                   <param name="movie" value="video.swf">
                               </object>
                               <br>
@@ -207,8 +190,12 @@
                             </video>
                             {% endif %}
 
+                            {% if videogallery.cap %}
+                              <iframe width="100%" height="120" src="{{ videogallery.cap}}" frameborder="0"></iframe>
+                            {% endif %}
+
                             {% if videogallery.youtube %}
-                                <iframe width="100%" height="120" src="https://www.youtube.com/embed/{{ videogallery.youtube}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" title="{{ videogallery.title }}"></iframe>
+                              <iframe width="100%" height="120" src="https://www.youtube.com/embed/{{ videogallery.youtube}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe>
                             {% endif %}
                           </div>
                         <div class="col-6">
@@ -225,6 +212,6 @@
                 </div>
 
               </div>
-              {% include "include_banners.html" with all_videogallery=all_videogallery %}
+              {% include "include_banners.html" %}
             </div>
 {% endblock %}

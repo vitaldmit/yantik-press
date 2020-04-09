@@ -1,4 +1,4 @@
-from datetime import datetime, timedelta
+from datetime import datetime
 
 from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -12,8 +12,8 @@ def index(request):
     # Главная страница
     all_news = News.objects.filter(Q(type='news') | Q(type='actuals')).filter(visible=True).filter(publish__lte=datetime.now()).order_by('-publish')[:5]
     all_publications = News.objects.filter(type='publications').filter(visible=True).filter(publish__lte=datetime.now()).order_by('-publish')[:5]
-    all_photogallery = PhotoGallery.objects.all().filter(visible=True).filter(publish__lte=datetime.now()).order_by('-publish')[:5]
-    all_videogallery = VideoGallery.objects.all().filter(visible=True).filter(publish__lte=datetime.now()).order_by('-publish')[:5]
+    all_photogallery = PhotoGallery.objects.all().filter(visible=True).filter(publish__lte=datetime.now()).order_by('-publish')[:3]
+    all_videogallery = VideoGallery.objects.all().filter(visible=True).filter(publish__lte=datetime.now()).order_by('-publish')[:3]
     all_banners = Banners.objects.all().filter(visible=True).filter(publish__lte=datetime.now()).order_by('publish')[:10]
     return render(request, 'index.html',
                   {'all_news': all_news,
