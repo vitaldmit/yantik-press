@@ -129,7 +129,7 @@ body {
     font-size: 22px;
     font-weight: bold;
     font-family: unset;
-    line-height: 0px;
+    line-height: 22px;
     color: rgb(33, 37, 41);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -141,7 +141,7 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 .news__header-text_small {
-    font-size: 18px;
+    font-size: 17px;
 }
 .news__header-text_va-bottom {
     vertical-align: bottom;
@@ -290,4 +290,9 @@ a.list-group-item.list-group-item-action.active {
 }
 
 .footer-right {
+}
+
+
+video {
+    background-color: black;
 }

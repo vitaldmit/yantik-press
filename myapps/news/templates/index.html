@@ -129,6 +129,7 @@
                     {% endcomment %}
                   </div>
                 </div>
+                
                 {# Фотогалереи #}
                 <div class="row">
                   <div class="col-12">
@@ -158,6 +159,7 @@
                     {% endfor %}
                   </div>
                 </div>
+
                 {# Видеогалереи #}
                 <div class="row">
                   <div class="col-12">
@@ -171,9 +173,43 @@
                       <div class="news__post">
                         <div class="row news">
                           <div class="col-3">
-                            {% thumbnail videogallery.image "200" crop="center" as im %}
-                                <img class="rounded float-left w-100" alt="" src="{{ im.url }}" data-holder-rendered="true" width="{{ im.width }}" height="{{ im.height }}">
-                            {% endthumbnail %}
+                            {% if videogallery.video %}
+                                <video width="100%" height="120" controls>
+                                  <source src="/media/{{ videogallery.video }}" type="video/mp4">
+                                  <source src="/media/{{ videogallery.video }}" type="video/webm"><!-- WebM/VP8 для Firefox4, Opera, и Chrome -->
+                                  <source src="/media/{{ videogallery.video }}" type="video/ogg"><!-- Ogg/Vorbis для старых версий браузеров Firefox и Opera -->
+                                  <object data="/media/{{ videogallery.video }}" type="application/x-shockwave-flash"><!-- добавляем видеоконтент для устаревших браузеров, в которых нет поддержки элемента video -->
+                                      <param name="movie" value="video.swf">
+                                  </object>
+                                  <br>
+                                  Для воспроизведения видео требуется браузер с поддержкой HTML5 или Adobe Flash
+                                  <br>
+                                  Если вы не можете просмотреть видео на этой странице, скачайте его.
+                                  <br>
+                                  <a href="/media/{{ videogallery.video }}" download="download" target="_blank">Скачать видео</a>
+                                </video>
+                            {% endif %}
+
+                            {% if videogallery.cap %}
+                            <video width="100%" height="120" controls>
+                              <source src="/media/{{ videogallery.cap }}" type="video/mp4">
+                              <source src="/media/{{ videogallery.cap }}" type="video/webm"><!-- WebM/VP8 для Firefox4, Opera, и Chrome -->
+                              <source src="/media/{{ videogallery.cap }}" type="video/ogg"><!-- Ogg/Vorbis для старых версий браузеров Firefox и Opera -->
+                              <object data="/media/{{ videogallery.cap }}" type="application/x-shockwave-flash"><!-- добавляем видеоконтент для устаревших браузеров, в которых нет поддержки элемента video -->
+                                  <param name="movie" value="video.swf">
+                              </object>
+                              <br>
+                              Для воспроизведения видео требуется браузер с поддержкой HTML5 или Adobe Flash
+                              <br>
+                              Если вы не можете просмотреть видео на этой странице, скачайте его.
+                              <br>
+                              <a href="/media/{{ videogallery.video }}" download="download" target="_blank">Скачать видео</a>
+                            </video>
+                            {% endif %}
+
+                            {% if videogallery.youtube %}
+                                <iframe width="100%" height="120" src="https://www.youtube.com/embed/{{ videogallery.youtube}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" title="{{ videogallery.title }}"></iframe>
+                            {% endif %}
                           </div>
                         <div class="col-6">
                             <a class="news__header-text news__header-text_small news__header-text_va-bottom" href="{{ videogallery.get_absolute_url }}">{{ videogallery.title }}</a>
@@ -187,7 +223,8 @@
                     {% endfor %}
                   </div>
                 </div>
+
               </div>
-              {% include "include_banners.html" %}
+              {% include "include_banners.html" with all_videogallery=all_videogallery %}
             </div>
 {% endblock %}

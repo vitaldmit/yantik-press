@@ -129,10 +129,10 @@ class VideoGallery(models.Model):
     slug = models.SlugField('ЧПУ', max_length=200, unique_for_date='publish')
     video = models.FileField('Видео', upload_to='newsvideos/%Y/%m/%d/',
                              null=True, blank=True)
+    cap = models.CharField('Видео CAP.RU', max_length=150,
+                                     null=True, blank=True)
     youtube = models.CharField('Видео YouTube', max_length=100,
-                                     null=True, blank=True)
-    cap = models.CharField('Видео cap.ru', max_length=150,
-                                     null=True, blank=True)
+                               null=True, blank=True, help_text='КОД ВИДЕО')
     visible = models.BooleanField('Показывать', default=1)
     source = models.CharField('Первоисточник', max_length=150,
                               blank=True, null=True)

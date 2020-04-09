@@ -1,5 +1,45 @@
 {% load thumbnail %}
 <div class="col-3 banners">
+{# Последнее по дате загруженное видео #}
+  {% if all_videogallery.0.video %}
+      <video width="100%" loop="loop" controls="controls" autoplay="autoplay">
+        <source src="/media/{{ all_videogallery.0.video }}" type="video/mp4">
+        <source src="/media/{{ all_videogallery.0.video }}" type="video/webm"><!-- WebM/VP8 для Firefox4, Opera, и Chrome -->
+        <source src="/media/{{ all_videogallery.0.video }}" type="video/ogg"><!-- Ogg/Vorbis для старых версий браузеров Firefox и Opera -->
+        <object data="/media/{{ all_videogallery.0.video }}" type="application/x-shockwave-flash"><!-- добавляем видеоконтент для устаревших браузеров, в которых нет поддержки элемента video -->
+            <param name="movie" value="video.swf">
+        </object>
+        <br>
+        Для воспроизведения видео требуется браузер с поддержкой HTML5 или Adobe Flash
+        <br>
+        Если вы не можете просмотреть видео на этой странице, скачайте его.
+        <br>
+        <a href="/media/{{ videogallery.video }}" download="download" target="_blank">Скачать видео</a>
+      </video>
+  {% endif %}
+
+  {% if all_videogallery.0.cap %}
+  <video width="100%" height="120" loop="loop" controls="controls" autoplay="autoplay">
+    <source src="/media/{{ videogallery.cap }}" type="video/mp4">
+    <source src="/media/{{ videogallery.cap }}" type="video/webm"><!-- WebM/VP8 для Firefox4, Opera, и Chrome -->
+    <source src="/media/{{ videogallery.cap }}" type="video/ogg"><!-- Ogg/Vorbis для старых версий браузеров Firefox и Opera -->
+    <object data="/media/{{ videogallery.cap }}" type="application/x-shockwave-flash"><!-- добавляем видеоконтент для устаревших браузеров, в которых нет поддержки элемента video -->
+        <param name="movie" value="video.swf">
+    </object>
+    <br>
+    Для воспроизведения видео требуется браузер с поддержкой HTML5 или Adobe Flash
+    <br>
+    Если вы не можете просмотреть видео на этой странице, скачайте его.
+    <br>
+    <a href="/media/{{ videogallery.video }}" download="download" target="_blank">Скачать видео</a>
+  </video>
+  {% endif %}
+
+  {% if all_videogallery.0.youtube %}
+    <iframe width="100%" height="200" src="https://www.youtube.com/embed/{{ all_videogallery.0.youtube}}?autoplay=1&mute=1&loop=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe>
+  {% endif %}
+
+  {# Баннеры #}
   {% for banners in all_banners %}
     {% if banners.type == 'with_image' %}
         <div class="banners__post">

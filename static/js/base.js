@@ -19,3 +19,8 @@
   if(link.startsWith('/about/'))
     $('a[href="/about/"]').addClass('active');
 });
+
+// ;$(document).ready(function(){
+//   let video = document.getElementsByTagName('video')[0];
+//   video.setAttribute("muted", "true")
+// });

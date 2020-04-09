@@ -99,11 +99,11 @@
                           Пресс-центр
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                          <a class="dropdown-item" href="{% url 'news:actuals' %}">Акутально</a>
+                          <a class="dropdown-item" href="{% url 'news:actuals' %}">Акутальные</a>
                           <a class="dropdown-item" href="{% url 'news:news' %}">Новости</a>
                           <a class="dropdown-item" href="{% url 'news:publications' %}">Публикации</a>
-                          <a class="dropdown-item" href="{% url 'news:photogallery' %}">Фотогалерея</a>
-                          <a class="dropdown-item" href="{% url 'news:videogallery' %}">Видеогалерея</a>
+                          <a class="dropdown-item" href="{% url 'news:photogallery' %}">Фотогалереи</a>
+                          <a class="dropdown-item" href="{% url 'news:videogallery' %}">Видеогалереи</a>
                         </div>
                       </li>
                       <li class="nav-item dropdown">
@@ -172,8 +172,8 @@
           </div>
         </footer>
     </div>
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    {# <!-- Optional JavaScript --> #}
+    {# <!-- jQuery first, then Popper.js, then Bootstrap JS --> #}
     <script src="{% static 'js/jquery-3.4.1.slim.min.js' %}"></script>
     <script src="{% static 'js/jquery-2.0.3.min.js' %}"></script>
     <script src="{% static 'js/popper.min.js' %}"></script>
@@ -181,7 +181,7 @@
     <script src="{% static 'js/jquery.swipebox.min.js' %}"></script>
     <script src="{% static 'js/base.js' %}"></script>
 
-    <!-- Gismeteo Informer (begin) -->
+    {# <!-- Gismeteo Informer (begin) --> #}
     <script type="text/javascript">
     (function() {
         var
@@ -202,6 +202,6 @@
             d.body.appendChild(s);
     })();
     </script>
-    <!-- Gismeteo Informer (finish) -->
+    {# <!-- Gismeteo Informer (finish) --> #}
   </body>
 </html>
