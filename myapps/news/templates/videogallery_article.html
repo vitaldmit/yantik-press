@@ -21,39 +21,47 @@
         </div>
 
         {% if videogallery_article.video %}
-        {% comment %}
-            <p>
-                <iframe width="100%" height="500" src="http://localhost:8000/media/newsvideos/2020/04/08/video.mp4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </p>
-        {% endcomment %}
-            <p>
-                <video width="100%" height="500" controls>
-                  <source src="/media/{{ videogallery_article.video }}" type="video/mp4">
-                  <source src="/media/{{ videogallery_article.video }}" type="video/webm"><!-- WebM/VP8 для Firefox4, Opera, и Chrome -->
-                  <source src="/media/{{ videogallery_article.video }}" type="video/ogg"><!-- Ogg/Vorbis для старых версий браузеров Firefox и Opera -->
-                  <object data="/media/{{ videogallery_article.video }}" type="application/x-shockwave-flash"><!-- добавляем видеоконтент для устаревших браузеров, в которых нет поддержки элемента video -->
-                      <param name="movie" value="video.swf">
-                  </object>
-                  <br>
-                  Для воспроизведения видео требуется браузер с поддержкой HTML5 или Adobe Flash
-                  <br>
-                  Если вы не можете просмотреть видео на этой странице, скачайте его.
-                  <br>
-                  <a href="/media/{{ videogallery_article.video }}" download="download" target="_blank">Скачать видео</a>
-                </video>
-            </p>
+        {# Если видео загружено физически #}
+            <video width="100%" height="500" controls>
+                <source src="/media/{{ videogallery_article.video }}" type="video/mp4">
+                {# <!-- WebM/VP8 для Firefox4, Opera, и Chrome --> #}
+                <source src="/media/{{ videogallery_article.video }}" type="video/webm">
+                {# <!-- Ogg/Vorbis для старых версий браузеров Firefox и Opera --> #}
+                <source src="/media/{{ videogallery_article.video }}" type="video/ogg">
+                <object data="/media/{{ videogallery_article.video }}" type="application/x-shockwave-flash">
+                {# <!-- добавляем видеоконтент для устаревших браузеров, в которых нет поддержки элемента video --> #}
+                    <param name="movie" value="/media/{{ videogallery_article.video }}">
+                </object>
+                <br>
+                Для воспроизведения видео требуется браузер с поддержкой HTML5 или Adobe Flash
+                <br>
+                Если вы не можете просмотреть видео на этой странице, скачайте его.
+                <br>
+                <a href="/media/{{ videogallery_article.video }}" download="download" target="_blank">Скачать видео</a>
+            </video>
         {% endif %}
-
         {% if videogallery_article.cap %}
-            <p>
-                <iframe width="100%" height="500" src="{{ videogallery_article.cap }}" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
-            </p>
+        {# Если видео с video.cap.ru #}
+            <video width="100%" height="500" controls>
+                <source src="{{ videogallery_article.cap }}" type="video/mp4">
+                {# <!-- WebM/VP8 для Firefox4, Opera, и Chrome --> #}
+                <source src="{{ videogallery_article.cap }}" type="video/webm">
+                {# <!-- Ogg/Vorbis для старых версий браузеров Firefox и Opera --> #}
+                <source src="{{ videogallery_article.cap }}" type="video/ogg">
+                <object data="{{ videogallery_article.cap }}" type="application/x-shockwave-flash">
+                {# <!-- добавляем видеоконтент для устаревших браузеров, в которых нет поддержки элемента video --> #}
+                    <param name="movie" value="{{ videogallery_article.cap }}">
+                </object>
+                <br>
+                Для воспроизведения видео требуется браузер с поддержкой HTML5 или Adobe Flash
+                <br>
+                Если вы не можете просмотреть видео на этой странице, скачайте его.
+                <br>
+                <a href="{{ videogallery_article.cap }}" download="download" target="_blank">Скачать видео</a>
+            </video>
         {% endif %}
-
         {% if videogallery_article.youtube %}
-            <p>
-                <iframe width="100%" height="500" src="https://www.youtube.com/embed/{{ videogallery_article.youtube }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </p>
+            <iframe width="100%" height="500" src="https://www.youtube.com/embed/{{ videogallery_article.youtube}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe>
         {% endif %}
 
         {% if videogallery_article.source %}
