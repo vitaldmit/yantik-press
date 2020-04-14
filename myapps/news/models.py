@@ -16,7 +16,7 @@ class News(models.Model):
       ('publications', 'Публикации'),
     )
     author = models.ForeignKey(User, on_delete=models.PROTECT,
-                               related_name='related_news',
+                               related_name='news_author',
                                verbose_name='Автор',
                                default='')
     type = models.CharField("Тип", max_length=13, choices=TYPE_CHOICES)
@@ -40,6 +40,10 @@ class News(models.Model):
     keywords = models.CharField('Ключевые слова', max_length=100,
                                 blank=True, null=True)
     description = models.TextField('Описание', blank=True, null=True)
+    photogallery = models.ForeignKey('PhotoGallery', on_delete=models.CASCADE,
+                                     blank=True, null=True, default=None,
+                                     verbose_name='Связанная фотогалерея',
+                                     related_name='news_photogallery')
 
     def get_absolute_url(self):
         return reverse('news:news_article', args=[self.type,
@@ -64,7 +68,7 @@ class PhotoGallery(models.Model):
     news = models.ForeignKey(News, on_delete=models.CASCADE,
                              blank=True, null=True, default=None,
                              verbose_name='Связанная новость',
-                             related_name='photogallery')
+                             related_name='photogallery_news')
     title = models.CharField('Заголовок', max_length=200)
     slug = models.SlugField('ЧПУ', max_length=200, unique_for_date='publish')
     image = models.ImageField('Главное фото', upload_to='newsimages/%Y/%m/%d/',

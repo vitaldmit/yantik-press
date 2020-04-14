@@ -40,7 +40,7 @@
         </div>
         {# Фотогалерея #}
         <div class="news__photo-gallery">
-            {% for photogallery in news_actuals_publications_article.photogallery.all %}
+            {% for photogallery in news_actuals_publications_article.photogallery_news.all %}
             {# Главное фото фотогалереи #}
             <div class="photo float-left">
                 <a href="/media/{{ photogallery.image }}" rel="gallery" class="swipebox" title="{{ photogallery_article.title}}">

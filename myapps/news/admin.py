@@ -21,7 +21,7 @@ class NewsAdmin(admin.ModelAdmin):
     # raw_id_fields = ('author',)
     date_hierarchy = 'publish'
     ordering = ('-publish', '-created')
-    inlines = [PhotoGalleryInline, ]
+    # inlines = [PhotoGalleryInline, ]
 
 
 @admin.register(PhotoGallery)
