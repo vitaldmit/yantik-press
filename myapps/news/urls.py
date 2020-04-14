@@ -17,5 +17,5 @@ urlpatterns = [
     path('actuals/', views.actuals, name='actuals'),
     path('publications/', views.publications, name='publications'),
     path('<str:type>/<int:year>/<int:month>/<int:day>/<slug:slug>/',
-         views.news_actuals_publications_article, name='news_article'),
+         views.news_article, name='news_article'),
 ]

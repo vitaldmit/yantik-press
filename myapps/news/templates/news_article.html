@@ -1,34 +1,42 @@
 {% extends 'base.html' %}
 {% load thumbnail %}
-{% block title %} {{ news_actuals_publications_article.title}} {% endblock %}
+
+{% block title %} {{ news_article.title}} {% endblock %}
+
+{% block meta %} 
+    <meta name="keywords" content="{% if news_article.keywords %}{{ news_article.keywords }}{% endif %}" />
+    <meta name="description" content="{% if news_article.description %}{{ news_article.description }}{% endif %}">
+{% endblock %}
+
 {% block breadcrumb %}
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><i class="fas fa-home"></i> Главная</li>
         <li class="breadcrumb-item" aria-current="page">Пресс-центр</li>
-        <li class="breadcrumb-item" aria-current="page">{{ news_actuals_publications_article.get_type_display }}</li>
-        <li class="breadcrumb-item active" aria-current="page">{{ news_actuals_publications_article.title|truncatewords:4 }}</li>
+        <li class="breadcrumb-item" aria-current="page">{{ news_article.get_type_display }}</li>
+        <li class="breadcrumb-item active" aria-current="page">{{ news_article.title|truncatewords:4 }}</li>
     </ol>
 </nav>
 {% endblock breadcrumb %}
+
 {% block main %}
 <div class="row">
     <div class="col-9 news">
-        <div class="news__created"><i class="far fa-calendar-alt"></i> {{ news_actuals_publications_article.publish }}</div>
+        <div class="news__created"><i class="far fa-calendar-alt"></i> {{ news_article.publish }}</div>
         <div class="news__header">
-            <span class="news__header-text">{{ news_actuals_publications_article.title }}</span>
+            <span class="news__header-text">{{ news_article.title }}</span>
         </div>
         <div class="row float-left">
             <div class="col-12">
-                {% if news_actuals_publications_article.image %}
-                <a href="/media/{{ news_actuals_publications_article.image }}" rel="gallery" class="swipebox" title="{{ news_actuals_publications_article.title }}">
-                    {% thumbnail news_actuals_publications_article.image "400" crop="center" as im %}
-                    <img class="rounded news__post-imgs" alt="{{ news_actuals_publications_article.title}}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+                {% if news_article.image %}
+                <a href="/media/{{ news_article.image }}" rel="gallery" class="swipebox" title="{{ news_article.title }}">
+                    {% thumbnail news_article.image "400" crop="center" as im %}
+                    <img class="rounded news__post-imgs" alt="{{ news_article.title}}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
                     {% endthumbnail %}
                 </a>
-                {% if news_actuals_publications_article.imagesign %}
+                {% if news_article.imagesign %}
                 <div class="news__imagesign">
-                    {{ news_actuals_publications_article.imagesign }}
+                    {{ news_article.imagesign }}
                 </div>
                 {% endif %}
                 {% endif %}
@@ -36,11 +44,11 @@
         </div>
         {# Контент #}
         <div class="news__article-content text-justify">
-            {{ news_actuals_publications_article.content|safe }}
+            {{ news_article.content|safe }}
         </div>
         {# Фотогалерея #}
         <div class="news__photo-gallery">
-            {% for photogallery in news_actuals_publications_article.photogallery_news.all %}
+            {% for photogallery in news_article.photogallery_news.all %}
             {# Главное фото фотогалереи #}
             <div class="photo float-left">
                 <a href="/media/{{ photogallery.image }}" rel="gallery" class="swipebox" title="{{ photogallery_article.title}}">
@@ -62,7 +70,7 @@
             {% endfor %}
         </div>
         {# Видео #}
-        {% for videogallery in news_actuals_publications_article.videogallery.all %}
+        {% for videogallery in news_article.videogallery.all %}
             {% if videogallery.video %}
             {# Если видео загружено физически #}
                 <video width="100%" height="500" controls>
@@ -109,8 +117,8 @@
         {% empty %}
         {% endfor %}
         <div class="clearfix"></div>
-        {% if news_actuals_publications_article.source %}
-        <div class="news__source">Первоисточник: {{ news_actuals_publications_article.source }} </div>
+        {% if news_article.source %}
+        <div class="news__source">Первоисточник: {{ news_article.source }} </div>
         {% endif %}
         <div class="news_share">
             <script src="https://yastatic.net/es5-shims/0.0.2/es5-shims.min.js"></script>

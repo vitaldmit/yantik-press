@@ -95,17 +95,17 @@ def actuals(request):
                    'num_pages': num_pages})
 
 
-def news_actuals_publications_article(request, type, year, month, day, slug):
-    news_actuals_publications_article = get_object_or_404(News, slug=slug,
+def news_article(request, type, year, month, day, slug):
+    news_article = get_object_or_404(News, slug=slug,
                                                           visible=True,
                                                           publish__year=year,
                                                           publish__month=month,
                                                           publish__day=day,
                                                           type=type)
     all_banners = Banners.objects.all().filter(visible=True)
-    return render(request, 'news_actuals_publications_article.html',
-                  {'news_actuals_publications_article':
-                   news_actuals_publications_article,
+    return render(request, 'news_article.html',
+                  {'news_article':
+                   news_article,
                    'all_banners': all_banners})
 
 
