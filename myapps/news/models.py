@@ -40,10 +40,6 @@ class News(models.Model):
     keywords = models.CharField('Ключевые слова', max_length=100,
                                 blank=True, null=True)
     description = models.TextField('Описание', blank=True, null=True)
-    photogallery = models.ForeignKey('PhotoGallery', on_delete=models.CASCADE,
-                                     blank=True, null=True, default=None,
-                                     verbose_name='Связанная фотогалерея',
-                                     related_name='news_photogallery')
 
     def get_absolute_url(self):
         return reverse('news:news_article', args=[self.type,
