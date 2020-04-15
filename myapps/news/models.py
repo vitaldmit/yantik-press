@@ -31,7 +31,7 @@ class News(models.Model):
     source = models.CharField('Первоисточник', max_length=150,
                               blank=True, null=True)
     visible = models.BooleanField('Показывать', default=1)
-    ontop = models.BooleanField('Размещать сверху', )
+    # ontop = models.BooleanField('Размещать сверху', )
     created = models.DateTimeField('Создан', auto_now=False, auto_now_add=True)
     updated = models.DateTimeField('Обновлен',
                                    auto_now=True, auto_now_add=False)
