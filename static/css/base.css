@@ -176,6 +176,7 @@ body {
     font-size: 16px!important;
     background-color: inherit;
     border-color: #afafaf;
+    text-indent: 1.5em;
 }
 
 .news__created {
@@ -231,11 +232,11 @@ a.page-link {
 .banners__post-img {
 }
 .banners__title {
-    font-size: 12px;
+    font-size: 14px;
     /* font-weight: bold; */
 }
 .with_image_text {
-    line-height: 1.1;
+    line-height: 1.3;
 }
 
 /*About*/
