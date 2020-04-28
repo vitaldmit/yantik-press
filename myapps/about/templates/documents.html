@@ -18,7 +18,7 @@
                 {% for file in documents.documents_files.all %}
                     <div class="documents-details__filename">
                         {{ file.filename }}
-                        <a href="/media/{{ file.file }}" download>cкачать</a>
+                        <a href="/media/{{ file.file }}" download>cкачать </a> ({{ file.file.size|filesizeformat }})
                     </div>
                 {% endfor %}
             {% endfor %}
