@@ -12,9 +12,9 @@ def index(request):
     # Главная страница
     all_news = News.objects.filter(Q(type='news') | Q(type='actuals')).filter(visible=True).filter(publish__lte=datetime.now()).order_by('-publish')[:5]
     all_publications = News.objects.filter(type='publications').filter(visible=True).filter(publish__lte=datetime.now()).order_by('-publish')[:4]
-    all_photogallery = PhotoGallery.objects.all().filter(visible=True).filter(publish__lte=datetime.now()).order_by('-publish')[:3]
-    all_videogallery = VideoGallery.objects.all().filter(visible=True).filter(publish__lte=datetime.now()).order_by('-publish')[:3]
-    all_banners = Banners.objects.all().filter(visible=True).filter(publish__lte=datetime.now()).order_by('publish')[:10]
+    all_photogallery = PhotoGallery.objects.all().filter(visible=True).filter(publish__lte=datetime.now()).order_by('-publish')[:1]
+    all_videogallery = VideoGallery.objects.all().filter(visible=True).filter(publish__lte=datetime.now()).order_by('-publish')[:1]
+    all_banners = Banners.objects.all().filter(visible=True).filter(publish__lte=datetime.now()).order_by('publish')[:11]
     return render(request, 'index.html',
                   {'all_news': all_news,
                    'all_publications': all_publications,
@@ -139,7 +139,7 @@ def photogallery_article(request, year, month, day, slug):
                                              publish__year=year,
                                              publish__month=month,
                                              publish__day=day)
-    all_banners = Banners.objects.all().filter(visible=True).filter(publish__lte=datetime.now()).order_by('publish')[:10]
+    all_banners = Banners.objects.all().filter(visible=True).filter(publish__lte=datetime.now()).order_by('publish')
     return render(request, 'photogallery_article.html',
                   {'photogallery_article': photogallery_article,
                    'all_banners': all_banners})
@@ -175,7 +175,7 @@ def videogallery_article(request, year, month, day, slug):
                                              publish__year=year,
                                              publish__month=month,
                                              publish__day=day)
-    all_banners = Banners.objects.all().filter(visible=True).filter(publish__lte=datetime.now()).order_by('publish')[:10]
+    all_banners = Banners.objects.all().filter(visible=True).filter(publish__lte=datetime.now()).order_by('publish')
     return render(request, 'videogallery_article.html',
                   {'videogallery_article': videogallery_article,
                    'all_banners': all_banners})
@@ -205,7 +205,9 @@ def search(request):
             # возвращаем последнюю.
             all_results = paginator.page(paginator.num_pages)
         num_pages = paginator.num_pages
+        all_banners = Banners.objects.all().filter(visible=True).filter(publish__lte=datetime.now()).order_by('publish')
         return render(request, 'search.html', {'query': query,
                                                'all_results': all_results,
                                                'page': page,
-                                               'num_pages': num_pages})
+                                               'num_pages': num_pages,
+                                               'all_banners': all_banners})

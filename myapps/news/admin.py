@@ -27,8 +27,8 @@ class NewsAdmin(admin.ModelAdmin):
 @admin.register(PhotoGallery)
 class PhotoGalleryAdmin(admin.ModelAdmin):
     list_display = ('title', 'publish', 'created', 'visible')
-    list_filter = ('visible', 'created',)
-    search_fields = ('title', )
+    list_filter = ('visible', 'created', 'publish')
+    search_fields = ('title', 'content')
     prepopulated_fields = {'slug': ('title',)}
     # raw_id_fields = ('news',)
     date_hierarchy = 'publish'
@@ -39,8 +39,8 @@ class PhotoGalleryAdmin(admin.ModelAdmin):
 @admin.register(VideoGallery)
 class VideoGalleryAdmin(admin.ModelAdmin):
     list_display = ('title', 'publish', 'created', 'visible')
-    list_filter = ('visible', 'created',)
-    search_fields = ('title', )
+    list_filter = ('visible', 'created', 'publish')
+    search_fields = ('title', 'content')
     prepopulated_fields = {'slug': ('title',)}
     # raw_id_fields = ('news',)
     date_hierarchy = 'publish'
@@ -48,17 +48,10 @@ class VideoGalleryAdmin(admin.ModelAdmin):
     # inlines = [VideoGalleryImagesInline, ]
 
 
-# @admin.register(NewsImages)
-# class NewsImagesAdmin(admin.ModelAdmin):
-#     list_display = ('news', 'created', 'updated', 'visible')
-#     list_filter = ('visible', 'created', 'updated')
-#     search_fields = ('news', )
-#     ordering = ('-created', )
-
-
 @admin.register(Banners)
 class BannersAdmin(admin.ModelAdmin):
-    list_display = ('title', 'created', 'updated', 'visible',)
-    list_filter = ('visible', 'created', 'updated')
+    list_display = ('title', 'publish', 'created', 'visible')
+    list_filter = ('visible', 'created', 'publish')
     search_fields = ('title', )
-    ordering = ('-created', '-publish')
+    date_hierarchy = 'publish'
+    ordering = ('-publish', '-created')
