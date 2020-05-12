@@ -134,6 +134,7 @@ class VideoGallery(models.Model):
                                      null=True, blank=True)
     youtube = models.CharField('Видео YouTube', max_length=100,
                                null=True, blank=True, help_text='КОД ВИДЕО')
+    content = HTMLField('Контент', null=True, blank=True)
     visible = models.BooleanField('Показывать', default=1)
     source = models.CharField('Первоисточник', max_length=150,
                               blank=True, null=True)

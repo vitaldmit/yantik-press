@@ -1,7 +1,7 @@
 
 {% extends 'base.html' %}
 {% load thumbnail %}
-{% block title %}Фотогалереи / ЯЛ ӖҪЧЕНӖ - Янтиковская районная газета "Селький труженик"{% endblock %}
+{% block title %}Видеогалереи / ЯЛ ӖҪЧЕНӖ - Янтиковская районная газета "Селький труженик"{% endblock %}
 {% block breadcrumb %}
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
@@ -28,7 +28,7 @@
                         {% endif %}
 
                         {% if videogallery.cap %}
-                        {# Если видео с video.cap.ru #}
+                        {# Если видео с cap.ru #}
                           <video width="100%" height="120" controls="controls">
                             <source src="{{ videogallery.cap }}" type="video/mp4">
                             <a href="{{ videogallery.cap }}" download="download" target="_blank">Скачать видео</a>
@@ -36,6 +36,7 @@
                         {% endif %}
 
                         {% if videogallery.youtube %}
+                        {# Если видео с youtube.com #}
                           <iframe width="100%" height="120" src="https://www.youtube.com/embed/{{ videogallery.youtube}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe>
                         {% endif %}
                       </div>
@@ -48,8 +49,10 @@
                     </div>
                   </div>
                 {% endfor %}
-                {% include "include_paginations.html" %}
+                {% include "include_paginations.html" with page=all_videogallery %}
               </div>
 
+
             {% include "include_banners.html" %}
+          </div>
 {% endblock %}
