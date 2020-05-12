@@ -69,6 +69,7 @@ class PhotoGallery(models.Model):
     slug = models.SlugField('ЧПУ', max_length=200, unique_for_date='publish')
     image = models.ImageField('Главное фото', upload_to='newsimages/%Y/%m/%d/',
                               null=True, blank=True)
+    content = HTMLField('Контент', null=True, blank=True)
     visible = models.BooleanField('Показывать', default=1)
     source = models.CharField('Первоисточник', max_length=150,
                               blank=True, null=True)
