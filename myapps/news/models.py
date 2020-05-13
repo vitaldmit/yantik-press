@@ -128,6 +128,9 @@ class VideoNews(models.Model):
                              related_name='videonews')
     title = models.CharField('Заголовок', max_length=200)
     slug = models.SlugField('ЧПУ', max_length=200, unique_for_date='publish')
+    image = models.ImageField('Фото', upload_to='newsvideos/%Y/%m/%d/',
+                              null=True, blank=True, 
+                              help_text="Превью изображение видео")
     video = models.FileField('Видео', upload_to='newsvideos/%Y/%m/%d/',
                              null=True, blank=True)
     cap = models.CharField('Видео CAP.RU', max_length=150,
