@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
 {% load thumbnail %}
-{% block title %} {{ videogallery_article.title }} - видеогалерея {% endblock %}
+{% block title %} {{ videonews_article.title }} - видеоновости {% endblock %}
 {% block breadcrumb %}
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><i class="fas fa-home"></i> Главная</li>
     <li class="breadcrumb-item" aria-current="page">Пресс-центр</li>
-    <li class="breadcrumb-item" aria-current="page">Видеогалереи</li>
-    <li class="breadcrumb-item active" aria-current="page">{{ videogallery_article.title|truncatewords:4 }}</li>
+    <li class="breadcrumb-item" aria-current="page">Видеоновости</li>
+    <li class="breadcrumb-item active" aria-current="page">{{ videonews_article.title|truncatewords:4 }}</li>
   </ol>
 </nav>
 {% endblock breadcrumb %}
@@ -15,62 +15,64 @@
 {% block main %}
 <div class="row">
     <div class="col-9 news">
-        <div class="news__created"><i class="far fa-calendar-alt"></i> {{ videogallery_article.publish }} </div>
+        <div class="news__created"><i class="far fa-calendar-alt"></i> {{ videonews_article.publish }} </div>
         <div class="news__header">
-            <span class="news__header-text">{{ videogallery_article.title }}</span>
+            <span class="news__header-text">{{ videonews_article.title }}</span>
         </div>
 
-        {% if videogallery_article.video %}
+        {% if videonews_article.video %}
         {# Если видео загружено физически #}
             <video width="100%" height="500" controls>
-                <source src="/media/{{ videogallery_article.video }}" type="video/mp4">
+                <source src="/media/{{ videonews_article.video }}" type="video/mp4">
                 {# <!-- WebM/VP8 для Firefox4, Opera, и Chrome --> #}
-                <source src="/media/{{ videogallery_article.video }}" type="video/webm">
+                <source src="/media/{{ videonews_article.video }}" type="video/webm">
                 {# <!-- Ogg/Vorbis для старых версий браузеров Firefox и Opera --> #}
-                <source src="/media/{{ videogallery_article.video }}" type="video/ogg">
-                <object data="/media/{{ videogallery_article.video }}" type="application/x-shockwave-flash">
+                <source src="/media/{{ videonews_article.video }}" type="video/ogg">
+                <object data="/media/{{ videonews_article.video }}" type="application/x-shockwave-flash">
                 {# <!-- добавляем видеоконтент для устаревших браузеров, в которых нет поддержки элемента video --> #}
-                    <param name="movie" value="/media/{{ videogallery_article.video }}">
+                    <param name="movie" value="/media/{{ videonews_article.video }}">
                 </object>
                 <br>
                 Для воспроизведения видео требуется браузер с поддержкой HTML5 или Adobe Flash
                 <br>
                 Если вы не можете просмотреть видео на этой странице, скачайте его.
                 <br>
-                <a href="/media/{{ videogallery_article.video }}" download="download" target="_blank">Скачать видео</a>
+                <a href="/media/{{ videonews_article.video }}" download="download" target="_blank">Скачать видео</a>
             </video>
         {% endif %}
 
-        {% if videogallery_article.cap %}
+        {% if videonews_article.cap %}
         {# Если видео с video.cap.ru #}
             <video width="100%" height="500" controls>
-                <source src="{{ videogallery_article.cap }}" type="video/mp4">
+                <source src="{{ videonews_article.cap }}" type="video/mp4">
                 {# <!-- WebM/VP8 для Firefox4, Opera, и Chrome --> #}
-                <source src="{{ videogallery_article.cap }}" type="video/webm">
+                <source src="{{ videonews_article.cap }}" type="video/webm">
                 {# <!-- Ogg/Vorbis для старых версий браузеров Firefox и Opera --> #}
-                <source src="{{ videogallery_article.cap }}" type="video/ogg">
-                <object data="{{ videogallery_article.cap }}" type="application/x-shockwave-flash">
+                <source src="{{ videonews_article.cap }}" type="video/ogg">
+                <object data="{{ videonews_article.cap }}" type="application/x-shockwave-flash">
                 {# <!-- добавляем видеоконтент для устаревших браузеров, в которых нет поддержки элемента video --> #}
-                    <param name="movie" value="{{ videogallery_article.cap }}">
+                    <param name="movie" value="{{ videonews_article.cap }}">
                 </object>
                 <br>
                 Для воспроизведения видео требуется браузер с поддержкой HTML5 или Adobe Flash
                 <br>
                 Если вы не можете просмотреть видео на этой странице, скачайте его.
                 <br>
-                <a href="{{ videogallery_article.cap }}" download="download" target="_blank">Скачать видео</a>
+                <a href="{{ videonews_article.cap }}" download="download" target="_blank">Скачать видео</a>
             </video>
         {% endif %}
 
-        {% if videogallery_article.youtube %}
+        {% if videonews_article.youtube %}
         {# Если видео с youtube.com #}
-            <iframe width="100%" height="500" src="https://www.youtube.com/embed/{{ videogallery_article.youtube}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe>
+            <iframe width="100%" height="500" src="https://www.youtube.com/embed/{{ videonews_article.youtube}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe>
         {% endif %}
 
-        <div>{{ videogallery_article.content|safe }}</div>
+        {% if videonews_article.content %}
+            <div>{{ videonews_article.content|safe }}</div>
+        {% endif %}
 
-        {% if videogallery_article.source %}
-        <div class="news__source">Первоисточник: {{ videogallery_article.source }} </div>
+        {% if videonews_article.source %}
+        <div class="news__source">Первоисточник: {{ videonews_article.source }} </div>
         {% endif %}
         <div class="news_share">
             <script src="https://yastatic.net/es5-shims/0.0.2/es5-shims.min.js"></script>

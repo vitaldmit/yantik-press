@@ -36,8 +36,8 @@ class PhotoGalleryAdmin(admin.ModelAdmin):
     inlines = [PhotoGalleryImagesInline, ]
 
 
-@admin.register(VideoGallery)
-class VideoGalleryAdmin(admin.ModelAdmin):
+@admin.register(VideoNews)
+class VideoNewsAdmin(admin.ModelAdmin):
     list_display = ('title', 'publish', 'created', 'visible')
     list_filter = ('visible', 'created', 'publish')
     search_fields = ('title', 'content')
@@ -45,7 +45,7 @@ class VideoGalleryAdmin(admin.ModelAdmin):
     # raw_id_fields = ('news',)
     date_hierarchy = 'publish'
     ordering = ('-publish', '-created')
-    # inlines = [VideoGalleryImagesInline, ]
+    # inlines = [VideoNewsImagesInline, ]
 
 
 @admin.register(Banners)

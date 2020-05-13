@@ -38,7 +38,7 @@
                                         </a>
                                       </div>
                                   {% for photogallery in news.photogallery.all %} 
-                                  {# Главное видео видеогалереи #}
+                                  {# Главное видео видеоновости #}
                                         <div class="carousel-item">
                                           <a href="/media/{{ photogallery.image }}" rel="gallery" class="swipebox" title="{{ news.title }}">
                                             {% thumbnail photogallery.image "500x350" crop="center" as im %}
@@ -47,7 +47,7 @@
                                           </a>
                                         </div>
                                         {% for imgs in photogallery.news_images.all %}
-                                          {# видеографии видеогалереи #}
+                                          {# видеографии видеоновости #}
                                           <div class="carousel-item">
                                             <a href="/media/{{ imgs.image }}" rel="gallery" class="swipebox" title="{{ news.title }}">
                                               {% thumbnail imgs.image "500x350" crop="center" as im %}
@@ -161,44 +161,44 @@
                   </div>
                 </div>
 
-                {# Видеогалереи #}
+                {# Видеоновости #}
                 <div class="row">
                   <div class="col-12">
-                    <div>ВИДЕОГАЛЕРЕИ</div>
+                    <div>ВИДЕОНОВОСТИ</div>
                     <div class="news__badge-all-news">
-                      <a href="{% url 'news:videogallery' %}">
-                        <span class="badge badge-danger">Все видеогалереи</span>
+                      <a href="{% url 'news:videonews' %}">
+                        <span class="badge badge-danger">Все видеоновости</span>
                       </a>
                     </div>
-                    {% for videogallery in all_videogallery %}
+                    {% for videonews in all_videonews %}
                       <div class="news__post">
                         <div class="row news">
                           <div class="col-3">
-                            {% if videogallery.video %}
+                            {% if videonews.video %}
                             {# Если видео загружено физически #}
                             <video width="100%" height="120" controls>
-                              <source src="/media/{{ videogallery.video }}" type="video/mp4">
-                              <a href="/media/{{ videogallery.video }}" download="download" target="_blank">Скачать видео</a>
+                              <source src="/media/{{ videonews.video }}" type="video/mp4">
+                              <a href="/media/{{ videonews.video }}" download="download" target="_blank">Скачать видео</a>
                             </video>
                             {% endif %}
-                            {% if videogallery.cap %}
+                            {% if videonews.cap %}
                             {# Если видео с video.cap.ru #}
                               <video width="100%" height="120" controls="controls">
-                                <source src="{{ videogallery.cap }}" type="video/mp4">
-                                <a href="{{ videogallery.cap }}" download="download" target="_blank">Скачать видео</a>
+                                <source src="{{ videonews.cap }}" type="video/mp4">
+                                <a href="{{ videonews.cap }}" download="download" target="_blank">Скачать видео</a>
                               </video>
                             {% endif %}
-                            {% if videogallery.youtube %}
+                            {% if videonews.youtube %}
                             {# Если видео с youtube.com #}
-                              <iframe width="100%" height="120" src="https://www.youtube.com/embed/{{ videogallery.youtube}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe>
+                              <iframe width="100%" height="120" src="https://www.youtube.com/embed/{{ videonews.youtube}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe>
                             {% endif %}
                           </div>
                         <div class="col-6">
-                            <a class="news__header-text news__header-text_small news__header-text_va-bottom" href="{{ videogallery.get_absolute_url }}">{{ videogallery.title }}</a>
+                            <a class="news__header-text news__header-text_small news__header-text_va-bottom" href="{{ videonews.get_absolute_url }}">{{ videonews.title }}</a>
                         </div>
                           
-                          <div class="col-3 videogallery-post_additional">
-                            <div class="news__created">{{ videogallery.publish }}</div>
+                          <div class="col-3 videonews-post_additional">
+                            <div class="news__created">{{ videonews.publish }}</div>
                         </div>
                         </div>
                       </div>

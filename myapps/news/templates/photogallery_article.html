@@ -38,7 +38,11 @@
         </div>
         {% endfor %}
         <div class="clearfix"></div>
-        <div>{{ photogallery_article.content|safe }}</div>
+
+        {% if videonews_article.content %}
+            <div>{{ videonews_article.content|safe }}</div>
+        {% endif %}
+
         {% if photogallery_article.source %}
         <div class="news__source">Первоисточник: {{ photogallery_article.source }} </div>
         {% endif %}

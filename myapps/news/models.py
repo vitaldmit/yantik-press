@@ -118,14 +118,14 @@ class PhotoGalleryImages(models.Model):
         return self.photogallery.title
 
 
-class VideoGallery(models.Model):
+class VideoNews(models.Model):
     """
-    Видеогалерея
+    Видеоновости
     """
     news = models.ForeignKey(News, on_delete=models.CASCADE,
                              blank=True, null=True, default=None,
                              verbose_name='Связанная новость',
-                             related_name='videogallery')
+                             related_name='videonews')
     title = models.CharField('Заголовок', max_length=200)
     slug = models.SlugField('ЧПУ', max_length=200, unique_for_date='publish')
     video = models.FileField('Видео', upload_to='newsvideos/%Y/%m/%d/',
@@ -145,15 +145,15 @@ class VideoGallery(models.Model):
                                    help_text="Дата и время публикации")
 
     def get_absolute_url(self):
-        return reverse('news:videogallery_article', args=[self.publish.year,
-                                                          self.publish.month,
-                                                          self.publish.day,
-                                                          self.slug])
+        return reverse('news:videonews_article', args=[self.publish.year,
+                                                       self.publish.month,
+                                                       self.publish.day,
+                                                       self.slug])
 
     class Meta:
         ordering = ('-created', )
-        verbose_name = 'Видеогалерея'
-        verbose_name_plural = 'Видеогалереи'
+        verbose_name = 'Видеоновости'
+        verbose_name_plural = 'Видеоновости'
 
     def __str__(self):
         return self.title

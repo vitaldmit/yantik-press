@@ -26,7 +26,7 @@
                   <a class="page-link" href="?page={{ page.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}"> &raquo; </a>
                 </li>
                 <li class="page-item">
-                  <a class="page-link" href="?page={{ num_pages }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">Последняя</a>
+                  <a class="page-link" href="?page={{ num_pages }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">Последняя ({{ num_pages }})</a>
                 </li>
               {% endif %}
             </ul>

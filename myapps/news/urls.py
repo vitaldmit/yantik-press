@@ -9,9 +9,9 @@ urlpatterns = [
     path('photogallery/<int:year>/<int:month>/<int:day>/<slug:slug>/',
          views.photogallery_article, name='photogallery_article'),
 
-    path('videogallery/', views.videogallery, name='videogallery'),
-    path('videogallery/<int:year>/<int:month>/<int:day>/<slug:slug>/',
-         views.videogallery_article, name='videogallery_article'),
+    path('videonews/', views.videonews, name='videonews'),
+    path('videonews/<int:year>/<int:month>/<int:day>/<slug:slug>/',
+         views.videonews_article, name='videonews_article'),
 
     path('news/', views.news, name='news'),
     path('actuals/', views.actuals, name='actuals'),

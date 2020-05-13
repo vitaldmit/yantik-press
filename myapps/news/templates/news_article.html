@@ -70,49 +70,49 @@
             {% endfor %}
         </div>
         {# Видео #}
-        {% for videogallery in news_article.videogallery.all %}
-            {% if videogallery.video %}
+        {% for videonews in news_article.videonews.all %}
+            {% if videonews.video %}
             {# Если видео загружено физически #}
                 <video width="100%" height="500" controls>
-                    <source src="/media/{{ videogallery.video }}" type="video/mp4">
+                    <source src="/media/{{ videonews.video }}" type="video/mp4">
                     {# <!-- WebM/VP8 для Firefox4, Opera, и Chrome --> #}
-                    <source src="/media/{{ videogallery.video }}" type="video/webm">
+                    <source src="/media/{{ videonews.video }}" type="video/webm">
                     {# <!-- Ogg/Vorbis для старых версий браузеров Firefox и Opera --> #}
-                    <source src="/media/{{ videogallery.video }}" type="video/ogg">
-                    <object data="/media/{{ videogallery.video }}" type="application/x-shockwave-flash">
+                    <source src="/media/{{ videonews.video }}" type="video/ogg">
+                    <object data="/media/{{ videonews.video }}" type="application/x-shockwave-flash">
                     {# <!-- добавляем видеоконтент для устаревших браузеров, в которых нет поддержки элемента video --> #}
-                        <param name="movie" value="/media/{{ videogallery.video }}">
+                        <param name="movie" value="/media/{{ videonews.video }}">
                     </object>
                     <br>
                     Для воспроизведения видео требуется браузер с поддержкой HTML5 или Adobe Flash
                     <br>
                     Если вы не можете просмотреть видео на этой странице, скачайте его.
                     <br>
-                    <a href="/media/{{ videogallery.video }}" download="download" target="_blank">Скачать видео</a>
+                    <a href="/media/{{ videonews.video }}" download="download" target="_blank">Скачать видео</a>
                 </video>
             {% endif %}
-            {% if videogallery.cap %}
+            {% if videonews.cap %}
             {# Если видео с video.cap.ru #}
                 <video width="100%" height="500" controls>
-                    <source src="{{ videogallery.cap }}" type="video/mp4">
+                    <source src="{{ videonews.cap }}" type="video/mp4">
                     {# <!-- WebM/VP8 для Firefox4, Opera, и Chrome --> #}
-                    <source src="{{ videogallery.cap }}" type="video/webm">
+                    <source src="{{ videonews.cap }}" type="video/webm">
                     {# <!-- Ogg/Vorbis для старых версий браузеров Firefox и Opera --> #}
-                    <source src="{{ videogallery.cap }}" type="video/ogg">
-                    <object data="{{ videogallery.cap }}" type="application/x-shockwave-flash">
+                    <source src="{{ videonews.cap }}" type="video/ogg">
+                    <object data="{{ videonews.cap }}" type="application/x-shockwave-flash">
                     {# <!-- добавляем видеоконтент для устаревших браузеров, в которых нет поддержки элемента video --> #}
-                        <param name="movie" value="{{ videogallery.cap }}">
+                        <param name="movie" value="{{ videonews.cap }}">
                     </object>
                     <br>
                     Для воспроизведения видео требуется браузер с поддержкой HTML5 или Adobe Flash
                     <br>
                     Если вы не можете просмотреть видео на этой странице, скачайте его.
                     <br>
-                    <a href="{{ videogallery.cap }}" download="download" target="_blank">Скачать видео</a>
+                    <a href="{{ videonews.cap }}" download="download" target="_blank">Скачать видео</a>
                 </video>
             {% endif %}
-            {% if videogallery.youtube %}
-                <iframe width="100%" height="500" src="https://www.youtube.com/embed/{{ videogallery.youtube}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe>
+            {% if videonews.youtube %}
+                <iframe width="100%" height="500" src="https://www.youtube.com/embed/{{ videonews.youtube}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe>
             {% endif %}
         {% empty %}
         {% endfor %}

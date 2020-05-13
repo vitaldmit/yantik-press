@@ -1,31 +1,31 @@
 {% load thumbnail %}
 <div class="col-3 banners">
-{% if all_videogallery.0 %}
+{% if all_videonews.0 %}
   {# Последнее по дате загруженное видео #}
   <div class="banners__post">
     <div class="banner with_image_text">
-      {% if all_videogallery.0.video %}
+      {% if all_videonews.0.video %}
       {# Если видео загружено физически #}
-          <video width="100%" height="150" controls="controls" autoplay="autoplay" loop="loop" muted="muted">
-            <source src="/media/{{ all_videogallery.0.video }}" type="video/mp4">
-            <a href="/media/{{ all_videogallery.0.video }}" download="download" target="_blank">Скачать видео</a>
+          <video width="100%" height="150" controls="controls" autoplay="autoplay" loop="loop" muted="muted" preload="none">
+            <source src="/media/{{ all_videonews.0.video }}" type="video/mp4">
+            <a href="/media/{{ all_videonews.0.video }}" download="download" target="_blank">Скачать видео</a>
           </video>
-          <a href="{{ all_videogallery.0.get_absolute_url }}" class="banners__title">{{ all_videogallery.0.title }}</a>
+          <a href="{{ all_videonews.0.get_absolute_url }}" class="banners__title">{{ all_videonews.0.title }}</a>
       {% endif %}
 
-      {% if all_videogallery.0.cap %}
+      {% if all_videonews.0.cap %}
       {# Если видео с video.cap.ru #}
         <video width="100%" height="150" controls="controls" autoplay="autoplay" loop="loop" muted="muted">
-          <source src="{{ all_videogallery.0.cap }}" type="video/mp4">
-          <a href="{{ all_videogallery.0.cap }}" download="download" target="_blank">Скачать видео</a>
+          <source src="{{ all_videonews.0.cap }}" type="video/mp4">
+          <a href="{{ all_videonews.0.cap }}" download="download" target="_blank">Скачать видео</a>
         </video>
-        <a href="{{ all_videogallery.0.get_absolute_url }}" class="banners__title">{{ all_videogallery.0.title }}</a>
+        <a href="{{ all_videonews.0.get_absolute_url }}" class="banners__title">{{ all_videonews.0.title }}</a>
       {% endif %}
 
-      {% if all_videogallery.0.youtube %}
+      {% if all_videonews.0.youtube %}
       {# Если видео с youtube.com #}
-        <iframe width="100%" height="200" src="https://www.youtube.com/embed/{{ all_videogallery.0.youtube}}?autoplay=1&mute=1&loop=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe>
-        <a href="{{ all_videogallery.0.get_absolute_url }}" class="banners__title">{{ all_videogallery.0.title }}</a>
+        <iframe width="100%" height="200" src="https://www.youtube.com/embed/{{ all_videonews.0.youtube}}?autoplay=1&mute=1&loop=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe>
+        <a href="{{ all_videonews.0.get_absolute_url }}" class="banners__title">{{ all_videonews.0.title }}</a>
       {% endif %}
     </div>
   </div>
