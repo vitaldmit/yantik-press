@@ -24,7 +24,7 @@
       {# Если видео с youtube.com #}
         <iframe width="100%" height="200" src="https://www.youtube.com/embed/{{ all_videonews.0.youtube}}?autoplay=1&mute=1&loop=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe>
       {% endif %}
-      <a href="{{ all_videonews.0.get_absolute_url }}" class="banners__title">{{ all_videonews.0.title }}</a>
+      <a href="{{ all_videonews.0.get_absolute_url }}" class="banners__title font-weight-bold">{{ all_videonews.0.title }}</a>
     </div>
   </div>
 {% endif %}
