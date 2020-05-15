@@ -22,6 +22,7 @@ class VacanciesAdmin(admin.ModelAdmin):
 @admin.register(Documents)
 class DocumentsAdmin(admin.ModelAdmin):
     list_display = ('title', 'visible', 'created', 'publish')
+    prepopulated_fields = {'slug': ('title',)}
     ordering = ('-publish', '-created')
     inlines = [DocumentsFilesInline, ]
 

@@ -29,9 +29,7 @@
                       <div class="card-body">
                         {% for file in documents.documents_files.all %}
                             <div class="documents-details__filename">
-                                {# {{ file.filename }} #}
                                 <a href="/media/{{ file.file }}" target="_blank">{{ file.filename }}</a> ({{ file.file.size|filesizeformat }})
-                                {# <a href="/media/{{ file.file }}" target="_blank">cкачать</a> ({{ file.file.size|filesizeformat }}) #}
                             </div>
                         {% endfor %}
                       </div>

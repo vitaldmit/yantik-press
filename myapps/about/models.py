@@ -1,3 +1,5 @@
+import os
+
 from django.db import models
 from django.utils import timezone
 
@@ -55,7 +57,7 @@ class Vacancies(models.Model):
 class Documents(models.Model):
     """ Страница 'Документы' """
     title = models.CharField('Заголовок', max_length=100)
-
+    slug = models.SlugField('ЧПУ', max_length=200, unique_for_date='publish')
     visible = models.BooleanField('Показывать', default=1)
     created = models.DateTimeField('Создан', auto_now=False, auto_now_add=True)
     updated = models.DateTimeField('Обновлен',
@@ -72,6 +74,11 @@ class Documents(models.Model):
         return self.title
 
 
+def doc_dir_path(instance, filename):
+    slug = instance.documents.slug
+    return os.path.join('about/documents/%s/' % slug, filename)
+
+
 class DocumentsFiles(models.Model):
     """
     Изображения для фотогалереи
@@ -81,7 +88,7 @@ class DocumentsFiles(models.Model):
                                   verbose_name='Связанные документы',
                                   related_name='documents_files')
     filename = models.CharField('Название документа', max_length=100)
-    file = models.FileField('Документ', upload_to='about/documents/%Y-%m-%d/',
+    file = models.FileField('Документ', upload_to=doc_dir_path,
                             max_length=100)
     visible = models.BooleanField('Показывать', default=1)
     created = models.DateTimeField('Создан', auto_now=False, auto_now_add=True)
