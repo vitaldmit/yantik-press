@@ -13,10 +13,25 @@
 <div class="row about">
     {% include "include_about_menu.html" %}
     <div class="col-6 about__content">
-        {% for vacancy in all_vacancies %}
-            <div class="vacancy-details__post">{{ vacancy.post }}</div>
-            <div class="vacancy-details__post">{{ vacancy.content|safe }}</div>
-        {% endfor %}
+            <div class="accordion" id="accordionVacancy">
+                {% for vacancy in all_vacancies %}
+                  <div class="card">
+                    <div class="card-header" id="heading{{ forloop.counter }}">
+                      <h2 class="mb-0">
+                        <button class="btn btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapse{{ forloop.counter }}" aria-expanded="false" aria-controls="collapse{{ forloop.counter }}">
+                          {{ vacancy.post }}
+                        </button>
+                      </h2>
+                    </div>
+
+                    <div id="collapse{{ forloop.counter }}" class="collapse" aria-labelledby="heading{{ forloop.counter }}" data-parent="#accordionVacancy">
+                      <div class="card-body">
+                        {{ vacancy.content|safe }}
+                      </div>
+                    </div>
+                  </div>
+                {% endfor %}
+            </div>
     </div>
     {# из myapps.news.templates #}
     {% include "include_banners.html" %}

@@ -17,7 +17,6 @@ class Employees(models.Model):
     email = models.EmailField('Почта', max_length=100, blank=True, null=True)
     education = models.TextField('Образование', blank=True, null=True)
     visible = models.BooleanField('Показывать', default=1)
-    ontop = models.BooleanField('Размещать сверху', )
     created = models.DateTimeField('Создан', auto_now=False, auto_now_add=True)
     updated = models.DateTimeField('Обновлен',
                                    auto_now=True, auto_now_add=False)

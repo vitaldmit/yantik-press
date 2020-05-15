@@ -9,7 +9,7 @@ class DocumentsFilesInline(admin.TabularInline):
 
 @admin.register(Employees)
 class EmployeesAdmin(admin.ModelAdmin):
-    list_display = ('name', 'post', 'phone', 'email', 'visible')
+    list_display = ('name', 'post', 'publish', 'created', 'visible')
     ordering = ('-publish', '-created')
 
 
