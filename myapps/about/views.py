@@ -1,4 +1,4 @@
-from datetime import datetime, timedelta
+from datetime import datetime
 
 from django.shortcuts import render
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -10,7 +10,7 @@ from myapps.news.models import Banners
 def structure(request):
     """ Страница 'Структура' """
     data = {
-        'all_employees': Employees.objects.filter(visible=True).filter(publish__lte=datetime.now())
+        'all_employees': Employees.objects.filter(visible=True).filter(publish__lte=datetime.now()).order_by('-publish')
     }
     return render(request, 'structure.html', data)
 
@@ -18,7 +18,7 @@ def structure(request):
 def vacancies(request):
     """ Страница 'Вакансии' """
     data = {
-        'all_vacancies': Vacancies.objects.filter(visible=True).order_by('-created'),
+        'all_vacancies': Vacancies.objects.filter(visible=True).filter(publish__lte=datetime.now()).order_by('-publish'),
         'all_banners': Banners.objects.all().filter(visible=True)
     }
     return render(request, 'vacancies.html', data)
@@ -26,28 +26,35 @@ def vacancies(request):
 
 def documents(request):
     """ Страница 'Документы' """
-    all_documents = Documents.objects.filter(visible=True).filter(publish__lte=datetime.now()).order_by('-publish')
-    all_banners = Banners.objects.all().filter(visible=True)
-    return render(request, 'documents.html', {'all_documents': all_documents,
-                                              'all_banners': all_banners,})
+    data = {
+        'all_documents': Documents.objects.filter(visible=True).filter(publish__lte=datetime.now()).order_by('-publish'),
+        'all_banners': Banners.objects.all().filter(visible=True)
+    }
+    return render(request, 'documents.html', data)
 
 
 def history(request):
     """ Страница 'История' """
-    all_history = History.objects.filter(visible=True).order_by('-created')
-    return render(request, 'history.html', {'all_history': all_history})
+    data = {
+        'all_history': History.objects.filter(visible=True).filter(publish__lte=datetime.now()).order_by('-publish')
+    }
+    return render(request, 'history.html', data)
 
 
 def subscribe(request):
     """ Страница 'Подписка' """
-    all_subscribe = Subscribe.objects.filter(visible=True).order_by('-created')
-    return render(request, 'subscribe.html', {'all_subscribe': all_subscribe})
+    data = {
+        'all_subscribe': Subscribe.objects.filter(visible=True).filter(publish__lte=datetime.now()).order_by('-publish')
+    }
+    return render(request, 'subscribe.html', data)
 
 
 def advertising(request):
     """ Страница 'Реклама' """
-    all_advertising = Advertising.objects.filter(visible=True).order_by('-created')
-    return render(request, 'advertising.html', {'all_advertising': all_advertising})
+    data = {
+        'all_advertising': Advertising.objects.filter(visible=True).filter(publish__lte=datetime.now()).order_by('-publish')
+    }
+    return render(request, 'advertising.html', data)
 
 
 def announcing(request):
@@ -71,5 +78,7 @@ def announcing(request):
 
 def contacts(request):
     """ Страница 'Контакты' """
-    all_contacts = Contacts.objects.all()
-    return render(request, 'contacts.html', {'all_contacts': all_contacts})
+    data = {
+        'all_contacts': Contacts.objects.filter(visible=True).filter(publish__lte=datetime.now()).order_by('-publish')
+    }
+    return render(request, 'contacts.html', data)
