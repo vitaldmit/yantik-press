@@ -3,11 +3,9 @@
 {% load static %}
   <head>
     <title>{% block title %}ЯЛ ӖҪЧЕНӖ - Янтиковская районная газета "Селький труженик"{% endblock %}</title>
-    <meta http-equiv="Content-Language" content="ru">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="width=1110">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta http-equiv="X-UA-Compatible" content="IE=8"/>
+    <meta name="viewport" content="width=1110" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="yandex-verification" content="56b71bd00db136f0" />
     {% block meta %}{% endblock %}
     <!--[if lte IE 9]><script src="{% static 'js/oldies.js' %}" charset="utf-8"></script><![endif]-->
@@ -44,13 +42,13 @@
                                   <td>
                                       <div class="leftCol">
                                           <a href="https://www.gismeteo.ru/" target="_blank" title="Погода">
-                                              <img alt="Погода" src="https://nst1.gismeteo.ru/assets/flat-ui/img/logo-mini2.png" align="middle" border="0" width="11" height="16" />
-                                              <img src="https://nst1.gismeteo.ru/assets/flat-ui/img/informer/gismeteo.svg" border="0" align="middle" style="left: 5px; top:1px">
+                                              <img alt="Погода" src="https://nst1.gismeteo.ru/assets/flat-ui/img/logo-mini2.png" width="11" height="16" />
+                                              <img src="https://nst1.gismeteo.ru/assets/flat-ui/img/informer/gismeteo.svg" border="0" style="left: 5px; top:1px">
                                           </a>
                                       </div>
                                       <div class="rightCol">
                                           <a href="https://www.gismeteo.ru/" target="_blank" title="Погода в Янтиково на 2 недели">
-                                            <img src="https://nst1.gismeteo.ru/assets/flat-ui/img/informer/forecast-2weeks.ru.svg" border="0" align="middle" style="top:auto" alt="Погода в Янтиково на 2 недели">
+                                            <img src="https://nst1.gismeteo.ru/assets/flat-ui/img/informer/forecast-2weeks.ru.svg" style="top:auto" alt="Погода в Янтиково на 2 недели">
                                           </a>
                                       </div>
                                   </td>
@@ -97,10 +95,10 @@
                         <a class="nav-link" href="{% url 'index' %}">Главная<span class="sr-only">(current)</span></a>
                       </li>
                       <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="/news/" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="/news/" id="navbarDropdown-press" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                           Пресс-центр
                         </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown-press">
                           <a class="dropdown-item" href="{% url 'news:actuals' %}">Акутально</a>
                           <a class="dropdown-item" href="{% url 'news:news' %}">Новости</a>
                           <a class="dropdown-item" href="{% url 'news:publications' %}">Публикации</a>
@@ -109,9 +107,9 @@
                         </div>
                       </li>
                       <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="/about/" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Редакция
+                        <a class="nav-link dropdown-toggle" href="/about/" id="navbarDropdown-about" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Редакция
                         </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown-about">
                           <a class="dropdown-item" href="{% url 'about:structure' %}">Структура</a>
                           <a class="dropdown-item" href="{% url 'about:vacancies' %}">Вакансии</a>
                           <a class="dropdown-item" href="{% url 'about:documents' %}">Документы</a>
@@ -134,7 +132,7 @@
                       </li>
                     </ul>
                     <form class="form-inline my-2 my-lg-0 search" action="{% url 'search' %}">
-                      <input class="form-control mr-sm-2 search__input" name="q" type="Поиск" placeholder="Поиск" aria-label="Поиск" value="{% if query %}{{ query }}{% endif %}">
+                      <input class="form-control mr-sm-2 search__input" name="q" type="text" placeholder="Поиск" aria-label="Поиск" value="{% if query %}{{ query }}{% endif %}">
                       <button class="btn btn-outline-light my-2 my-sm-0 search__button" type="submit">Найти</button>
                     </form>
                   </div>
@@ -163,7 +161,7 @@
                 <a href="tel:+78354821110">Телефоны: +7 (83548) 2-11-10, 2-15-64</a>
                 <a href="tel:+78354821110">Факс: +7 (83548) 2-11-10</a>
                 <a href="http://yantik-press.ru/">Сайт: http://yantik-press.ru</a>
-                <a href = "mailto: smi11@cap.ru">Эл. почта: smi11@cap.ru</a>
+                <a href = "mailto:smi11@cap.ru">Эл. почта: smi11@cap.ru</a>
               </div>
 
               <div class="col-4 footer-center">
@@ -192,7 +190,7 @@
     <script src="{% static 'js/base.js' %}"></script>
 
     {# <!-- Yandex.Metrika counter --> #}
-    <script type="text/javascript" >
+    <script>
        (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
        m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
        (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
@@ -208,7 +206,7 @@
     {# <!-- /Yandex.Metrika counter --> #}
 
     {# <!-- Gismeteo Informer (begin) --> #}
-    <script type="text/javascript">
+    <script>
     (function() {
         var
             d = this.document,
