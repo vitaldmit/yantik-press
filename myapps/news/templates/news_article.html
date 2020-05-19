@@ -12,7 +12,7 @@
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="ru_RU">
     <meta property="og:title" content="{{ news_article.title }}">
-    <meta property="og:description" content="{{ news_article.content|safe|striptags|truncatewords_html:20 }}">
+    <meta property="og:description" content="{{ news_article.content|striptags|safe|truncatewords_html:20 }}">
     <meta property="og:url" content="http://yantik-press.ru">
     <meta property="og:site_name" content="ЯЛ ӖҪЧЕНӖ - Янтиковская районная газета 'Селький труженик'">
     {% if news_article.image %}
