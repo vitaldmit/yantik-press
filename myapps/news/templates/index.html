@@ -176,21 +176,45 @@
                           <div class="col-3">
                             {% if videonews.video %}
                             {# Если видео загружено физически #}
-                            <video style="outline:none; width:100%; height:120px;" controls>
-                              <source src="/media/{{ videonews.video }}" type="video/mp4">
-                              <a href="/media/{{ videonews.video }}" download="download" target="_blank">Скачать видео</a>
-                            </video>
+                              {% if videonews.image %}
+                                {% thumbnail videonews.image "183x120" crop="center" as im %}
+                                    <a href="{{ videonews.get_absolute_url }}">
+                                      <img alt="{{ videonews.title}}" src="{{ im.url }}" data-holder-rendered="true" width="{{ im.width }}" height="{{ im.height }}">
+                                    </a>
+                                {% endthumbnail %}
+                              {% else %}
+                                <video style="outline:none; width:100%; height:120px;" controls>
+                                  <source src="/media/{{ videonews.video }}" type="video/mp4">
+                                  <a href="/media/{{ videonews.video }}" download="download" target="_blank">Скачать видео</a>
+                                </video>
+                              {% endif %}
                             {% endif %}
                             {% if videonews.cap %}
-                            {# Если видео с video.cap.ru #}
-                              <video style="outline:none; width:100%; height:120px;" controls="controls">
-                                <source src="{{ videonews.cap }}" type="video/mp4">
-                                <a href="{{ videonews.cap }}" download="download" target="_blank">Скачать видео</a>
-                              </video>
+                              {% if videonews.image %}
+                                {% thumbnail videonews.image "183x120" crop="center" as im %}
+                                    <a href="{{ videonews.get_absolute_url }}">
+                                      <img alt="{{ videonews.title}}" src="{{ im.url }}" data-holder-rendered="true" width="{{ im.width }}" height="{{ im.height }}">
+                                    </a>
+                                {% endthumbnail %}
+                              {% else %}
+                              {# Если видео с video.cap.ru #}
+                                <video style="outline:none; width:100%; height:120px;" controls="controls">
+                                  <source src="{{ videonews.cap }}" type="video/mp4">
+                                  <a href="{{ videonews.cap }}" download="download" target="_blank">Скачать видео</a>
+                                </video>
+                              {% endif %}
                             {% endif %}
                             {% if videonews.youtube %}
-                            {# Если видео с youtube.com #}
-                              <iframe style="outline:none; width:100%; height:120px;" src="https://www.youtube.com/embed/{{ videonews.youtube}}" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe>
+                              {% if videonews.image %}
+                                {% thumbnail videonews.image "183x120" crop="center" as im %}
+                                    <a href="{{ videonews.get_absolute_url }}">
+                                      <img alt="{{ videonews.title}}" src="{{ im.url }}" data-holder-rendered="true" width="{{ im.width }}" height="{{ im.height }}">
+                                    </a>
+                                {% endthumbnail %}
+                              {% else %}
+                              {# Если видео с youtube.com #}
+                                <iframe style="outline:none; width:100%; height:120px;" src="https://www.youtube.com/embed/{{ videonews.youtube}}" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe>
+                              {% endif %}
                             {% endif %}
                           </div>
                         <div class="col-6">
