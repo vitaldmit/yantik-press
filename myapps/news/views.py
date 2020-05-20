@@ -13,7 +13,7 @@ def index(request):
     all_news = News.objects.filter(Q(type='news') | Q(type='actuals')).filter(visible=True).filter(publish__lte=datetime.now()).order_by('-publish')[:5]
     all_publications = News.objects.filter(type='publications').filter(visible=True).filter(publish__lte=datetime.now()).order_by('-publish')[:5]
     all_photogallery = PhotoGallery.objects.all().filter(visible=True).filter(publish__lte=datetime.now()).order_by('-publish')[:1]
-    all_videonews = VideoNews.objects.all().filter(visible=True).filter(publish__lte=datetime.now()).order_by('-publish')[:1]
+    all_videonews = VideoNews.objects.all().filter(visible=True).filter(publish__lte=datetime.now()).order_by('-publish')[:10]
     all_banners = Banners.objects.all().filter(visible=True).filter(publish__lte=datetime.now()).order_by('publish')[:11]
     return render(request, 'index.html',
                   {'all_news': all_news,

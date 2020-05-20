@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load thumbnail %}
+{% load static %}
 {% block title %}ЯЛ ӖҪЧЕНӖ - Янтиковская районная газета "Селький труженик"{% endblock %}
 
 {% block main %}
@@ -174,53 +175,39 @@
                       <div class="news__post">
                         <div class="row news">
                           <div class="col-3">
-                            {% if videonews.video %}
-                            {# Если видео загружено физически #}
-                              {% if videonews.image %}
-                                {% thumbnail videonews.image "183x120" crop="center" as im %}
-                                    <a href="{{ videonews.get_absolute_url }}">
-                                      <img alt="{{ videonews.title}}" src="{{ im.url }}" data-holder-rendered="true" width="{{ im.width }}" height="{{ im.height }}">
-                                    </a>
-                                {% endthumbnail %}
-                              {% else %}
-                                <video style="outline:none; width:100%; height:120px;" controls>
-                                  <source src="/media/{{ videonews.video }}" type="video/mp4">
-                                  <a href="/media/{{ videonews.video }}" download="download" target="_blank">Скачать видео</a>
-                                </video>
-                              {% endif %}
-                            {% endif %}
-                            {% if videonews.cap %}
-                              {% if videonews.image %}
-                                {% thumbnail videonews.image "183x120" crop="center" as im %}
-                                    <a href="{{ videonews.get_absolute_url }}">
-                                      <img alt="{{ videonews.title}}" src="{{ im.url }}" data-holder-rendered="true" width="{{ im.width }}" height="{{ im.height }}">
-                                    </a>
-                                {% endthumbnail %}
-                              {% else %}
+                            {% if videonews.image %}
+                              {% thumbnail videonews.image "180x120" crop="center" as im %}
+                                  <a href="{{ videonews.get_absolute_url }}">
+                                    <img alt="{{ videonews.title}}" src="{{ im.url }}" data-holder-rendered="true" width="{{ im.width }}" height="{{ im.height }}">
+                                  </a>
+                              {% endthumbnail %}
+                            {% else %}
+                              {% if videonews.video %}
+                              {# Если видео загружено физически #}
+                                  <video style="outline:none; width:100%; height:120px;" controls>
+                                    <source src="/media/{{ videonews.video }}" type="video/mp4">
+                                    <a href="/media/{{ videonews.video }}" download="download" target="_blank">Скачать видео</a>
+                                  </video>
+                              {% elif videonews.cap %}
                               {# Если видео с video.cap.ru #}
-                                <video style="outline:none; width:100%; height:120px;" controls="controls">
-                                  <source src="{{ videonews.cap }}" type="video/mp4">
-                                  <a href="{{ videonews.cap }}" download="download" target="_blank">Скачать видео</a>
-                                </video>
-                              {% endif %}
-                            {% endif %}
-                            {% if videonews.youtube %}
-                              {% if videonews.image %}
-                                {% thumbnail videonews.image "183x120" crop="center" as im %}
-                                    <a href="{{ videonews.get_absolute_url }}">
-                                      <img alt="{{ videonews.title}}" src="{{ im.url }}" data-holder-rendered="true" width="{{ im.width }}" height="{{ im.height }}">
-                                    </a>
-                                {% endthumbnail %}
-                              {% else %}
+                                  <video style="outline:none; width:100%; height:120px;" controls="controls">
+                                    <source src="{{ videonews.cap }}" type="video/mp4">
+                                    <a href="{{ videonews.cap }}" download="download" target="_blank">Скачать видео</a>
+                                  </video>
+                              {% elif videonews.youtube %}
                               {# Если видео с youtube.com #}
-                                <iframe style="outline:none; width:100%; height:120px;" src="https://www.youtube.com/embed/{{ videonews.youtube}}" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe>
+                                  <iframe style="outline:none; width:100%; height:120px;" src="https://www.youtube.com/embed/{{ videonews.youtube}}" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe>
+                              {% else %}
+                              {# Если ссылка на видео в контенте #}
+                                  <a href="{{ videonews.get_absolute_url }}">
+                                    <img alt="{{ videonews.title }}" src="{% static 'images/video_preview_icon.png' %}" width="180" height="120">
+                                  </a>
                               {% endif %}
                             {% endif %}
                           </div>
                         <div class="col-6">
                             <a class="news__header-text news__header-text_small news__header-text_va-bottom" href="{{ videonews.get_absolute_url }}">{{ videonews.title }}</a>
                         </div>
-                          
                           <div class="col-3 videonews-post_additional">
                             <div class="news__created">{{ videonews.publish }}</div>
                         </div>
