@@ -67,6 +67,10 @@
             <iframe width="100%" height="500" src="https://www.youtube.com/embed/{{ videonews_article.youtube}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe>
         {% endif %}
 
+        {% if videonews_article.kod %}
+            <div class="text-center">{{ videonews_article.kod|safe }}</div>
+        {% endif %}
+
         {% if videonews_article.content %}
             <div>{{ videonews_article.content|safe }}</div>
         {% endif %}
