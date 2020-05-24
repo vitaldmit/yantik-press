@@ -25,7 +25,7 @@ from myapps.about.views import subscribe, advertising, announcing, contacts
 
 urlpatterns = [
     path('', index, name='index'),
-    path('news/', include('myapps.news.urls')),
+    path('press/', include('myapps.news.urls')),
     path('about/', include('myapps.about.urls')),
 
     path('subscribe/', subscribe, name='subscribe'),
