@@ -10,6 +10,19 @@
   </ol>
 </nav>
 {% endblock breadcrumb %}
+
+{% block open_graph %}
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="ru_RU">
+    <meta property="og:title" content="Структура ЯЛ ӖҪЧЕНӖ">
+    <meta property="og:description" content="Структура редакции, работники газеты">
+    <meta property="og:url" content="http://yantik-press.ru">
+    <meta property="og:site_name" content="ЯЛ ӖҪЧЕНӖ - Янтиковская районная газета 'Селький труженик'">
+    {% if all_employees.0.photo %}
+        <meta property="og:image" content="http://yantik-press.ru/media/{{ all_employees.0.photo }}">
+    {% endif %}
+{% endblock %}
+
 {% block main %}
 <div class="row about">
     {% include "include_about_menu.html" %}
@@ -24,7 +37,7 @@
                 <div class="col-8 employee-details">
                     <div class="employee__detail font-weight-bold">{{ employee.name }}</div>
                     <div class="employee-detail"><i class="far fa-address-card"></i> {{ employee.post }}</div>
-                    <div class="employee-detail"><i class="fas fa-phone"></i> <a href="tel:{{ employee.phone }}">{{ employee.phone }}</a></div>
+                    <div class="employee-detail"><i class="fas fa-phone"></i> <a href="tel:{{ employee.phone|cut:" "|cut:")"|cut:"("|cut:"-"}}">{{ employee.phone }}</a></div>
                     {% if employee.email %}
                         <div class="employee-detail"><i class="fas fa-at"></i> <a href="mailto:{{ employee.email }}">{{ employee.email }}</a></div>
 
