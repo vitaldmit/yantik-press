@@ -55,7 +55,7 @@
                               </video>
                           {% elif videonews.youtube %}
                           {# Если видео с youtube.com #}
-                              <iframe style="outline:none; width:100%; height:120px;" src="https://www.youtube.com/embed/{{ videonews.youtube}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe>
+                              <iframe style="outline:none; width:100%; height:120px;" src="https://www.youtube.com/embed/{{ videonews.youtube}}" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe>
                           {% else %}
                           {# Если ссылка на видео в контенте #}
                               <a href="{{ videonews.get_absolute_url }}">
