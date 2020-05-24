@@ -2,14 +2,27 @@
 {% load thumbnail %}
 {% block title %}Актуально / ЯЛ ӖҪЧЕНӖ - Янтиковская районная газета "Селький труженик"{% endblock %}
 {% block breadcrumb %}
-<nav aria-label="breadcrumb">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item"><i class="fas fa-home"></i> Главная</li>
-    <li class="breadcrumb-item" aria-current="page">Пресс-центр</li>
-    <li class="breadcrumb-item active" aria-current="page">Актуально</li>
-  </ol>
-</nav>
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><i class="fas fa-home"></i> Главная</li>
+      <li class="breadcrumb-item" aria-current="page">Пресс-центр</li>
+      <li class="breadcrumb-item active" aria-current="page">Актуально</li>
+    </ol>
+  </nav>
 {% endblock breadcrumb %}
+
+{% block open_graph %}
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="ru_RU">
+    <meta property="og:title" content="Актуальные новости">
+    <meta property="og:description" content="Актуальные новости ЯЛ ӖҪЧЕНӖ - Янтиковская районная газета 'Селький труженик'">
+    <meta property="og:url" content="http://yantik-press.ru">
+    <meta property="og:site_name" content="ЯЛ ӖҪЧЕНӖ - Янтиковская районная газета 'Селький труженик'">
+    {% if all_actuals.0.image %}
+        <meta property="og:image" content="http://yantik-press.ru/media/{{ all_actuals.0.image }}">
+    {% endif %}
+{% endblock %}
+
 {% block main %}
             <div class="row">
               <div class="col-9 news">
@@ -44,6 +57,6 @@
                 {% endfor %}
                 {% include "include_paginations.html" with page=all_actuals %}
               </div>
-
+            </div>
             {% include "include_banners.html" %}
 {% endblock %}
