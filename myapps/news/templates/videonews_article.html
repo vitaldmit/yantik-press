@@ -23,7 +23,7 @@
     {% if videonews_article.image %}
         <meta property="og:image" content="http://yantik-press.ru/media/{{ videonews_article.image }}">
     {% else %}
-        <meta property="og:image" content="{% static 'images/video_preview_icon.png' %}">
+        <meta property="og:image" content="http://yantik-press.ru{% static 'images/video_preview_icon.png' %}">
     {% endif %}
 {% endblock %}
 
