@@ -14,8 +14,8 @@
 ;$(document).ready(function(){
   var link = window.location.pathname;
   $('a[href="'+link+'"]').addClass('active');
-  if(link.startsWith('/news/'))
-    $('a[href="/news/"]').addClass('active');
+  if(link.startsWith('/press/'))
+    $('a[href="/press/"]').addClass('active');
   if(link.startsWith('/about/'))
     $('a[href="/about/"]').addClass('active');
 });
