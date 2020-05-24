@@ -12,6 +12,18 @@
 </nav>
 {% endblock breadcrumb %}
 
+{% block open_graph %}
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="ru_RU">
+    <meta property="og:title" content="{{ photogallery_article.title }}">
+    <meta property="og:description" content="{{ photogallery_article.title }}">
+    <meta property="og:url" content="http://yantik-press.ru">
+    <meta property="og:site_name" content="ЯЛ ӖҪЧЕНӖ - Янтиковская районная газета 'Селький труженик'">
+    {% if photogallery_article.image %}
+        <meta property="og:image" content="http://yantik-press.ru/media/{{ photogallery_article.image }}">
+    {% endif %}
+{% endblock %}
+
 {% block main %}
 <div class="row">
     <div class="col-9 news">

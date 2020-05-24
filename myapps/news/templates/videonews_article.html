@@ -12,6 +12,18 @@
 </nav>
 {% endblock breadcrumb %}
 
+{% block open_graph %}
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="ru_RU">
+    <meta property="og:title" content="{{ videonews_article.title }}">
+    <meta property="og:description" content="{{ videonews_article.title }}">
+    <meta property="og:url" content="http://yantik-press.ru">
+    <meta property="og:site_name" content="ЯЛ ӖҪЧЕНӖ - Янтиковская районная газета 'Селький труженик'">
+    {% if videonews_article.image %}
+        <meta property="og:image" content="http://yantik-press.ru/media/{{ videonews_article.image }}">
+    {% endif %}
+{% endblock %}
+
 {% block main %}
 <div class="row">
     <div class="col-9 news">
@@ -22,16 +34,8 @@
 
         {% if videonews_article.video %}
         {# Если видео загружено физически #}
-            <video width="100%" height="500" controls>
+            <video style="outline:none; width:100%; height:450px;" controls>
                 <source src="/media/{{ videonews_article.video }}" type="video/mp4">
-                {# <!-- WebM/VP8 для Firefox4, Opera, и Chrome --> #}
-                <source src="/media/{{ videonews_article.video }}" type="video/webm">
-                {# <!-- Ogg/Vorbis для старых версий браузеров Firefox и Opera --> #}
-                <source src="/media/{{ videonews_article.video }}" type="video/ogg">
-                <object data="/media/{{ videonews_article.video }}" type="application/x-shockwave-flash">
-                {# <!-- добавляем видеоконтент для устаревших браузеров, в которых нет поддержки элемента video --> #}
-                    <param name="movie" value="/media/{{ videonews_article.video }}">
-                </object>
                 <br>
                 Для воспроизведения видео требуется браузер с поддержкой HTML5 или Adobe Flash
                 <br>
@@ -43,16 +47,8 @@
 
         {% if videonews_article.cap %}
         {# Если видео с video.cap.ru #}
-            <video width="100%" height="500" controls>
+            <video style="outline:none; width:100%; height:450px;" controls>
                 <source src="{{ videonews_article.cap }}" type="video/mp4">
-                {# <!-- WebM/VP8 для Firefox4, Opera, и Chrome --> #}
-                <source src="{{ videonews_article.cap }}" type="video/webm">
-                {# <!-- Ogg/Vorbis для старых версий браузеров Firefox и Opera --> #}
-                <source src="{{ videonews_article.cap }}" type="video/ogg">
-                <object data="{{ videonews_article.cap }}" type="application/x-shockwave-flash">
-                {# <!-- добавляем видеоконтент для устаревших браузеров, в которых нет поддержки элемента video --> #}
-                    <param name="movie" value="{{ videonews_article.cap }}">
-                </object>
                 <br>
                 Для воспроизведения видео требуется браузер с поддержкой HTML5 или Adobe Flash
                 <br>
@@ -64,7 +60,7 @@
 
         {% if videonews_article.youtube %}
         {# Если видео с youtube.com #}
-            <iframe width="100%" height="500" src="https://www.youtube.com/embed/{{ videonews_article.youtube}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe>
+            <iframe style="outline:none; width:100%; height:450px;" src="https://www.youtube.com/embed/{{ videonews_article.youtube}}" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe>
         {% endif %}
 
         {% if videonews_article.kod %}
