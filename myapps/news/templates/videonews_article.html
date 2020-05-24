@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {% load thumbnail %}
 {% block title %} {{ videonews_article.title }} - видеоновости {% endblock %}
 {% block breadcrumb %}
@@ -21,6 +22,8 @@
     <meta property="og:site_name" content="ЯЛ ӖҪЧЕНӖ - Янтиковская районная газета 'Селький труженик'">
     {% if videonews_article.image %}
         <meta property="og:image" content="http://yantik-press.ru/media/{{ videonews_article.image }}">
+    {% else %}
+        <meta property="og:image" content="{% static 'images/video_preview_icon.png' %}">
     {% endif %}
 {% endblock %}
 
