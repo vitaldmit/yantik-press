@@ -10,14 +10,7 @@
     {% block meta %}
       <meta name="description" content="ЯЛ ӖҪЧЕНӖ - Янтиковская районная газета 'Селький труженик'">
     {% endblock %}
-    {% block open_graph %}
-      <meta property="og:type" content="website" />
-      <meta property="og:locale" content="ru_RU">
-      <meta property="og:title" content="ЯЛ ӖҪЧЕНӖ - Янтиковская районная газета 'Селький труженик'">
-      <meta property="og:description">
-      <meta property="og:url" content="http://yantik-press.ru">
-      <meta property="og:site_name" content="ЯЛ ӖҪЧЕНӖ - Янтиковская районная газета 'Селький труженик'">
-    {% endblock %}
+    {% block open_graph %}{% endblock %}
     <!--[if lte IE 9]><script src="{% static 'js/oldies.js' %}" charset="utf-8"></script><![endif]-->
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" type="text/css" />
     <link rel="stylesheet" href="{% static 'css/fontawesome/css/all.css' %}" type="text/css" />
@@ -149,13 +142,7 @@
               </div>
           </div>
 
-          {% block breadcrumb %}
-                  <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                      <li class="breadcrumb-item active" aria-current="page"><i class="fas fa-home"></i> Главная</li>
-                    </ol>
-                  </nav>
-          {% endblock breadcrumb %}
+          {% block breadcrumb %}{% endblock breadcrumb %}
 
         <main>
           {% block main %}{% endblock %}
