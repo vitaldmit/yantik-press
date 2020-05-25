@@ -16,6 +16,16 @@
   $('a[href="'+link+'"]').addClass('active');
   if(link.startsWith('/press/'))
     $('a[href="/press/"]').addClass('active');
+  if(link.startsWith('/press/actuals/'))
+    $('a[href="/press/actuals/"]').addClass('active');
+  if(link.startsWith('/press/news/'))
+    $('a[href="/press/news/"]').addClass('active');
+  if(link.startsWith('/press/publications/'))
+    $('a[href="/press/publications/"]').addClass('active');
+  if(link.startsWith('/press/photogallery/'))
+    $('a[href="/press/photogallery/"]').addClass('active');
+  if(link.startsWith('/press/videonews/'))
+    $('a[href="/press/videonews/"]').addClass('active');
   if(link.startsWith('/about/'))
     $('a[href="/about/"]').addClass('active');
 });
