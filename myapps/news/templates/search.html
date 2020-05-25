@@ -5,15 +5,29 @@
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><i class="fas fa-home"></i> Главная</li>
-    <li class="breadcrumb-item active" aria-current="page">Поиск</li>
+    <li class="breadcrumb-item" aria-current="page">Поиск</li>
+    <li class="breadcrumb-item active" aria-current="page">{{ query }}</li>
   </ol>
 </nav>
 {% endblock breadcrumb %}
+
+{% block open_graph %}
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="ru_RU">
+    <meta property="og:title" content="{{ query }}">
+    <meta property="og:description" content="{{ query }} ЯЛ ӖҪЧЕНӖ - Янтиковская районная газета 'Селький труженик'">
+    <meta property="og:url" content="http://yantik-press.ru">
+    <meta property="og:site_name" content="ЯЛ ӖҪЧЕНӖ - Янтиковская районная газета 'Селький труженик'">
+    {% if all_results.0.image %}
+        <meta property="og:image" content="{{ request.site.name }}/media/{{ all_results.0.image }}">
+    {% endif %}
+{% endblock %}
+
 {% block main %}
             <div class="row">
               <div class="col-9 news">
                 {% if all_results %}
-                Вы искали "{{ query }}" вот результаты...
+                Вы искали "{{ query }}", вот результаты...
                       {% for result in all_results %}
                       <div class="news__post">
                           <div class="news__header">
@@ -50,5 +64,5 @@
                 {% else %}
                 По вашему запросу "{{ query }}" ничего не найдено.
                 {% endif %}
-
+              </div>
 {% endblock %}

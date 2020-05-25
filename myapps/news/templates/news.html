@@ -19,7 +19,7 @@
     <meta property="og:url" content="http://yantik-press.ru">
     <meta property="og:site_name" content="ЯЛ ӖҪЧЕНӖ - Янтиковская районная газета 'Селький труженик'">
     {% if all_news.0.image %}
-        <meta property="og:image" content="http://yantik-press.ru/media/{{ all_news.0.image }}">
+        <meta property="og:image" content="{{ request.site.name }}/media/{{ all_news.0.image }}">
     {% endif %}
 {% endblock %}
 
