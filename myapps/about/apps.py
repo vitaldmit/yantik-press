@@ -3,4 +3,4 @@ from django.apps import AppConfig
 
 class AboutConfig(AppConfig):
     name = 'myapps.about'
-    verbose_name = "О редакции"
+    verbose_name = "Редакция"
