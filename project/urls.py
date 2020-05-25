@@ -41,3 +41,5 @@ urlpatterns = [
 # handle /media/, /static/ static files (only if DEBUG is True)
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+admin.site.site_header = 'Административная панель ЯЛ ӖҪЧЕНӖ'
