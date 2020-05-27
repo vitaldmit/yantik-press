@@ -26,7 +26,7 @@ def index(request):
 def news(request):
     # Тип новости 'Новости'
     all_news = News.objects.filter(type='news').filter(visible=True).filter(publish__lte=datetime.now()).order_by('-publish')
-    paginator = Paginator(all_news, 10)
+    paginator = Paginator(all_news, 7)
     page = request.GET.get('page')
     try:
         all_news = paginator.page(page)
@@ -50,7 +50,7 @@ def news(request):
 def publications(request):
     # Тип новости 'Публикации'
     all_publications = News.objects.filter(type='publications').filter(visible=True).filter(publish__lte=datetime.now()).order_by('-publish')
-    paginator = Paginator(all_publications, 10)
+    paginator = Paginator(all_publications, 7)
     page = request.GET.get('page')
     try:
         all_publications = paginator.page(page)
@@ -74,7 +74,7 @@ def publications(request):
 def actuals(request):
     # Тип новости 'Публикации'
     all_actuals = News.objects.filter(type='actuals').filter(visible=True).filter(publish__lte=datetime.now()).order_by('-publish')
-    paginator = Paginator(all_actuals, 10)
+    paginator = Paginator(all_actuals, 7)
     page = request.GET.get('page')
     try:
         all_actuals = paginator.page(page)

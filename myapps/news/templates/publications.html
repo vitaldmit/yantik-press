@@ -33,20 +33,20 @@
                     </div>
                     {% if publication.image %}
                     {# Если есть изображение то выводим его и текст толжен быть больше условно 100 #}
-                      {% thumbnail publication.image "320" crop="center" as im %}
+                      {% thumbnail publication.image "300" crop="center" as im %}
                           <img class="rounded float-left news__post-imgs" alt="" src="{{ im.url }}" data-holder-rendered="true" width="{{ im.width }}" height="{{ im.height }}">
                       {% endthumbnail %}
                       <div class="text-justify news__content">
-                          {{ publication.content|safe|truncatewords_html:100 }}
-                          {% if publication.content|wordcount > 100 %}
+                          {{ publication.content|safe|truncatewords_html:90 }}
+                          {% if publication.content|wordcount > 90 %}
                             <a class="font-weight-bold" href="{{ publication.get_absolute_url}}"> тĕплĕнрех</a>
                           {% endif %}
                       </div>
                     {% else %}
-                    {# Если нет изображения то размер текста делаем меньше почти в 1.5 раза #}
+                    {# Если нет изображения то размер текста делаем меньше #}
                       <div class="text-justify news__content">
-                          {{ publication.content|safe|truncatewords_html:100 }}
-                          {% if publication.content|wordcount > 100 %}
+                          {{ publication.content|safe|truncatewords_html:50 }}
+                          {% if publication.content|wordcount > 50 %}
                             <a class="font-weight-bold" href="{{ publication.get_absolute_url}}"> тĕплĕнрех</a>
                           {% endif %}
                       </div>
