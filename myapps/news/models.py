@@ -84,6 +84,8 @@ class PhotoGallery(models.Model):
                                                           self.publish.month,
                                                           self.publish.day,
                                                           self.slug])
+    def get_subfeature_photos(self):
+        return self.photogallery_images.filter(visible=True)
 
     class Meta:
         ordering = ('-created', )

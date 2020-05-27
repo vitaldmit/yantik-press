@@ -17,8 +17,8 @@
     <meta property="og:description" content="Документы редакции, документы газеты">
     <meta property="og:url" content="http://yantik-press.ru">
     <meta property="og:site_name" content="ЯЛ ӖҪЧЕНӖ - Янтиковская районная газета 'Селький труженик'">
-    {% if all_documents.0.image %}
-        <meta property="og:image" content="http://yantik-press.ru/media/{{ all_documents.0.image }}">
+    {% if all_projects.0.image %}
+        <meta property="og:image" content="http://yantik-press.ru/media/{{ all_projects.0.image }}">
     {% endif %}
 {% endblock %}
 
@@ -27,20 +27,20 @@
     {% include "include_about_menu.html" %}
     <div class="col-6 about__content">
             <div class="accordion" id="accordionDocument">
-                {% for documents in all_documents %}
+                {% for projects in all_projects %}
                   <div class="card">
                     <div class="card-header" id="heading{{ forloop.counter }}">
                       <h2 class="mb-0">
                         <button class="btn btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapse{{ forloop.counter }}" aria-expanded="false" aria-controls="collapse{{ forloop.counter }}">
-                          {{ documents.title }}
+                          {{ projects.title }}
                         </button>
                       </h2>
                     </div>
 
                     <div id="collapse{{ forloop.counter }}" class="collapse" aria-labelledby="heading{{ forloop.counter }}" data-parent="#accordionDocument">
                       <div class="card-body">
-                        {% for file in documents.get_subfeature_docs %}
-                            <div class="documents-details__filename">
+                        {% for file in projects.get_subfeature_docs %}
+                            <div class="projects-details__filename">
                                 <a href="/media/{{ file.file }}" target="_blank">{{ file.filename }}</a> <span class="text-muted font-italic small">({{ file.file.size|filesizeformat }})</span>
                             </div>
                         {% endfor %}

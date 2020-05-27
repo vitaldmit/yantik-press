@@ -72,6 +72,9 @@ class Documents(models.Model):
     def __str__(self):
         return self.title
 
+    def get_subfeature_docs(self):
+        return self.documents_files.filter(visible=True)
+
 
 def doc_dir_path(instance, filename):
     slug = instance.documents.slug
@@ -80,7 +83,7 @@ def doc_dir_path(instance, filename):
 
 class DocumentsFiles(models.Model):
     """
-    Изображения для фотогалереи
+    Документы
     """
     documents = models.ForeignKey(Documents, on_delete=models.CASCADE,
                                   blank=True, null=True, default=None,
@@ -101,6 +104,59 @@ class DocumentsFiles(models.Model):
 
     def __str__(self):
         return self.documents.title
+
+
+def proj_dir_path(instance, filename):
+    slug = instance.projects.slug
+    return os.path.join('about/projects/%s/' % slug, filename)
+
+
+class Projects(models.Model):
+    """ Страница 'Проекты' """
+    title = models.CharField('Заголовок', max_length=100)
+    slug = models.SlugField('ЧПУ', max_length=200, unique_for_date='publish')
+    visible = models.BooleanField('Показывать', default=1)
+    created = models.DateTimeField('Создан', auto_now=False, auto_now_add=True)
+    updated = models.DateTimeField('Обновлен',
+                                   auto_now=True, auto_now_add=False)
+    publish = models.DateTimeField("Дата публикации", default=timezone.now,
+                                   help_text="Дата и время публикации")
+
+    class Meta:
+        ordering = ('created', )
+        verbose_name = 'Проект'
+        verbose_name_plural = 'Проекты'
+
+    def __str__(self):
+        return self.title
+
+    def get_subfeature_docs(self):
+        return self.projects_files.filter(visible=True)
+
+
+class ProjectsFiles(models.Model):
+    """
+    Проекты
+    """
+    projects = models.ForeignKey(Projects, on_delete=models.CASCADE,
+                                  blank=True, null=True, default=None,
+                                  verbose_name='Связанные проекты',
+                                  related_name='projects_files')
+    filename = models.CharField('Название проекта', max_length=100)
+    file = models.FileField('Документ', upload_to=proj_dir_path,
+                            max_length=100)
+    visible = models.BooleanField('Показывать', default=1)
+    created = models.DateTimeField('Создан', auto_now=False, auto_now_add=True)
+    updated = models.DateTimeField('Обновлен',
+                                   auto_now=True, auto_now_add=False)
+
+    class Meta:
+        ordering = ('created', )
+        verbose_name = 'Файл'
+        verbose_name_plural = 'Файлы'
+
+    def __str__(self):
+        return self.projects.title
 
 
 class History(models.Model):

@@ -33,6 +33,16 @@ def documents(request):
     return render(request, 'documents.html', data)
 
 
+def projects(request):
+    """ Страница 'Документы' """
+    data = {
+        'all_projects': Projects.objects.filter(visible=True).filter(publish__lte=datetime.now()).order_by('-publish'),
+        # 'docs':Projects.objects.filter(projects_files__visible=True),
+        'all_banners': Banners.objects.all().filter(visible=True)
+    }
+    return render(request, 'projects.html', data)
+
+
 def history(request):
     """ Страница 'История' """
     data = {

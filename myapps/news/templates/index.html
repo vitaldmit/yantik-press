@@ -92,24 +92,17 @@
                                       {% endcomment %}
                                     </div>
                             {% else %}
-                              {% thumbnail news.image "300" crop="center" as im %}
+                              {% thumbnail news.image "250" crop="center" as im %}
                                 <img class="rounded float-left news__post-imgs" alt="{{ news.title }}" src="{{ im.url }}" data-holder-rendered="true" width="{{ im.width }}" height="{{ im.height }}">
                               {% endthumbnail %}
                             {% endif %}
                           {% endif %}
 
                           <div class="text-justify news__content">
-                            {% if news.image %}
-                              <p>
-                                {{ news.content|safe|striptags|truncatewords_html:50 }}
-                                <a class="font-weight-bold" href="{{ news.get_absolute_url }}"> подробнее</a>
-                              </p>
-                            {% else %}
                               <p>
                                 {{ news.content|safe|striptags|truncatewords_html:30 }}
                                 <a class="font-weight-bold" href="{{ news.get_absolute_url }}"> подробнее</a>
                               </p>
-                              {% endif %}
                           </div>
                           <div class="clearfix"></div>
                           <div class="news__created"><i class="far fa-calendar-alt"></i> {{ news.publish }}</div>

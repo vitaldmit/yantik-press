@@ -7,6 +7,10 @@ class DocumentsFilesInline(admin.TabularInline):
     model = DocumentsFiles
 
 
+class ProjectsFilesInline(admin.TabularInline):
+    model = ProjectsFiles
+
+
 @admin.register(Employees)
 class EmployeesAdmin(admin.ModelAdmin):
     list_display = ('name', 'post', 'publish', 'created', 'visible')
@@ -21,10 +25,18 @@ class VacanciesAdmin(admin.ModelAdmin):
 
 @admin.register(Documents)
 class DocumentsAdmin(admin.ModelAdmin):
-    list_display = ('title', 'visible', 'created', 'publish')
+    list_display = ('title', 'visible', 'publish', 'created')
     prepopulated_fields = {'slug': ('title',)}
     ordering = ('-publish', '-created')
     inlines = [DocumentsFilesInline, ]
+
+
+@admin.register(Projects)
+class ProjectsAdmin(admin.ModelAdmin):
+    list_display = ('title', 'visible', 'publish', 'created')
+    prepopulated_fields = {'slug': ('title',)}
+    ordering = ('-publish', '-created')
+    inlines = [ProjectsFilesInline, ]
 
 
 @admin.register(History)
@@ -38,13 +50,13 @@ class HistoryAdmin(admin.ModelAdmin):
 
 @admin.register(Subscribe)
 class SubscribeAdmin(admin.ModelAdmin):
-    list_display = ('title', 'created', 'visible')
+    list_display = ('title', 'publish', 'created', 'visible')
     ordering = ('-publish', '-created')
 
 
 @admin.register(Advertising)
 class AdvertisingAdmin(admin.ModelAdmin):
-    list_display = ('title', 'created', 'visible')
+    list_display = ('title', 'publish', 'created', 'visible')
     ordering = ('-publish', '-created')
 
 
@@ -59,5 +71,5 @@ class AnnouncingAdmin(admin.ModelAdmin):
 
 @admin.register(Contacts)
 class ContactsAdmin(admin.ModelAdmin):
-    list_display = ('title', 'created', 'updated')
+    list_display = ('title', 'publish', 'created', 'updated')
     ordering = ('-publish', '-created')

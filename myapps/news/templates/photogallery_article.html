@@ -39,7 +39,7 @@
                 {% endthumbnail %}
             </a>
         </div>
-        {% for imgs in photogallery_article.photogallery_images.all %}
+        {% for imgs in photogallery_article.get_subfeature_photos %}
         {# Фотографии фотогалереи #}
         <div class="photo float-left">
             <a href="/media/{{ imgs.image }}" rel="gallery" class="swipebox" title="{{ photogallery_article.title}}">
