@@ -6,7 +6,7 @@
     <div class="banner with_image_text">
       {% if all_videonews.0.video %}
       {# Если видео загружено физически #}
-          <video style="outline:none; width:100%; height:150px;" controls="controls" autoplay="autoplay" loop="loop" muted="muted" preload="none">
+          <video style="outline:none; width:100%; height:150px;" controls="controls" autoplay="autoplay" muted="muted" preload="none">
             <source src="/media/{{ all_videonews.0.video }}" type="video/mp4">
             <a href="/media/{{ all_videonews.0.video }}" download="download" target="_blank">Скачать видео</a>
           </video>
@@ -14,7 +14,7 @@
 
       {% if all_videonews.0.cap %}
       {# Если видео с video.cap.ru #}
-        <video style="outline:none; width:100%; height:150px;" controls="controls" autoplay="autoplay" loop="loop" muted="muted">
+        <video style="outline:none; width:100%; height:150px;" controls="controls" autoplay="autoplay" muted="muted">
           <source src="{{ all_videonews.0.cap }}" type="video/mp4">
           <a href="{{ all_videonews.0.cap }}" download="download" target="_blank">Скачать видео</a>
         </video>
@@ -22,7 +22,7 @@
 
       {% if all_videonews.0.youtube %}
       {# Если видео с youtube.com #}
-        <iframe style="outline:none; width:100%; height:150px;" src="https://www.youtube.com/embed/{{ all_videonews.0.youtube}}?autoplay=1&mute=1&loop=1" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe>
+        <iframe style="outline:none; width:100%; height:150px;" src="https://www.youtube.com/embed/{{ all_videonews.0.youtube}}?autoplay=1&mute=1" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe>
       {% endif %}
       <a href="{{ all_videonews.0.get_absolute_url }}" class="banners__title font-weight-bold">{{ all_videonews.0.title }}</a>
     </div>
