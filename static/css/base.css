@@ -129,7 +129,7 @@ body {
     font-size: 22px;
     font-weight: bold;
     font-family: unset;
-    line-height: 22px;
+    line-height: 30px;
     color: rgb(33, 37, 41);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -289,8 +289,8 @@ a.list-group-item.list-group-item-action.active {
     /* font-style: italic; */
 }
 .footer a {
-    color: #FFFFFF;
     display: block;
+    color: #d6d6d6;
 }
 .footer-left {
 }

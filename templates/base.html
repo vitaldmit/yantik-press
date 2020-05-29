@@ -17,6 +17,12 @@
     <link rel="stylesheet" href="{% static 'css/fontawesome/css/all.css' %}" type="text/css" />
     <link rel="stylesheet" href="{% static 'css/swipebox.min.css' %}" type="text/css" />
     <link rel="stylesheet" href="{% static 'css/base.css' %}" type="text/css" />
+    {# favicon #}
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/favicon/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/favicon/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicon/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'images/favicon/site.webmanifest' %}">
+
   </head>
   <body>
     <div class="container">
@@ -154,6 +160,8 @@
             <div class="row footer">
               <div class="col-4 footer-left">
                 <address>
+                  <img src="{% static 'images/logo-16x16.png' %}" width="16px" height="16px" alt="Логотип ял ӗҫченӗ">
+                  {# <img src="{% static 'images/logo-32x32.png' %}" width="32px" height="32px" alt="Логотип ял ӗҫченӗ"> #}
                   АУ «Редакция Янтиковской районной газеты «Ял ěçченě» («Сельский труженик») Мининформполитики Чувашии 429290, Чувашская Республика, Янтиковский район, с. Янтиково, пр. Ленина, 15
                 </address>
                 <a href="tel:+78354821110">Телефоны: +7 (83548) 2-11-10, 2-15-64</a>
@@ -187,6 +195,7 @@
                           <noscript><div><img src="https://mc.yandex.ru/watch/62956318" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
                       <!-- /Yandex.Metrika counter -->
                   </div>
+                  <div><img src="{% static 'images/logo-32x32.png' %}" width="32px" height="32px" alt="Логотип ял ӗҫченӗ"></div>
               </div>
 
               <div class="col-4 footer-right">
