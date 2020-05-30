@@ -1,8 +1,20 @@
 from datetime import datetime
 
 from django.contrib.sitemaps import Sitemap
+from django.urls import reverse
 
 from myapps.news.models import News, PhotoGallery, VideoNews
+
+
+class IndexSitemap(Sitemap):
+    priority = 1
+    changefreq = 'daily'
+
+    def items(self):
+        return ['index', ]
+
+    def location(self, item):
+        return reverse(item)
 
 
 class NewsSitemap(Sitemap):
@@ -47,3 +59,19 @@ class VideoNewsSitemap(Sitemap):
 
     def lastmod(self, obj):
         return obj.updated
+
+
+class StaticSitemap(Sitemap):
+    priority = 0.5
+    changefreq = 'never'
+
+    def items(self):
+        return ['about:structure', 'about:vacancies', 'about:documents',
+                'about:projects', 'about:history', 'subscribe', 'advertising',
+                'announcing', 'contacts']
+
+    # def lastmod(self, item):
+    #     return item.updated
+
+    def location(self, item):
+        return reverse(item)

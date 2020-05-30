@@ -26,9 +26,12 @@ from .sitemaps import *
 
 
 sitemaps = {
+    'index': IndexSitemap,
     'news': NewsSitemap,
     'photogallery': PhotoGallerySitemap,
     'videonews': VideoNewsSitemap,
+    # 'pages': SiteSitemap(['about_contacts', ]),
+    'static': StaticSitemap,
 }
 
 urlpatterns = [
