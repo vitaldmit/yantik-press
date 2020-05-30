@@ -13,7 +13,7 @@
     {% if news_article.description %}
         <meta name="description" content="{{ news_article.description }}">
     {% else %}
-        <meta name="description" content="{{ news.content|safe|striptags|truncatewords_html:35 }}">
+        <meta name="description" content="{{ news_article.content|striptags|safe|truncatewords_html:35 }}">
     {% endif %}
 {% endblock %}
 
