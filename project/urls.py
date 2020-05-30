@@ -20,12 +20,15 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.sitemaps.views import sitemap
 
-from myapps.news.views import index, search, NewsSitemap
+from myapps.news.views import index, search
 from myapps.about.views import subscribe, advertising, announcing, contacts
+from .sitemaps import *
 
 
 sitemaps = {
     'news': NewsSitemap,
+    'photogallery': PhotoGallerySitemap,
+    'videonews': VideoNewsSitemap,
 }
 
 urlpatterns = [

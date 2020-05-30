@@ -139,9 +139,9 @@ class ProjectsFiles(models.Model):
     Проекты
     """
     projects = models.ForeignKey(Projects, on_delete=models.CASCADE,
-                                  blank=True, null=True, default=None,
-                                  verbose_name='Связанные проекты',
-                                  related_name='projects_files')
+                                 blank=True, null=True, default=None,
+                                 verbose_name='Связанные проекты',
+                                 related_name='projects_files')
     filename = models.CharField('Название проекта', max_length=100)
     file = models.FileField('Документ', upload_to=proj_dir_path,
                             max_length=100)

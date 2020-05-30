@@ -4,7 +4,6 @@ from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Q
 from django.contrib.postgres.search import SearchVector, SearchQuery, SearchRank
-from django.contrib.sitemaps import Sitemap
 
 from .models import *
 
@@ -13,9 +12,9 @@ def index(request):
     # Главная страница
     all_news = News.objects.filter(Q(type='news') | Q(type='actuals')).filter(visible=True).filter(publish__lte=datetime.now()).order_by('-publish')[:5]
     all_publications = News.objects.filter(type='publications').filter(visible=True).filter(publish__lte=datetime.now()).order_by('-publish')[:4]
-    all_photogallery = PhotoGallery.objects.all().filter(visible=True).filter(publish__lte=datetime.now()).order_by('-publish')[:1]
-    all_videonews = VideoNews.objects.all().filter(visible=True).filter(publish__lte=datetime.now()).order_by('-publish')[:1]
-    all_banners = Banners.objects.all().filter(visible=True).filter(publish__lte=datetime.now()).order_by('publish')
+    all_photogallery = PhotoGallery.objects.filter(visible=True).filter(publish__lte=datetime.now()).order_by('-publish')[:1]
+    all_videonews = VideoNews.objects.filter(visible=True).filter(publish__lte=datetime.now()).order_by('-publish')[:1]
+    all_banners = Banners.objects.filter(visible=True).filter(publish__lte=datetime.now()).order_by('publish')
     return render(request, 'index.html',
                   {'all_news': all_news,
                    'all_publications': all_publications,
@@ -40,7 +39,7 @@ def news(request):
         all_news = paginator.page(paginator.num_pages)
     num_pages = paginator.num_pages
     # Баннеры
-    all_banners = Banners.objects.all().filter(visible=True)
+    all_banners = Banners.objects.filter(visible=True)
     return render(request, 'news.html',
                   {'page': page,
                    'all_news': all_news,
@@ -64,7 +63,7 @@ def publications(request):
         all_publications = paginator.page(paginator.num_pages)
     num_pages = paginator.num_pages
     # Баннеры
-    all_banners = Banners.objects.all().filter(visible=True)
+    all_banners = Banners.objects.filter(visible=True)
     return render(request, 'publications.html',
                   {'page': page,
                    'all_publications': all_publications,
@@ -88,7 +87,7 @@ def actuals(request):
         all_actuals = paginator.page(paginator.num_pages)
     num_pages = paginator.num_pages
     # Баннеры
-    all_banners = Banners.objects.all().filter(visible=True)
+    all_banners = Banners.objects.filter(visible=True)
     return render(request, 'actuals.html',
                   {'page': page,
                    'all_actuals': all_actuals,
@@ -103,7 +102,7 @@ def news_article(request, type, year, month, day, slug):
                                      publish__month=month,
                                      publish__day=day,
                                      type=type)
-    all_banners = Banners.objects.all().filter(visible=True)
+    all_banners = Banners.objects.filter(visible=True)
     return render(request, 'news_article.html',
                   {'news_article':
                    news_article,
@@ -112,7 +111,7 @@ def news_article(request, type, year, month, day, slug):
 
 def photogallery(request):
     # видеоновости
-    all_photogallery = PhotoGallery.objects.all().filter(visible=True).filter(publish__lte=datetime.now()).order_by('-publish')
+    all_photogallery = PhotoGallery.objects.filter(visible=True).filter(publish__lte=datetime.now()).order_by('-publish')
     paginator = Paginator(all_photogallery, 10)
     page = request.GET.get('page')
     try:
@@ -126,7 +125,7 @@ def photogallery(request):
         all_photogallery = paginator.page(paginator.num_pages)
     num_pages = paginator.num_pages
     # Баннеры
-    all_banners = Banners.objects.all().filter(visible=True)
+    all_banners = Banners.objects.filter(visible=True)
     return render(request, 'photogallery.html',
                   {'page': page,
                    'all_photogallery': all_photogallery,
@@ -140,7 +139,7 @@ def photogallery_article(request, year, month, day, slug):
                                              publish__year=year,
                                              publish__month=month,
                                              publish__day=day)
-    all_banners = Banners.objects.all().filter(visible=True).filter(publish__lte=datetime.now()).order_by('publish')
+    all_banners = Banners.objects.filter(visible=True).filter(publish__lte=datetime.now()).order_by('publish')
     return render(request, 'photogallery_article.html',
                   {'photogallery_article': photogallery_article,
                    'all_banners': all_banners})
@@ -148,7 +147,7 @@ def photogallery_article(request, year, month, day, slug):
 
 def videonews(request):
     # Видеоновости
-    all_videonews = VideoNews.objects.all().filter(visible=True).filter(publish__lte=datetime.now()).order_by('-publish')
+    all_videonews = VideoNews.objects.filter(visible=True).filter(publish__lte=datetime.now()).order_by('-publish')
     paginator = Paginator(all_videonews, 10)
     page = request.GET.get('page')
     try:
@@ -162,7 +161,7 @@ def videonews(request):
         all_videonews = paginator.page(paginator.num_pages)
     num_pages = paginator.num_pages
     # Баннеры
-    all_banners = Banners.objects.all().filter(visible=True)
+    all_banners = Banners.objects.filter(visible=True)
     return render(request, 'videonews.html',
                   {'page': page,
                    'all_videonews': all_videonews,
@@ -176,7 +175,7 @@ def videonews_article(request, year, month, day, slug):
                                           publish__year=year,
                                           publish__month=month,
                                           publish__day=day)
-    all_banners = Banners.objects.all().filter(visible=True).filter(publish__lte=datetime.now()).order_by('publish')
+    all_banners = Banners.objects.filter(visible=True).filter(publish__lte=datetime.now()).order_by('publish')
     return render(request, 'videonews_article.html',
                   {'videonews_article': videonews_article,
                    'all_banners': all_banners})
@@ -206,20 +205,9 @@ def search(request):
             # возвращаем последнюю.
             all_results = paginator.page(paginator.num_pages)
         num_pages = paginator.num_pages
-        all_banners = Banners.objects.all().filter(visible=True).filter(publish__lte=datetime.now()).order_by('publish')
+        all_banners = Banners.objects.filter(visible=True).filter(publish__lte=datetime.now()).order_by('publish')
         return render(request, 'search.html', {'query': query,
                                                'all_results': all_results,
                                                'page': page,
                                                'num_pages': num_pages,
                                                'all_banners': all_banners})
-
-
-class NewsSitemap(Sitemap):
-    changefreq = "never"
-    priority = 0.5
-
-    def items(self):
-        return News.objects.filter(visible=True).filter(publish__lte=datetime.now()).order_by('-publish')
-
-    def lastmod(self, obj):
-        return obj.updated
