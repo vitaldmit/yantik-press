@@ -4,6 +4,7 @@ from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Q
 from django.contrib.postgres.search import SearchVector, SearchQuery, SearchRank
+from django.contrib.sitemaps import Sitemap
 
 from .models import *
 
@@ -97,11 +98,11 @@ def actuals(request):
 
 def news_article(request, type, year, month, day, slug):
     news_article = get_object_or_404(News, slug=slug,
-                                                          visible=True,
-                                                          publish__year=year,
-                                                          publish__month=month,
-                                                          publish__day=day,
-                                                          type=type)
+                                     visible=True,
+                                     publish__year=year,
+                                     publish__month=month,
+                                     publish__day=day,
+                                     type=type)
     all_banners = Banners.objects.all().filter(visible=True)
     return render(request, 'news_article.html',
                   {'news_article':
@@ -171,10 +172,10 @@ def videonews(request):
 
 def videonews_article(request, year, month, day, slug):
     videonews_article = get_object_or_404(VideoNews, slug=slug,
-                                             visible=True,
-                                             publish__year=year,
-                                             publish__month=month,
-                                             publish__day=day)
+                                          visible=True,
+                                          publish__year=year,
+                                          publish__month=month,
+                                          publish__day=day)
     all_banners = Banners.objects.all().filter(visible=True).filter(publish__lte=datetime.now()).order_by('publish')
     return render(request, 'videonews_article.html',
                   {'videonews_article': videonews_article,
@@ -211,3 +212,14 @@ def search(request):
                                                'page': page,
                                                'num_pages': num_pages,
                                                'all_banners': all_banners})
+
+
+class NewsSitemap(Sitemap):
+    changefreq = "never"
+    priority = 0.5
+
+    def items(self):
+        return News.objects.filter(visible=True).filter(publish__lte=datetime.now()).order_by('-publish')
+
+    def lastmod(self, obj):
+        return obj.updated

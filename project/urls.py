@@ -18,10 +18,15 @@ from django.urls import path, include
 from django.conf.urls import url
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib.sitemaps.views import sitemap
 
-from myapps.news.views import index, search
+from myapps.news.views import index, search, NewsSitemap
 from myapps.about.views import subscribe, advertising, announcing, contacts
 
+
+sitemaps = {
+    'news': NewsSitemap,
+}
 
 urlpatterns = [
     path('', index, name='index'),
@@ -36,6 +41,8 @@ urlpatterns = [
     path('search', search, name='search'),
 
     path('administrat/', admin.site.urls),
+    path('sitemap.xml', sitemap, {'sitemaps': sitemaps},
+         name='django.contrib.sitemaps.views.sitemap'),
     url(r'^tinymce/', include('tinymce.urls')),
 ]
 # handle /media/, /static/ static files (only if DEBUG is True)
