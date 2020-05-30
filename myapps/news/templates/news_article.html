@@ -4,8 +4,17 @@
 {% block title %} {{ news_article.title}} {% endblock %}
 
 {% block meta %} 
-    <meta name="keywords" content="{% if news_article.keywords %}{{ news_article.keywords }}{% endif %}" />
-    <meta name="description" content="{% if news_article.description %}{{ news_article.description }}{% endif %}">
+    {% if news_article.keywords %}
+        <meta name="keywords" content="{{ news_article.keywords }}">
+    {% else %}
+        <meta name="keywords" content="">
+    {% endif %}
+
+    {% if news_article.description %}
+        <meta name="description" content="{{ news_article.description }}">
+    {% else %}
+        <meta name="description" content="{{ news.content|safe|striptags|truncatewords_html:35 }}">
+    {% endif %}
 {% endblock %}
 
 {% block open_graph %}
