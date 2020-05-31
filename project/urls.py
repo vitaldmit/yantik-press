@@ -50,8 +50,10 @@ urlpatterns = [
          name='django.contrib.sitemaps.views.sitemap'),
     url(r'^tinymce/', include('tinymce.urls')),
 ]
+
 # handle /media/, /static/ static files (only if DEBUG is True)
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 admin.site.site_header = 'Административная панель ЯЛ ӖҪЧЕНӖ'
+handler404 = 'django.views.defaults.page_not_found'
