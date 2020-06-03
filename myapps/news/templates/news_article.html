@@ -67,6 +67,7 @@
         <div class="news__article-content text-justify">
             {{ news_article.content|safe }}
         </div>
+        <div class="clearfix"></div>
         {# Фотогалерея #}
         <div class="news__photo-gallery">
             {% for photogallery in news_article.photogallery_news.all %}
@@ -90,6 +91,7 @@
             {% endfor %}
             {% endfor %}
         </div>
+        <div class="clearfix"></div>
         {# Видео #}
         {% for videonews in news_article.videonews.all %}
             {% if videonews.video %}

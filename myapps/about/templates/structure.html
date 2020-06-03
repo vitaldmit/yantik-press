@@ -45,6 +45,9 @@
                     {% if employee.education %}
                         <div class="employee-detail"><i class="fas fa-university"></i> {{ employee.education }}</div>
                     {% endif %}
+                    {% if employee.bio %}
+                        <div class="employee-detail"><i class="fas fa-info-circle"></i> {{ employee.bio }}</div>
+                    {% endif %}
                 </div>
             </div>
         {% endfor %}

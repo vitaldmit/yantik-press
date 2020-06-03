@@ -16,6 +16,7 @@ class Employees(models.Model):
     phone = models.CharField('Телефон', max_length=20)
     email = models.EmailField('Почта', max_length=100, blank=True, null=True)
     education = models.TextField('Образование', blank=True, null=True)
+    bio = models.TextField('Биография', blank=True, null=True)
     visible = models.BooleanField('Показывать', default=1)
     created = models.DateTimeField('Создан', auto_now=False, auto_now_add=True)
     updated = models.DateTimeField('Обновлен',
