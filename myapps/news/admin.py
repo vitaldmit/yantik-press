@@ -12,6 +12,23 @@ class PhotoGalleryInline(admin.StackedInline):
     max_num = 1
 
 
+def turn_into_actuals(modeladmin, request, queryset):
+    queryset.update(type='actuals')
+
+
+def turn_into_news(modeladmin, request, queryset):
+    queryset.update(type='news')
+
+
+def turn_into_publications(modeladmin, request, queryset):
+    queryset.update(type='publications')
+
+
+turn_into_actuals.short_description = "Перевести в 'Актуально'"
+turn_into_news.short_description = "Перевести в 'Новости'"
+turn_into_publications.short_description = "Перевести в 'Публикации'"
+
+
 @admin.register(News)
 class NewsAdmin(admin.ModelAdmin):
     list_display = ('title', 'author', 'type', 'publish', 'created', 'visible')
@@ -22,6 +39,7 @@ class NewsAdmin(admin.ModelAdmin):
     date_hierarchy = 'publish'
     ordering = ('-publish', '-created')
     # inlines = [PhotoGalleryInline, ]
+    actions = [turn_into_actuals, turn_into_news, turn_into_publications]
 
 
 @admin.register(PhotoGallery)
