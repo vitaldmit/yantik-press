@@ -112,6 +112,9 @@
                     {% comment %}
                       <div class="all_publications"><a href="{% url 'news:news' %}" class="btn btn-danger btn-sm">Перейти к новостям</a></div>
                     {% endcomment %}
+                      <div class="all_btn">
+                        <a href="{% url 'news:news' %}" class="btn btn-info btn-sm btn-block">Перейти к новостям</a>
+                      </div>
                   </div>
 
                   <div class="col-4 news">
@@ -139,9 +142,9 @@
                       <div class="news__created"><i class="far fa-calendar-alt"></i> {{ publication.publish }}</div>
                     </div>
                     {% endfor %}
-                    {% comment %}
-                      <div class="all_publications"><a href="{% url 'news:publications' %}" class="btn btn-danger btn-sm">Перейти к публикациям</a></div>
-                    {% endcomment %}
+                      <div class="all_btn">
+                        <a href="{% url 'news:publications' %}" class="btn btn-info btn-sm btn-block">Перейти к публикациям</a>
+                      </div>
                   </div>
                 </div>
                 

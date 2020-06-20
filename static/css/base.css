@@ -219,6 +219,10 @@ a.page-link {
     border-color: #1a736c;
 }
 
+.all_btn {
+    margin-top: -15px;
+}
+
 .banners {
     margin-bottom: 15px;
 }
