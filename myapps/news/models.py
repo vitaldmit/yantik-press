@@ -4,7 +4,7 @@ from django.urls import reverse
 from django.utils import timezone
 
 from tinymce.models import HTMLField
-
+import requests
 
 class News(models.Model):
     """
@@ -55,6 +55,12 @@ class News(models.Model):
 
     def __str__(self):
         return self.title
+
+    def save(self, *args, **kwargs):
+        api_token = '1298311338:AAFfFSaD0Qcgwd6w8L7brGf0JjTY_eVI65A'
+        requests.get('https://api.telegram.org/bot{}/sendMessage'.format(api_token),
+                     params=dict(chat_id='@yantik_press', text='http://yantik-press.ru' + self.get_absolute_url()))
+        super(News, self).save(*args, **kwargs)
 
 
 class PhotoGallery(models.Model):
