@@ -136,7 +136,7 @@
                       {% endif %}
                       <div class="text-center news__content">
                         <p>
-                          {{ publication.content|truncatewords_html:35|safe|striptags|nbsp2space }}
+                          {{ publication.content|truncatewords_html:20|safe|striptags|nbsp2space }}
                           <a class="font-weight-bold" href="{{ publication.get_absolute_url }}"> тĕплĕнрех</a>
                         </p>
                       </div>
