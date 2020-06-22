@@ -37,7 +37,7 @@
                           <img class="rounded float-left news__post-imgs" alt="{{ news.title}}" src="{{ im.url }}" data-holder-rendered="true" width="{{ im.width }}" height="{{ im.height }}">
                       {% endthumbnail %}
                       <div class="text-justify news__content ">
-                          {{ news.content|safe|truncatewords_html:90 }}
+                          {{ news.content|truncatewords_html:90|safe }}
                           {% if news.content|wordcount > 90 %}
                             <a class="font-weight-bold" href="{{ news.get_absolute_url}}"> подробнее</a>
                           {% endif %}
@@ -45,7 +45,7 @@
                     {% else %}
                     {# Если нет изображения то размер текста делаем меньше почти в 1.5 раза #}
                       <div class="text-justify news__content">
-                          {{ news.content|safe|truncatewords_html:50 }}
+                          {{ news.content|truncatewords_html:50|safe }}
                           {% if news.content|wordcount > 50 %}
                             <a class="font-weight-bold" href="{{ news.get_absolute_url}}"> подробнее</a>
                           {% endif %}

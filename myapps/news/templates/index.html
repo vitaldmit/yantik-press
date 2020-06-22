@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load thumbnail %}
 {% load static %}
+{% load nbsp2space %}
 {% block title %}ЯЛ ӖҪЧЕНӖ - Янтиковская районная газета "Селький труженик"{% endblock %}
 
 {% block breadcrumb %}
@@ -100,7 +101,7 @@
 
                           <div class="text-justify news__content">
                               <p>
-                                {{ news.content|safe|striptags|truncatewords_html:35 }}
+                                {{ news.content|truncatewords_html:35|safe|striptags|nbsp2space }}
                                 <a class="font-weight-bold" href="{{ news.get_absolute_url }}"> подробнее</a>
                               </p>
                           </div>
@@ -135,7 +136,7 @@
                       {% endif %}
                       <div class="text-center news__content">
                         <p>
-                          {{ publication.content|safe|striptags|truncatewords_html:20 }}
+                          {{ publication.content|truncatewords_html:35|safe|striptags|nbsp2space }}
                           <a class="font-weight-bold" href="{{ publication.get_absolute_url }}"> тĕплĕнрех</a>
                         </p>
                       </div>
