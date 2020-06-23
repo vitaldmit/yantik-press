@@ -60,6 +60,8 @@ class News(models.Model):
         api_token = '1298311338:AAFfFSaD0Qcgwd6w8L7brGf0JjTY_eVI65A'
         requests.get('https://api.telegram.org/bot{}/sendMessage'.format(api_token),
                      params=dict(chat_id='@yantik_press', text='http://yantik-press.ru' + self.get_absolute_url()))
+        requests.get('https://api.telegram.org/bot{}/sendMessage'.format(api_token),
+                     params=dict(chat_id='@yantik_news', text='http://yantik-press.ru' + self.get_absolute_url()))
         super(News, self).save(*args, **kwargs)
 
 
