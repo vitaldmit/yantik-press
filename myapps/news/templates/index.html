@@ -101,7 +101,7 @@
 
                           <div class="text-justify news__content">
                               <p>
-                                {{ news.content|truncatewords_html:35|safe|striptags|nbsp2space }}
+                                {{ news.content|truncatewords_html:25|safe|striptags|nbsp2space }}
                                 <a class="font-weight-bold" href="{{ news.get_absolute_url }}"> подробнее</a>
                               </p>
                           </div>
