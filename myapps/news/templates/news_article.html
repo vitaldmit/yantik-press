@@ -2,7 +2,7 @@
 {% load thumbnail %}
 {% load nbsp2space %}
 
-{% block title %} {{ news_article.title}} {% endblock %}
+{% block title %}{{ news_article.title}}{% endblock %}
 
 {% block meta %} 
     {% if news_article.keywords %}
@@ -36,7 +36,7 @@
         <li class="breadcrumb-item"><i class="fas fa-home"></i> Главная</li>
         <li class="breadcrumb-item" aria-current="page">Пресс-центр</li>
         <li class="breadcrumb-item" aria-current="page">{{ news_article.get_type_display }}</li>
-        <li class="breadcrumb-item active" aria-current="page">{{ news_article.title|truncatewords:4 }}</li>
+        <li class="breadcrumb-item active" aria-current="page">{{ news_article.title|truncatewords:10 }}</li>
     </ol>
 </nav>
 {% endblock %}
