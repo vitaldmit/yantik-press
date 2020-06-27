@@ -2,8 +2,11 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
 from django.utils import timezone
+from django.utils.html import strip_tags
+from django.utils.text import Truncator
 
 from tinymce.models import HTMLField
+from html import unescape
 import requests
 
 class News(models.Model):
@@ -58,7 +61,8 @@ class News(models.Model):
 
     def save(self, *args, **kwargs):
         absolute_url = 'http://yantik-press.ru' + self.get_absolute_url()
-        # message = self.content[:75]
+        message = unescape(strip_tags(self.content))
+        truncated_message = Truncator(message).words(30)
 
         # Разместить на каналах в Telegram
         api_token = '1298311338:AAFfFSaD0Qcgwd6w8L7brGf0JjTY_eVI65A'
@@ -74,7 +78,7 @@ class News(models.Model):
                       data={'access_token': token,
                             'owner_id': group_id,
                             'from_group': 1,
-                            # 'message': message,
+                            'message': truncated_message,
                             'attachments': absolute_url,
                             'signed': 0,
                             'v': "5.110"}).json()
