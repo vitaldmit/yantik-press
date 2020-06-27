@@ -179,6 +179,10 @@ body {
     /* text-indent: 1.5em; */
 }
 
+.news__article-content img, .news__article-content img {
+    margin-bottom: 15px;
+}
+
 .news__article-content table, tr, td {
     border: 1px solid;
 }
