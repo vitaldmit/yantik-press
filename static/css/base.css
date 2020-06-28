@@ -179,7 +179,7 @@ body {
     /* text-indent: 1.5em; */
 }
 
-.news__article-content img, .news__article-content img {
+.news__article-content img, .news__content img {
     margin-bottom: 15px;
     max-width: 100%;
 }
