@@ -40,13 +40,13 @@
                             {% endthumbnail %}
                             <div class="text-justify news__content ">
                                 {{ result.content|truncatewords_html:55|safe }}
-                                  <a class="font-weight-bold" href="{{ result.get_absolute_url}}"> подробнее</a>
+                                <a class="font-weight-bold" href="{{ result.get_absolute_url}}"> подробнее</a>
                             </div>
                           {% else %}
                           {# Если нет изображения то размер текста делаем меньше #}
                             <div class="text-justify news__content">
                                 {{ result.content|truncatewords_html:50|safe }}
-                                  <a class="font-weight-bold" href="{{ result.get_absolute_url}}"> подробнее</a>
+                                <a class="font-weight-bold" href="{{ result.get_absolute_url}}"> подробнее</a>
                             </div>
                           {% endif %}
                           <div class="clearfix"></div>

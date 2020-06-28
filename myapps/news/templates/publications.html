@@ -38,13 +38,13 @@
                       {% endthumbnail %}
                       <div class="text-justify news__content">
                           {{ publication.content|truncatewords_html:55|safe }}
-                            <a class="font-weight-bold" href="{{ publication.get_absolute_url}}"> тĕплĕнрех</a>
+                          <a class="font-weight-bold" href="{{ publication.get_absolute_url}}"> тĕплĕнрех</a>
                       </div>
                     {% else %}
                     {# Если нет изображения то размер текста делаем меньше #}
                       <div class="text-justify news__content">
                           {{ publication.content|truncatewords_html:50|safe }}
-                            <a class="font-weight-bold" href="{{ publication.get_absolute_url}}"> тĕплĕнрех</a>
+                          <a class="font-weight-bold" href="{{ publication.get_absolute_url}}"> тĕплĕнрех</a>
                       </div>
                     {% endif %}
                     <div class="clearfix"></div>
