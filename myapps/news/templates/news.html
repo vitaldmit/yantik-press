@@ -38,7 +38,7 @@
                       {% endthumbnail %}
                       <div class="text-justify news__content ">
                           {{ news.content|truncatewords_html:55|safe }}
-                            <a class="font-weight-bold" href="{{ news.get_absolute_url}}"> подробнее</a>
+                          <a class="font-weight-bold" href="{{ news.get_absolute_url}}"> подробнее</a>
                       </div>
                     {% else %}
                     {# Если нет изображения то размер текста делаем меньше #}
