@@ -181,6 +181,7 @@ body {
 
 .news__article-content img, .news__article-content img {
     margin-bottom: 15px;
+    max-width: 100%;
 }
 
 .news__article-content table, tr, td {
