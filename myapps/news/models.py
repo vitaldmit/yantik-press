@@ -60,7 +60,7 @@ class News(models.Model):
         return self.title
 
     def save(self, *args, **kwargs):
-        absolute_url = 'http://yantik-press.ru' + self.get_absolute_url()
+        absolute_url = 'https://yantik-press.ru' + self.get_absolute_url()
         message = unescape(strip_tags(self.content))
         truncated_message = Truncator(message).words(30)
 
