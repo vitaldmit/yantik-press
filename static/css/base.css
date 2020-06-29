@@ -36,17 +36,6 @@ body {
     height: auto;
 }
 
-.since {
-    font-size: 12px;
-    text-align: center;
-    margin-bottom: 5px;
-}
-.since__since-chuv {
-    font-weight: bold;
-    display: block;
-    font-size: 12px;
-}
-.since__since-rus {font-size: 10px;}
 /*.gismeteo {
     align-items: center!important;
     width:100%;
@@ -56,6 +45,19 @@ body {
     width:100%;
     height:auto;
 }
+
+.since {
+    font-size: 12px;
+    text-align: center;
+    margin-bottom: 5px;
+}
+.since__chuv {
+    font-weight: bold;
+    display: block;
+    font-size: 12px;
+}
+.since__rus {font-size: 10px;}
+
 .social {
     text-align: center;
 }
