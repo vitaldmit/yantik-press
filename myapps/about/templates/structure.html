@@ -16,10 +16,10 @@
     <meta property="og:locale" content="ru_RU">
     <meta property="og:title" content="Структура ЯЛ ӖҪЧЕНӖ">
     <meta property="og:description" content="Структура редакции, работники газеты">
-    <meta property="og:url" content="https://yantik-press.ru">
+    <meta property="og:url" content="{{ request.scheme }}://{{ request.site.name }}">
     <meta property="og:site_name" content="ЯЛ ӖҪЧЕНӖ - Янтиковская районная газета 'Селький труженик'">
     {% if all_employees.0.photo %}
-        <meta property="og:image" content="https://yantik-press.ru/media/{{ all_employees.0.photo }}">
+        <meta property="og:image" content="{{ request.scheme }}://{{ request.site.name }}/media/{{ all_employees.0.photo }}">
     {% endif %}
 {% endblock %}
 

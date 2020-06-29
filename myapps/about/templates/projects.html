@@ -15,10 +15,10 @@
     <meta property="og:locale" content="ru_RU">
     <meta property="og:title" content="Проекты ЯЛ ӖҪЧЕНӖ">
     <meta property="og:description" content="Проекты редакции, Проекты газеты">
-    <meta property="og:url" content="https://yantik-press.ru">
+    <meta property="og:url" content="{{ request.scheme }}://{{ request.site.name }}">
     <meta property="og:site_name" content="ЯЛ ӖҪЧЕНӖ - Янтиковская районная газета 'Селький труженик'">
     {% if all_projects.0.image %}
-        <meta property="og:image" content="https://yantik-press.ru/media/{{ all_projects.0.image }}">
+        <meta property="og:image" content="{{ request.scheme }}://{{ request.site.name }}/media/{{ all_projects.0.image }}">
     {% endif %}
 {% endblock %}
 
