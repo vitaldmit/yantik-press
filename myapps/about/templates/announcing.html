@@ -38,7 +38,7 @@
                     </div>
                     {% if announcing.image %}
                         {% thumbnail announcing.image "300" crop="center" as im %}
-                            <img class="rounded float-left news__post-imgs" alt="" src="{{ im.url }}" data-holder-rendered="true" width="{{ im.width }}" height="{{ im.height }}">
+                            <img class="rounded float-left news__post-imgs" alt="" src="{{ im.url }}" data-holder-rendered="true" width="{{ im.width }}" height="{{ im.height }}" loading="lazy">
                         {% endthumbnail %}
                     {% endif %}
                     <div class="news__article-content">{{ announcing.content|safe }}</div>
@@ -57,7 +57,7 @@
                     </div>
                     {% if announcing.image %}
                         {% thumbnail announcing.image "300" crop="center" as im %}
-                            <img class="rounded float-left news__post-imgs" alt="" src="{{ im.url }}" data-holder-rendered="true" width="{{ im.width }}" height="{{ im.height }}">
+                            <img class="rounded float-left news__post-imgs" alt="" src="{{ im.url }}" data-holder-rendered="true" width="{{ im.width }}" height="{{ im.height }}" loading="lazy">
                         {% endthumbnail %}
                     {% endif %}
                     <div class="news__article-content">{{ announcing.content|safe }}</div>

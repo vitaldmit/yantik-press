@@ -35,7 +35,7 @@
             {% if history.image %}
             <a href="/media/{{ history.image }}" rel="gallery" class="swipebox" title="{{ history.title }}">
                 {% thumbnail history.image "300" crop="center" as im %}
-                <img class="rounded float-left news__post-imgs" alt="" src="{{ im.url }}" data-holder-rendered="true" width="{{ im.width }}" height="{{ im.height }}">
+                <img class="rounded float-left news__post-imgs" alt="" src="{{ im.url }}" data-holder-rendered="true" width="{{ im.width }}" height="{{ im.height }}" loading="lazy">
                 {% endthumbnail %}
                 {% endif %}
             </a>

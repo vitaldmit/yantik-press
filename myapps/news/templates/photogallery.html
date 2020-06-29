@@ -32,7 +32,7 @@
                     <div class="row news">
                       <div class="col-3">
                         {% thumbnail photogallery.image "200" crop="center" as im %}
-                            <img class="rounded float-left w-100" alt="" src="{{ im.url }}" data-holder-rendered="true" width="{{ im.width }}" height="{{ im.height }}">
+                            <img class="rounded float-left w-100" alt="" src="{{ im.url }}" data-holder-rendered="true" width="{{ im.width }}" height="{{ im.height }}" loading="lazy">
                         {% endthumbnail %}
                       </div>
                       <div class="col-6">

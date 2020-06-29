@@ -60,7 +60,7 @@
                           {% else %}
                           {# Если ссылка на видео в контенте #}
                               <a href="{{ videonews.get_absolute_url }}">
-                                <img alt="{{ videonews.title }}" src="{% static 'images/video_preview_icon.png' %}" width="183" height="120">
+                                <img alt="{{ videonews.title }}" src="{% static 'images/video_preview_icon.png' %}" width="183" height="120" loading="lazy">
                               </a>
                           {% endif %}
                         {% endif %}

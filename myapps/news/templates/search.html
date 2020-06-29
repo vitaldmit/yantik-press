@@ -36,7 +36,7 @@
                           {% if result.image %}
                           {# Если есть изображение то выводим его и текст толжен быть больше условно 100 #}
                             {% thumbnail result.image "320" crop="center" as im %}
-                                <img class="rounded float-left news__post-imgs" alt="" src="{{ im.url }}" data-holder-rendered="true" width="{{ im.width }}" height="{{ im.height }}">
+                                <img class="rounded float-left news__post-imgs" alt="" src="{{ im.url }}" data-holder-rendered="true" width="{{ im.width }}" height="{{ im.height }}" loading="lazy">
                             {% endthumbnail %}
                             <div class="text-justify news__content ">
                                 {{ result.content|truncatewords_html:55|safe }}

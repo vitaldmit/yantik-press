@@ -53,7 +53,7 @@
                 {% if news_article.image %}
                 <a href="/media/{{ news_article.image }}" rel="gallery" class="swipebox" title="{{ news_article.title }}">
                     {% thumbnail news_article.image "350" crop="center" as im %}
-                    <img class="rounded news__post-imgs" alt="{{ news_article.title}}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+                    <img class="rounded news__post-imgs" alt="{{ news_article.title}}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" loading="lazy">
                     {% endthumbnail %}
                 </a>
                 {% if news_article.imagesign %}
@@ -72,24 +72,24 @@
         {# Фотогалерея #}
         <div class="news__photo-gallery">
             {% for photogallery in news_article.photogallery_news.all %}
-            {# Главное фото фотогалереи #}
-            <div class="photo float-left">
-                <a href="/media/{{ photogallery.image }}" rel="gallery" class="swipebox" title="{{ photogallery_article.title}}">
-                    {% thumbnail photogallery.image "200x150" crop="center" as im %}
-                    <img src="{{ im.url }}" width="{{ im.width }}" alt="{{ photogallery.title }}">
-                    {% endthumbnail %}
-                </a>
-            </div>
-            {% for imgs in photogallery.get_subfeature_photos %}
-            {# Фотографии фотогалереи #}
-            <div class="photo float-left">
-                <a href="/media/{{ imgs.image }}" rel="gallery" class="swipebox" title="{{ photogallery_article.title}}">
-                    {% thumbnail imgs.image "200x150" crop="center" as im %}
-                    <img src="{{ im.url }}" width="{{ im.width }}" alt="{{ photogallery.title }}">
-                    {% endthumbnail %}
-                </a>
-            </div>
-            {% endfor %}
+                {% for imgs in photogallery.get_subfeature_photos %}
+                {# Фотографии фотогалереи #}
+                <div class="photo float-left">
+                    <a href="/media/{{ imgs.image }}" rel="gallery" class="swipebox" title="{{ photogallery_article.title}}">
+                        {% thumbnail imgs.image "200x150" crop="center" as im %}
+                        <img src="{{ im.url }}" width="{{ im.width }}" alt="{{ photogallery.title }}" loading="lazy">
+                        {% endthumbnail %}
+                    </a>
+                </div>
+                {% endfor %}
+                {# Главное фото фотогалереи #}
+                <div class="photo float-left">
+                    <a href="/media/{{ photogallery.image }}" rel="gallery" class="swipebox" title="{{ photogallery_article.title}}">
+                        {% thumbnail photogallery.image "200x150" crop="center" as im %}
+                        <img src="{{ im.url }}" width="{{ im.width }}" alt="{{ photogallery.title }}" loading="lazy">
+                        {% endthumbnail %}
+                    </a>
+                </div>
             {% endfor %}
         </div>
         <div class="clearfix"></div>

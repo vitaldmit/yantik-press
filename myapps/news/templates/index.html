@@ -55,7 +55,7 @@
                                         <a href="/media/{{ news.image }}" rel="gallery" class="swipebox" title="{{ news.title }}">
                                           {% thumbnail news.image "500x350" crop="center" as im %}
                                           {# Главное видео новости #}
-                                            <img class="d-block w-100 rounded" alt="{{ news.title }}" src="{{ im.url }}" width="{{ im.width }}">
+                                            <img class="d-block w-100 rounded" alt="{{ news.title }}" src="{{ im.url }}" width="{{ im.width }}" loading="lazy">
                                           {% endthumbnail %}
                                         </a>
                                       </div>
@@ -64,7 +64,7 @@
                                         <div class="carousel-item">
                                           <a href="/media/{{ photogallery.image }}" rel="gallery" class="swipebox" title="{{ news.title }}">
                                             {% thumbnail photogallery.image "500x350" crop="center" as im %}
-                                                <img class="d-block w-100 rounded" src="{{ im.url }}" width="{{ im.width }}" alt="{{ photogallery.title }}">
+                                                <img class="d-block w-100 rounded" src="{{ im.url }}" width="{{ im.width }}" alt="{{ photogallery.title }}" loading="lazy">
                                             {% endthumbnail %}
                                           </a>
                                         </div>
@@ -73,7 +73,7 @@
                                           <div class="carousel-item">
                                             <a href="/media/{{ imgs.image }}" rel="gallery" class="swipebox" title="{{ news.title }}">
                                               {% thumbnail imgs.image "500x350" crop="center" as im %}
-                                                  <img class="d-block w-100 rounded" src="{{ im.url }}" width="{{ im.width }}" alt="{{ photogallery.title }}">
+                                                  <img class="d-block w-100 rounded" src="{{ im.url }}" width="{{ im.width }}" alt="{{ photogallery.title }}" loading="lazy">
                                               {% endthumbnail %}
                                             </a>
                                           </div>
@@ -94,7 +94,7 @@
                                     </div>
                             {% else %}
                               {% thumbnail news.image "250" crop="center" as im %}
-                                <img class="rounded float-left news__post-imgs" alt="{{ news.title }}" src="{{ im.url }}" data-holder-rendered="true" width="{{ im.width }}" height="{{ im.height }}">
+                                <img class="rounded float-left news__post-imgs" alt="{{ news.title }}" src="{{ im.url }}" data-holder-rendered="true" width="{{ im.width }}" height="{{ im.height }}" loading="lazy">
                               {% endthumbnail %}
                             {% endif %}
                           {% endif %}
@@ -131,7 +131,7 @@
                       </div>
                       {% if publication.image %}
                         {% thumbnail publication.image "250" crop="center" as im %}
-                          <img class="rounded w-100" alt="" src="{{ im.url }}" data-holder-rendered="true" width="{{ im.width }}" height="{{ im.height }}">
+                          <img class="rounded w-100" alt="" src="{{ im.url }}" data-holder-rendered="true" width="{{ im.width }}" height="{{ im.height }}" loading="lazy">
                         {% endthumbnail %}
                       {% endif %}
                       <div class="text-center news__content">
@@ -163,7 +163,7 @@
                         <div class="row news">
                           <div class="col-3">
                             {% thumbnail photogallery.image "200" crop="center" as im %}
-                                <img class="rounded float-left w-100" alt="" src="{{ im.url }}" data-holder-rendered="true" width="{{ im.width }}" height="{{ im.height }}">
+                                <img class="rounded float-left w-100" alt="" src="{{ im.url }}" data-holder-rendered="true" width="{{ im.width }}" height="{{ im.height }}" loading="lazy">
                             {% endthumbnail %}
                           </div>
                         <div class="col-6">
@@ -195,7 +195,7 @@
                             {% if videonews.image %}
                               {% thumbnail videonews.image "180x120" crop="center" as im %}
                                   <a href="{{ videonews.get_absolute_url }}">
-                                    <img alt="{{ videonews.title}}" src="{{ im.url }}" data-holder-rendered="true" width="{{ im.width }}" height="{{ im.height }}">
+                                    <img alt="{{ videonews.title}}" src="{{ im.url }}" data-holder-rendered="true" width="{{ im.width }}" height="{{ im.height }}" loading="lazy">
                                   </a>
                               {% endthumbnail %}
                             {% else %}
@@ -217,7 +217,7 @@
                               {% else %}
                               {# Если ссылка на видео в контенте #}
                                   <a href="{{ videonews.get_absolute_url }}">
-                                    <img alt="{{ videonews.title }}" src="{% static 'images/video_preview_icon.png' %}" width="180" height="120">
+                                    <img alt="{{ videonews.title }}" src="{% static 'images/video_preview_icon.png' %}" width="180" height="120" loading="lazy">
                                   </a>
                               {% endif %}
                             {% endif %}
