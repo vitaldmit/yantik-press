@@ -28,7 +28,7 @@
     {% if news_article.image %}
         <meta property="og:image" content="{{ request.scheme }}://{{ request.site.name }}/media/{{ news_article.image }}">
     {% else %}
-        <meta property="og:image" content="{{ request.scheme }}://{{ request.site.name }}{% static '/images/logo-black-64x64.png">
+        <meta property="og:image" content="{{ request.scheme }}://{{ request.site.name }}{% static '/images/logo-black-64x64.png' %}">
     {% endif %}
 {% endblock %}
 
