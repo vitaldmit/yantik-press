@@ -4,6 +4,7 @@ from django.urls import reverse
 from django.utils import timezone
 from django.utils.html import strip_tags
 from django.utils.text import Truncator
+from .tokens import TELEGRAM_TOKEN, VK_TOKEN
 
 from tinymce.models import HTMLField
 from html import unescape
@@ -65,14 +66,14 @@ class News(models.Model):
         truncated_message = Truncator(message).words(30)
 
         # Разместить на каналах в Telegram
-        api_token = '1298311338:AAFfFSaD0Qcgwd6w8L7brGf0JjTY_eVI65A'
+        token = TELEGRAM_TOKEN
         chat_ids = ['@yantik_press', '@yantik_news']
         for chat_id in chat_ids:
-            requests.get('https://api.telegram.org/bot{}/sendMessage'.format(api_token),
+            requests.get('https://api.telegram.org/bot{}/sendMessage'.format(token),
                          params=dict(chat_id=chat_id, text=absolute_url))
 
         # Разместить на странице в контакте
-        token = "8a6446f96cc974284a2d4cd78129519e13872ddd4411df7fc85e8ef6cd078c30968720f07bba1614b5afc"
+        token = VK_TOKEN
         group_id = -184997347
         requests.post('https://api.vk.com/method/wall.post',
                       data={'access_token': token,
