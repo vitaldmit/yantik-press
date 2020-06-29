@@ -10,6 +10,7 @@ from tinymce.models import HTMLField
 from html import unescape
 import requests
 
+
 class News(models.Model):
     """
     Новости
@@ -114,6 +115,7 @@ class PhotoGallery(models.Model):
                                                           self.publish.month,
                                                           self.publish.day,
                                                           self.slug])
+
     def get_subfeature_photos(self):
         return self.photogallery_images.filter(visible=True)
 
@@ -161,16 +163,16 @@ class VideoNews(models.Model):
     title = models.CharField('Заголовок', max_length=200)
     slug = models.SlugField('ЧПУ', max_length=200, unique_for_date='publish')
     image = models.ImageField('Фото', upload_to='newsvideos/%Y/%m/%d/',
-                              null=True, blank=True, 
+                              null=True, blank=True,
                               help_text="Превью изображение видео")
     video = models.FileField('Видео', upload_to='newsvideos/%Y/%m/%d/',
                              null=True, blank=True)
     cap = models.CharField('Видео CAP.RU', max_length=150,
-                                     null=True, blank=True)
+                           null=True, blank=True)
     youtube = models.CharField('Видео YouTube', max_length=100,
                                null=True, blank=True, help_text='Код видео')
     instagram = models.CharField('Видео Instagram', max_length=100,
-                               null=True, blank=True)
+                                 null=True, blank=True)
     kod = models.TextField('Код для вставки', blank=True, null=True)
     content = HTMLField('Контент', null=True, blank=True)
     visible = models.BooleanField('Показывать', default=1)
@@ -217,7 +219,7 @@ class Banners(models.Model):
     publish = models.DateTimeField("Дата публикации", default=timezone.now,
                                    help_text="Дата и время публикации")
     # end_publish = models.DateTimeField("Дата окончания публикации:",
-                                       # blank=True, null=True)
+    #                                    blank=True, null=True)
 
     class Meta:
         ordering = ('created', )
