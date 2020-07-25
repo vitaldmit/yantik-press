@@ -76,16 +76,16 @@ class News(models.Model):
                          params=dict(chat_id=chat_id, text=short_url.text))
 
         # Разместить на странице в контакте
-        token = VK_TOKEN
-        group_id = -184997347
-        requests.post('https://api.vk.com/method/wall.post',
-                      data={'access_token': token,
-                            'owner_id': group_id,
-                            'from_group': 1,
-                            'message': truncated_message,
-                            'attachments': absolute_url,
-                            'signed': 0,
-                            'v': "5.110"}).json()
+        # token = VK_TOKEN
+        # group_id = -184997347
+        # requests.post('https://api.vk.com/method/wall.post',
+        #               data={'access_token': token,
+        #                     'owner_id': group_id,
+        #                     'from_group': 1,
+        #                     'message': truncated_message,
+        #                     'attachments': absolute_url,
+        #                     'signed': 0,
+        #                     'v': "5.110"}).json()
 
         super(News, self).save(*args, **kwargs)
 
