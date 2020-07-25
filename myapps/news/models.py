@@ -2,8 +2,8 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
 from django.utils import timezone
-from django.utils.html import strip_tags
-from django.utils.text import Truncator
+# from django.utils.html import strip_tags
+# from django.utils.text import Truncator
 from .tokens import TELEGRAM_TOKEN, VK_TOKEN
 
 from tinymce.models import HTMLField

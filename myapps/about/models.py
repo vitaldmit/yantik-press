@@ -2,8 +2,12 @@ import os
 
 from django.db import models
 from django.utils import timezone
+from django.utils.html import strip_tags
+from ..news.tokens import TELEGRAM_TOKEN, VK_TOKEN
 
 from tinymce.models import HTMLField
+from html import unescape
+import requests
 
 
 class Employees(models.Model):
@@ -245,6 +249,33 @@ class Announcing(models.Model):
 
     def __str__(self):
         return self.title
+
+    def save(self, *args, **kwargs):
+        # Если объявление не имеет primary key значит объявление добавляется
+        # Если объявление имеет primary key значит объявление редактируется и
+        # размещать его в соц сетях не надо
+        if self.pk is None:
+            # Разместить на каналах в Telegram
+            token = TELEGRAM_TOKEN
+
+            chat_ids = ['@yantik_press', '@yantik_news']
+            for chat_id in chat_ids:
+                requests.get('https://api.telegram.org/bot{}/sendMessage'.format(token),
+                             params=dict(chat_id=chat_id, text=unescape(strip_tags(self.content))))
+
+            # Разместить на странице в контакте
+            # token = VK_TOKEN
+            # message = unescape(strip_tags(self.content))
+            # group_id = -184997347
+            # requests.post('https://api.vk.com/method/wall.post',
+            #               data={'access_token': token,
+            #                     'owner_id': group_id,
+            #                     'from_group': 1,
+            #                     'message': message,
+            #                     'signed': 0,
+            #                     'v': "5.110"}).json()
+
+        super(Announcing, self).save(*args, **kwargs)
 
 
 class Contacts(models.Model):
