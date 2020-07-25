@@ -68,10 +68,12 @@ class News(models.Model):
 
         # Разместить на каналах в Telegram
         token = TELEGRAM_TOKEN
+        short_url = requests.get('https://clck.ru/--',
+                                 data={'url': absolute_url})
         chat_ids = ['@yantik_press', '@yantik_news']
         for chat_id in chat_ids:
             requests.get('https://api.telegram.org/bot{}/sendMessage'.format(token),
-                         params=dict(chat_id=chat_id, text=absolute_url))
+                         params=dict(chat_id=chat_id, text=short_url.text))
 
         # Разместить на странице в контакте
         token = VK_TOKEN
