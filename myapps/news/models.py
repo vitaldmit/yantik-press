@@ -63,29 +63,32 @@ class News(models.Model):
 
     def save(self, *args, **kwargs):
         absolute_url = 'https://yantik-press.ru' + self.get_absolute_url()
-        message = unescape(strip_tags(self.content))
-        truncated_message = Truncator(message).words(30)
+        # Если новость не имеет primary key значит новость добавляется
+        # Если новость имеет primary key значит новость редактируется и
+        # размещать его в соц сетях не надо
+        if self.pk is None:
+            # Разместить на каналах в Telegram
+            token = TELEGRAM_TOKEN
+            short_url = requests.get('https://clck.ru/--',
+                                     data={'url': absolute_url})
+            chat_ids = ['@yantik_press', '@yantik_news']
+            for chat_id in chat_ids:
+                requests.get('https://api.telegram.org/bot{}/sendMessage'.format(token),
+                             params=dict(chat_id=chat_id, text=short_url.text))
 
-        # Разместить на каналах в Telegram
-        token = TELEGRAM_TOKEN
-        short_url = requests.get('https://clck.ru/--',
-                                 data={'url': absolute_url})
-        chat_ids = ['@yantik_press', '@yantik_news']
-        for chat_id in chat_ids:
-            requests.get('https://api.telegram.org/bot{}/sendMessage'.format(token),
-                         params=dict(chat_id=chat_id, text=short_url.text))
-
-        # Разместить на странице в контакте
-        # token = VK_TOKEN
-        # group_id = -184997347
-        # requests.post('https://api.vk.com/method/wall.post',
-        #               data={'access_token': token,
-        #                     'owner_id': group_id,
-        #                     'from_group': 1,
-        #                     'message': truncated_message,
-        #                     'attachments': absolute_url,
-        #                     'signed': 0,
-        #                     'v': "5.110"}).json()
+            # Разместить на странице в контакте
+            # token = VK_TOKEN
+            # message = unescape(strip_tags(self.content))
+            # truncated_message = Truncator(message).words(30)
+            # group_id = -184997347
+            # requests.post('https://api.vk.com/method/wall.post',
+            #               data={'access_token': token,
+            #                     'owner_id': group_id,
+            #                     'from_group': 1,
+            #                     'message': truncated_message,
+            #                     'attachments': absolute_url,
+            #                     'signed': 0,
+            #                     'v': "5.110"}).json()
 
         super(News, self).save(*args, **kwargs)
 
