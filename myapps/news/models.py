@@ -74,7 +74,7 @@ class News(models.Model):
             chat_ids = ['@yantik_press', '@yantik_news']
             for chat_id in chat_ids:
                 requests.get('https://api.telegram.org/bot{}/sendMessage'.format(token),
-                             params=dict(chat_id=chat_id, text=short_url.text))
+                             params=dict(chat_id=chat_id, text=self.title + "\n" + short_url.text))
 
             # Разместить на странице в контакте
             # token = VK_TOKEN
