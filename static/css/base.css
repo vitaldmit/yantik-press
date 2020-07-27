@@ -300,7 +300,7 @@ a.list-group-item.list-group-item-action.active {
     /* font-style: italic; */
 }
 .footer a {
-    display: block;
+    display: inline-block;
     color: #d6d6d6;
 }
 .footer-left {
