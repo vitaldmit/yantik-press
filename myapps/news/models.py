@@ -2,8 +2,8 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
 from django.utils import timezone
-# from django.utils.html import strip_tags
-# from django.utils.text import Truncator
+from django.utils.html import strip_tags
+from django.utils.text import Truncator
 from .tokens import TELEGRAM_TOKEN, VK_TOKEN
 
 from tinymce.models import HTMLField
@@ -77,18 +77,18 @@ class News(models.Model):
                              params=dict(chat_id=chat_id, text=self.title + "\n" + short_url.text))
 
             # Разместить на странице в контакте
-            # token = VK_TOKEN
-            # message = unescape(strip_tags(self.content))
-            # truncated_message = Truncator(message).words(30)
-            # group_id = -184997347
-            # requests.post('https://api.vk.com/method/wall.post',
-            #               data={'access_token': token,
-            #                     'owner_id': group_id,
-            #                     'from_group': 1,
-            #                     'message': truncated_message,
-            #                     'attachments': absolute_url,
-            #                     'signed': 0,
-            #                     'v': "5.110"}).json()
+            token = VK_TOKEN
+            message = unescape(strip_tags(self.content))
+            truncated_message = Truncator(message).words(30)
+            group_id = -184997347
+            requests.post('https://api.vk.com/method/wall.post',
+                          data={'access_token': token,
+                                'owner_id': group_id,
+                                'from_group': 1,
+                                'message': truncated_message,
+                                'attachments': absolute_url,
+                                'signed': 0,
+                                'v': "5.110"}).json()
 
         super(News, self).save(*args, **kwargs)
 
