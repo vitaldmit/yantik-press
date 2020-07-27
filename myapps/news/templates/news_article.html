@@ -76,17 +76,17 @@
         <div class="news__photo-gallery">
             {% for photogallery in news_article.photogallery_news.all %}
                 {% for imgs in photogallery.get_subfeature_photos %}
-                {# Фотографии фотогалереи #}
-                <div class="photo float-left">
-                    <a href="/media/{{ imgs.image }}" rel="gallery" class="swipebox" title="{{ photogallery_article.title}}">
-                        {% thumbnail imgs.image "200x150" crop="center" as im %}
-                        <img src="{{ im.url }}" width="{{ im.width }}" alt="{{ photogallery.title }}" loading="lazy">
-                        {% endthumbnail %}
-                    </a>
-                </div>
+                    {# Фотографии фотогалереи #}
+                    <div class="photo float-left">
+                        <a href="/media/{{ imgs.image }}" rel="gallery" class="swipebox" title="{{ photogallery_article.title}}">
+                            {% thumbnail imgs.image "200x150" crop="center" as im %}
+                            <img src="{{ im.url }}" width="{{ im.width }}" alt="{{ photogallery.title }}" loading="lazy">
+                            {% endthumbnail %}
+                        </a>
+                    </div>
                 {% endfor %}
                 {# Главное фото фотогалереи #}
-		{% comment %}
+                {% comment %}
                 <div class="photo float-left">
                     <a href="/media/{{ photogallery.image }}" rel="gallery" class="swipebox" title="{{ photogallery_article.title}}">
                         {% thumbnail photogallery.image "200x150" crop="center" as im %}
@@ -94,7 +94,7 @@
                         {% endthumbnail %}
                     </a>
                 </div>
-		{% endcomment %}
+                {% endcomment %}
             {% endfor %}
         </div>
         <div class="clearfix"></div>

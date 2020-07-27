@@ -55,10 +55,9 @@
                       {% endfor %}
                       {% include "include_paginations.html" with page=all_results %}
                     </div>
-
-                  {% include "include_banners.html" %}
                 {% else %}
                 По вашему запросу "{{ query }}" ничего не найдено.
                 {% endif %}
+                {% include "include_banners.html" %}
               </div>
 {% endblock %}

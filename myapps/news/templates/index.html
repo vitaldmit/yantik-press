@@ -58,26 +58,26 @@
                                         </a>
                                       </div>
                                   {% for photogallery in news.photogallery_news.all %} 
-                                  {# Главное фото фотогалереи #}
-				      {% comment %}
-                                        <div class="carousel-item">
-                                          <a href="/media/{{ photogallery.image }}" rel="gallery" class="swipebox" title="{{ news.title }}">
-                                            {% thumbnail photogallery.image "500x350" crop="center" as im %}
-                                                <img class="d-block w-100 rounded" src="{{ im.url }}" width="{{ im.width }}" alt="{{ photogallery.title }}" loading="lazy">
-                                            {% endthumbnail %}
-                                          </a>
-                                        </div>
-				      {% endcomment %}
-				      	{% for imgs in photogallery.photogallery_images.all %}
-                                          {# Фотографии фотогалереи #}
+                                    {# Главное фото фотогалереи #}
+                                    {% comment %}
                                           <div class="carousel-item">
-                                            <a href="/media/{{ imgs.image }}" rel="gallery" class="swipebox" title="{{ news.title }}">
-                                              {% thumbnail imgs.image "500x350" crop="center" as im %}
+                                            <a href="/media/{{ photogallery.image }}" rel="gallery" class="swipebox" title="{{ news.title }}">
+                                              {% thumbnail photogallery.image "500x350" crop="center" as im %}
                                                   <img class="d-block w-100 rounded" src="{{ im.url }}" width="{{ im.width }}" alt="{{ photogallery.title }}" loading="lazy">
                                               {% endthumbnail %}
                                             </a>
                                           </div>
-                                        {% endfor %}
+                                    {% endcomment %}
+                                    {% for imgs in photogallery.photogallery_images.all %}
+                                        {# Фотографии фотогалереи #}
+                                        <div class="carousel-item">
+                                          <a href="/media/{{ imgs.image }}" rel="gallery" class="swipebox" title="{{ news.title }}">
+                                            {% thumbnail imgs.image "500x350" crop="center" as im %}
+                                                <img class="d-block w-100 rounded" src="{{ im.url }}" width="{{ im.width }}" alt="{{ photogallery.title }}" loading="lazy">
+                                            {% endthumbnail %}
+                                          </a>
+                                        </div>
+                                    {% endfor %}
                                   {% endfor %}
                                       </div>
                                       {# Навигация #}
