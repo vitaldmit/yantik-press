@@ -86,6 +86,7 @@
                 </div>
                 {% endfor %}
                 {# Главное фото фотогалереи #}
+		{% comment %}
                 <div class="photo float-left">
                     <a href="/media/{{ photogallery.image }}" rel="gallery" class="swipebox" title="{{ photogallery_article.title}}">
                         {% thumbnail photogallery.image "200x150" crop="center" as im %}
@@ -93,6 +94,7 @@
                         {% endthumbnail %}
                     </a>
                 </div>
+		{% endcomment %}
             {% endfor %}
         </div>
         <div class="clearfix"></div>
