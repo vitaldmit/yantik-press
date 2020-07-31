@@ -80,7 +80,7 @@ class News(models.Model):
             token = VK_TOKEN
             message = unescape(strip_tags(self.content))
             truncated_message = Truncator(message).words(30)
-            group_id = -184997347
+            group_id = -133578137
             requests.post('https://api.vk.com/method/wall.post',
                           data={'access_token': token,
                                 'owner_id': group_id,
