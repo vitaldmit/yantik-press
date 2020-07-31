@@ -80,8 +80,9 @@
                                     {% endfor %}
                                   {% endfor %}
                                       </div>
-                                      {# Навигация #}
-                                        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                                      {# Навигация если есть фотогалерея#}
+                                      {% if news.photogallery_news.all %}
+                                         <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
                                           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                           <span class="sr-only">Назад</span>
                                         </a>
@@ -89,6 +90,7 @@
                                           <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                           <span class="sr-only">Вперед</span>
                                         </a>
+                                      {% endif %}
                                     </div>
                             {% else %}
                               {% thumbnail news.image "250" crop="center" as im %}
