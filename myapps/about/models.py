@@ -264,16 +264,16 @@ class Announcing(models.Model):
                              params=dict(chat_id=chat_id, text=unescape(strip_tags(self.content))))
 
             # Разместить на странице в контакте
-            # token = VK_TOKEN
-            # message = unescape(strip_tags(self.content))
-            # group_id = -184997347
-            # requests.post('https://api.vk.com/method/wall.post',
-            #               data={'access_token': token,
-            #                     'owner_id': group_id,
-            #                     'from_group': 1,
-            #                     'message': message,
-            #                     'signed': 0,
-            #                     'v': "5.110"}).json()
+            token = VK_TOKEN
+            message = unescape(strip_tags(self.content))
+            group_id = -133578137
+            requests.post('https://api.vk.com/method/wall.post',
+                          data={'access_token': token,
+                                'owner_id': group_id,
+                                'from_group': 1,
+                                'message': message,
+                                'signed': 0,
+                                'v': "5.110"}).json()
 
         super(Announcing, self).save(*args, **kwargs)
 
