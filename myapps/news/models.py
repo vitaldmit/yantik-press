@@ -67,27 +67,26 @@ class News(models.Model):
         # Если новость имеет primary key значит новость редактируется и
         # размещать его в соц сетях не надо
         if self.pk is None:
-            # Разместить в Telegram
-            short_url = requests.get('https://clck.ru/--',
-                                     data={'url': absolute_url})
-            requests.get('https://api.telegram.org/bot{}/sendMessage'.format(TELEGRAM_TOKEN),
-                             params=dict(chat_id='@yantik_press', text=self.title + "\n" + short_url.text))
-
-            # Разместить на странице в контакте
             message = unescape(strip_tags(self.content))
             truncated_message = Truncator(message).words(30)
-            group_id = -133578137
+            short_url = requests.get('https://clck.ru/--',
+                                     data={'url': absolute_url}).text
+
+            # Разместить в Telegram
+            requests.get('https://api.telegram.org/bot{}/sendMessage'.format(TELEGRAM_TOKEN),
+                             params=dict(chat_id='@yantik_press', text=self.title + "\n" + short_url))
+
+            # Разместить в контакте
             requests.post('https://api.vk.com/method/wall.post',
                           data={'access_token': VK_TOKEN,
-                                'owner_id': group_id,
+                                'owner_id': -133578137,
                                 'from_group': 1,
                                 'message': truncated_message,
                                 'attachments': short_url,
                                 'signed': 0,
                                 'v': "5.110"}).json()
 
-            # Разместить на странице в фэйсбук
-            token = FB_TOKEN
+            # Разместить в фэйсбук
             requests.post('https://graph.facebook.com/v7.0/urpravum/feed',
                           data={'access_token': FB_TOKEN,
                                 'message': truncated_message,
