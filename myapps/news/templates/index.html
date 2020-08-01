@@ -103,9 +103,9 @@
                               <p>
                                 {# Если новость имеет изображение текст уменьшаем, если нет увеличиваем. Таким образом достигается равномерность контента #}
                                 {% if news.image%}
-                                  {{ news.content|truncatewords_html:25|safe|striptags|nbsp2space }}
+                                  {{ news.content|safe|striptags|nbsp2space|truncatewords_html:25 }}
                                 {% else %}
-                                  {{ news.content|truncatewords_html:75|safe|striptags|nbsp2space }}
+                                  {{ news.content|safe|striptags|nbsp2space|truncatewords_html:45 }}
                                 {% endif %}
                                 <a class="font-weight-bold" href="{{ news.get_absolute_url }}"> подробнее</a>
                               </p>

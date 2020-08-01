@@ -15,7 +15,7 @@
     {% if news_article.description %}
         <meta name="description" content="{{ news_article.description }}">
     {% else %}
-        <meta name="description" content="{{ news_article.content|truncatewords_html:35|safe|striptags|nbsp2space }}">
+        <meta name="description" content="{{ news_article.content|safe|striptags|nbsp2space|truncatewords_html:35 }}">
     {% endif %}
 {% endblock %}
 
@@ -23,7 +23,7 @@
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="ru_RU">
     <meta property="og:title" content="{{ news_article.title }}">
-    <meta property="og:description" content="{{ news_article.content|truncatewords_html:35|safe|striptags|nbsp2space }}">
+    <meta property="og:description" content="{{ news_article.content|safe|striptags|nbsp2space|truncatewords_html:35 }}">
     <meta property="og:url" content="{{ request.scheme }}://{{ request.site.name }}">
     <meta property="og:site_name" content="ЯЛ ӖҪЧЕНӖ - Янтиковская районная газета 'Селький труженик'">
     {% if news_article.image %}
