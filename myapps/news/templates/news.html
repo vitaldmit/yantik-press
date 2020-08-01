@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load thumbnail %}
-{% block title %}Новости / ЯЛ ӖҪЧЕНӖ - Янтиковская районная газета "Селький труженик"{% endblock %}
+{% block title %}Новости {% if page %}(страница - {{ page }}){% endif %} / ЯЛ ӖҪЧЕНӖ - Янтиковская районная газета "Селький труженик" {% endblock %}
 {% block breadcrumb %}
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">

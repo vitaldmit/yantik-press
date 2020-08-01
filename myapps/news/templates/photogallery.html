@@ -1,7 +1,7 @@
 
 {% extends 'base.html' %}
 {% load thumbnail %}
-{% block title %}Фотогалереи / ЯЛ ӖҪЧЕНӖ - Янтиковская районная газета "Селький труженик"{% endblock %}
+{% block title %}Фотогалереи {% if page %}(страница - {{ page }}){% endif %} / ЯЛ ӖҪЧЕНӖ - Янтиковская районная газета "Селький труженик"{% endblock %}
 {% block breadcrumb %}
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
