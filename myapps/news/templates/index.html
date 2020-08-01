@@ -90,8 +90,8 @@
                                           <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                           <span class="sr-only">Вперед</span>
                                         </a>
-                                      {% endif %}
-                                    </div>
+                            {% endif %}
+                            </div>
                             {% else %}
                               {% thumbnail news.image "250" crop="center" as im %}
                                 <img class="rounded float-left news__post-imgs" alt="{{ news.title }}" src="{{ im.url }}" data-holder-rendered="true" width="{{ im.width }}" height="{{ im.height }}" loading="lazy">
@@ -101,7 +101,12 @@
 
                           <div class="text-justify news__content">
                               <p>
-                                {{ news.content|truncatewords_html:27|safe|striptags|nbsp2space }}
+                                {# Если новость имеет изображение текст уменьшаем, если нет увеличиваем. Таким образом достигается равномерность контента #}
+                                {% if news.image%}
+                                  {{ news.content|truncatewords_html:25|safe|striptags|nbsp2space }}
+                                {% else %}
+                                  {{ news.content|truncatewords_html:75|safe|striptags|nbsp2space }}
+                                {% endif %}
                                 <a class="font-weight-bold" href="{{ news.get_absolute_url }}"> подробнее</a>
                               </p>
                           </div>
