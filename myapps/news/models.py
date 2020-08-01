@@ -4,7 +4,7 @@ from django.urls import reverse
 from django.utils import timezone
 from django.utils.html import strip_tags
 from django.utils.text import Truncator
-from .tokens import TELEGRAM_TOKEN, VK_TOKEN
+from .tokens import TELEGRAM_TOKEN, VK_TOKEN, FB_TOKEN
 
 from tinymce.models import HTMLField
 from html import unescape
@@ -67,28 +67,31 @@ class News(models.Model):
         # Если новость имеет primary key значит новость редактируется и
         # размещать его в соц сетях не надо
         if self.pk is None:
-            # Разместить на каналах в Telegram
-            token = TELEGRAM_TOKEN
+            # Разместить в Telegram
             short_url = requests.get('https://clck.ru/--',
                                      data={'url': absolute_url})
-            chat_ids = ['@yantik_press', '@yantik_news']
-            for chat_id in chat_ids:
-                requests.get('https://api.telegram.org/bot{}/sendMessage'.format(token),
-                             params=dict(chat_id=chat_id, text=self.title + "\n" + short_url.text))
+            requests.get('https://api.telegram.org/bot{}/sendMessage'.format(TELEGRAM_TOKEN),
+                             params=dict(chat_id='@yantik_press', text=self.title + "\n" + short_url.text))
 
             # Разместить на странице в контакте
-            token = VK_TOKEN
             message = unescape(strip_tags(self.content))
             truncated_message = Truncator(message).words(30)
             group_id = -133578137
             requests.post('https://api.vk.com/method/wall.post',
-                          data={'access_token': token,
+                          data={'access_token': VK_TOKEN,
                                 'owner_id': group_id,
                                 'from_group': 1,
                                 'message': truncated_message,
-                                'attachments': absolute_url,
+                                'attachments': short_url,
                                 'signed': 0,
                                 'v': "5.110"}).json()
+
+            # Разместить на странице в фэйсбук
+            token = FB_TOKEN
+            requests.post('https://graph.facebook.com/v7.0/urpravum/feed',
+                          data={'access_token': FB_TOKEN,
+                                'message': truncated_message,
+                                'link': short_url}).json()
 
         super(News, self).save(*args, **kwargs)
 

@@ -14,7 +14,7 @@
     <meta property="og:locale" content="ru_RU">
     <meta property="og:title" content="Подписка на газету ЯЛ ӖҪЧЕНӖ">
     <meta property="og:description" content="Подписка в редакции, подписка на газету">
-    <meta property="og:url" content="{{ request.scheme }}://{{ request.site.name }}">
+    <meta property="og:url" content="{{ request.scheme }}://{{ request.site.name }}{{ request.path }}">
     <meta property="og:site_name" content="ЯЛ ӖҪЧЕНӖ - Янтиковская районная газета 'Селький труженик'">
     {% if all_subscribe.0.image %}
         <meta property="og:image" content="{{ request.scheme }}://{{ request.site.name }}/media/{{ all_subscribe.0.image }}">

@@ -17,7 +17,7 @@
   <meta property="og:locale" content="ru_RU">
   <meta property="og:title" content="ЯЛ ӖҪЧЕНӖ - Янтиковская районная газета 'Селький труженик'">
   <meta property="og:description" content="ЯЛ ӖҪЧЕНӖ - Янтиковская районная газета 'Селький труженик', новости редакции">
-  <meta property="og:url" content="{{ request.scheme }}://{{ request.site.name }}">
+  <meta property="og:url" content="{{ request.scheme }}://{{ request.site.name }}{{ request.path }}">
   <meta property="og:site_name" content="ЯЛ ӖҪЧЕНӖ - Янтиковская районная газета 'Селький труженик'">
   <meta property="og:image" content="{{ request.scheme }}://{{ request.site.name }}{% static '/images/logo-black-512x512.png' %}">
 {% endblock %}
