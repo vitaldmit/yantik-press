@@ -87,13 +87,13 @@
                 {% endfor %}
                 {# Главное фото фотогалереи #}
                 {% comment %}
-                <div class="photo float-left">
-                    <a href="/media/{{ photogallery.image }}" rel="gallery" class="swipebox" title="{{ photogallery_article.title}}">
-                        {% thumbnail photogallery.image "200x150" crop="center" as im %}
-                        <img src="{{ im.url }}" width="{{ im.width }}" alt="{{ photogallery.title }}" loading="lazy">
-                        {% endthumbnail %}
-                    </a>
-                </div>
+                    <div class="photo float-left">
+                        <a href="/media/{{ photogallery.image }}" rel="gallery" class="swipebox" title="{{ photogallery_article.title}}">
+                            {% thumbnail photogallery.image "200x150" crop="center" as im %}
+                            <img src="{{ im.url }}" width="{{ im.width }}" alt="{{ photogallery.title }}" loading="lazy">
+                            {% endthumbnail %}
+                        </a>
+                    </div>
                 {% endcomment %}
             {% endfor %}
         </div>

@@ -90,14 +90,14 @@
                                           <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                           <span class="sr-only">Вперед</span>
                                         </a>
-                            {% endif %}
+                                      {% endif %}
                             </div>
                             {% else %}
                               {% thumbnail news.image "250" crop="center" as im %}
                                 <img class="rounded float-left news__post-imgs" alt="{{ news.title }}" src="{{ im.url }}" data-holder-rendered="true" width="{{ im.width }}" height="{{ im.height }}" loading="lazy">
                               {% endthumbnail %}
-                            {% endif %}
-                          {% endif %}
+                            {% endif %} {# forloop.first #}
+                          {% endif %} {# news.image #}
 
                           <div class="text-justify news__content">
                               <p>
@@ -141,7 +141,7 @@
                       {% endif %}
                       <div class="text-center news__content">
                         <p>
-                          {{ publication.content|truncatewords_html:15|safe|striptags|nbsp2space }}
+                          {{ publication.content|safe|striptags|nbsp2space|truncatewords_html:15 }}
                           <a class="font-weight-bold" href="{{ publication.get_absolute_url }}"> тĕплĕнрех</a>
                         </p>
                       </div>
