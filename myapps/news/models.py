@@ -70,11 +70,11 @@ class News(models.Model):
             message = unescape(strip_tags(self.content))
             truncated_message = Truncator(message).words(30)
             short_url = requests.get('https://clck.ru/--',
-                                     data={'url': absolute_url}).text
+                                     data={'url': absolute_url})
 
             # Разместить в Telegram
             requests.get('https://api.telegram.org/bot{}/sendMessage'.format(TELEGRAM_TOKEN),
-                             params=dict(chat_id='@yantik_press', text=self.title + "\n" + short_url))
+                             params=dict(chat_id='@yantik_press', text=self.title + "\n" + short_url.text))
 
             # Разместить в контакте
             requests.post('https://api.vk.com/method/wall.post',
