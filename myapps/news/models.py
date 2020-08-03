@@ -82,7 +82,7 @@ class News(models.Model):
                                 'owner_id': -133578137,
                                 'from_group': 1,
                                 'message': truncated_message,
-                                'attachments': short_url,
+                                'attachments': absolute_url,
                                 'signed': 0,
                                 'v': "5.110"}).json()
 
@@ -90,7 +90,7 @@ class News(models.Model):
             requests.post('https://graph.facebook.com/v7.0/urpravum/feed',
                           data={'access_token': FB_TOKEN,
                                 'message': truncated_message,
-                                'link': short_url}).json()
+                                'link': absolute_url}).json()
 
         super(News, self).save(*args, **kwargs)
 
