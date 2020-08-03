@@ -23,7 +23,6 @@
 {% block open_graph %}
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="ru_RU">
-    <meta property="og:type" content="article" />
     <meta property="og:title" content="{{ news_article.title }}">
     <meta property="og:description" content="{{ news_article.content|safe|striptags|nbsp2space|truncatewords_html:35 }}">
     <meta property="og:url" content="{{ request.scheme }}://{{ request.site.name }}{{ request.path }}">
