@@ -74,7 +74,7 @@ class News(models.Model):
 
             # Разместить в Telegram
             requests.get('https://api.telegram.org/bot{}/sendMessage'.format(TELEGRAM_TOKEN),
-                             params=dict(chat_id='@yantik_press', text=self.title + "\n" + absolute_url.text))
+                             params=dict(chat_id='@yantik_press', text=self.title + "\n" + absolute_url))
 
             # Разместить в контакте
             requests.post('https://api.vk.com/method/wall.post',
