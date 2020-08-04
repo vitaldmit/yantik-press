@@ -62,7 +62,7 @@ class News(models.Model):
         return self.title
 
     def save(self, *args, **kwargs):
-        # absolute_url = 'https://yantik-press.ru' + self.get_absolute_url()
+        absolute_url = 'https://yantik-press.ru' + self.get_absolute_url()
         # # Если новость не имеет primary key значит новость добавляется
         # # Если новость имеет primary key значит новость редактируется и
         # # размещать его в соц сетях не надо
