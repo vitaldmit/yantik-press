@@ -141,7 +141,7 @@
                       {% endif %}
                       <div class="text-center news__content">
                         <p>
-                          {{ publication.content|safe|striptags|nbsp2space|truncatewords_html:15 }}
+                          {{ publication.content|safe|striptags|nbsp2space|truncatewords_html:10 }}
                           <a class="font-weight-bold" href="{{ publication.get_absolute_url }}"> тĕплĕнрех</a>
                         </p>
                       </div>
@@ -149,7 +149,7 @@
                     </div>
                     {% endfor %}
                       <div class="all_btn">
-                        <a href="{% url 'news:publications' %}?page=2" class="btn btn-info btn-sm btn-block">Далее</a>
+                        <a href="{% url 'news:publications' %}?page=2" class="btn btn-info btn-sm btn-block">Малалла</a>
                       </div>
                   </div>
                 </div>
