@@ -119,7 +119,7 @@
                       <div class="all_publications"><a href="{% url 'news:news' %}" class="btn btn-danger btn-sm">Перейти к новостям</a></div>
                     {% endcomment %}
                       <div class="all_btn">
-                        <a href="{% url 'news:news' %}" class="btn btn-info btn-sm btn-block">Перейти к новостям</a>
+                        <a href="{% url 'news:news' %}?page=2" class="btn btn-info btn-sm btn-block">Далее</a>
                       </div>
                   </div>
 
@@ -149,7 +149,7 @@
                     </div>
                     {% endfor %}
                       <div class="all_btn">
-                        <a href="{% url 'news:publications' %}" class="btn btn-info btn-sm btn-block">Перейти к публикациям</a>
+                        <a href="{% url 'news:publications' %}?page=2" class="btn btn-info btn-sm btn-block">Далее</a>
                       </div>
                   </div>
                 </div>
