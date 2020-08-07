@@ -67,8 +67,8 @@ class News(models.Model):
         # Если новость имеет primary key значит новость редактируется и
         # размещать его в соц сетях не надо
         if self.pk is None:
-            # message = unescape(strip_tags(self.content))
-            # truncated_message = Truncator(message).words(30)
+            message = unescape(strip_tags(self.content))
+            truncated_message = Truncator(message).words(30)
             short_url = requests.get('https://clck.ru/--',
                                      data={'url': absolute_url}).text
             # print(absolute_url)
@@ -79,15 +79,15 @@ class News(models.Model):
                              params=dict(chat_id='@yantik_press', text=self.title + "\n" + short_url))
             # print(response.text)
 
-            # # Разместить в контакте
-            # response = requests.post('https://api.vk.com/method/wall.post',
-            #               data={'access_token': VK_TOKEN,
-            #                     'owner_id': -133578137,
-            #                     'from_group': 1,
-            #                     'message': truncated_message,
-            #                     'attachments': absolute_url,
-            #                     'signed': 0,
-            #                     'v': "5.110"}).json()
+            # Разместить в контакте
+            response = requests.post('https://api.vk.com/method/wall.post',
+                          data={'access_token': VK_TOKEN,
+                                'owner_id': -133578137,
+                                'from_group': 1,
+                                'message': truncated_message,
+                                'attachments': absolute_url,
+                                'signed': 0,
+                                'v': "5.110"}).json()
             # print(response)
 
             # # Разместить в фэйсбук
