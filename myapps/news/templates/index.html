@@ -138,13 +138,22 @@
                         {% thumbnail publication.image "250" crop="center" as im %}
                           <img class="rounded w-100" alt="" src="{{ im.url }}" data-holder-rendered="true" width="{{ im.width }}" height="{{ im.height }}" loading="lazy">
                         {% endthumbnail %}
+                        {% else %}
+                        <div class="text-center news__content">
+                          <p>
+                            {{ publication.content|safe|striptags|nbsp2space|truncatewords_html:25 }}
+                            <a class="font-weight-bold" href="{{ publication.get_absolute_url }}"> тĕплĕнрех</a>
+                          </p>
+                        </div>
                       {% endif %}
-                      <div class="text-center news__content">
-                        <p>
-                          {# {{ publication.content|safe|striptags|nbsp2space|truncatewords_html:10 }} #}
-                          <a class="font-weight-bold" href="{{ publication.get_absolute_url }}"> тĕплĕнрех</a>
-                        </p>
-                      </div>
+                      {% comment %}
+                        <div class="text-center news__content">
+                          <p>
+                            {{ publication.content|safe|striptags|nbsp2space|truncatewords_html:10 }}
+                            <a class="font-weight-bold" href="{{ publication.get_absolute_url }}"> тĕплĕнрех</a>
+                          </p>
+                        </div>
+                      {% endcomment %}
                       <div class="news__created"><i class="far fa-calendar-alt"></i> {{ publication.publish }}</div>
                     </div>
                     {% endfor %}
