@@ -103,7 +103,7 @@
                               <p>
                                 {# Если новость имеет изображение текст уменьшаем, если нет увеличиваем. Таким образом достигается равномерность контента #}
                                 {% if news.image%}
-                                  {{ news.content|safe|striptags|nbsp2space|truncatewords_html:25 }}
+                                  {{ news.content|safe|striptags|nbsp2space|truncatewords_html:20 }}
                                 {% else %}
                                   {{ news.content|safe|striptags|nbsp2space|truncatewords_html:45 }}
                                 {% endif %}
@@ -142,7 +142,7 @@
                         <div class="text-center news__content">
                           <p>
                             {{ publication.content|safe|striptags|nbsp2space|truncatewords_html:25 }}
-                            <a class="font-weight-bold" href="{{ publication.get_absolute_url }}"> тĕплĕнрех</a>
+                            {# <a class="font-weight-bold" href="{{ publication.get_absolute_url }}"> тĕплĕнрех</a> #}
                           </p>
                         </div>
                       {% endif %}
