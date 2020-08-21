@@ -68,7 +68,7 @@ class News(models.Model):
         # размещать его в соц сетях не надо
         if self.pk is None:
             message = unescape(strip_tags(self.content))
-            truncated_message = Truncator(message).words(30)
+            truncated_message = Truncator(message).words(60)
             short_url = requests.get('https://clck.ru/--',
                                      data={'url': absolute_url}).text
             # print(absolute_url)
