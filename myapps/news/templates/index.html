@@ -146,14 +146,14 @@
                           </p>
                         </div>
                       {% endif %}
-                      {% comment %}
+                      
                         <div class="text-center news__content">
                           <p>
                             {{ publication.content|safe|striptags|nbsp2space|truncatewords_html:10 }}
                             <a class="font-weight-bold" href="{{ publication.get_absolute_url }}"> тĕплĕнрех</a>
                           </p>
                         </div>
-                      {% endcomment %}
+                      
                       <div class="news__created"><i class="far fa-calendar-alt"></i> {{ publication.publish }}</div>
                     </div>
                     {% endfor %}
