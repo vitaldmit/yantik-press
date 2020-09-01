@@ -147,8 +147,8 @@
                         {% else %}
                         <div class="text-center news__content">
                           <p>
-                            {{ publication.content|safe|striptags|nbsp2space|truncatewords_html:25 }}
-                            {# <a class="font-weight-bold" href="{{ publication.get_absolute_url }}"> тĕплĕнрех</a> #}
+                            {{ publication.content|safe|striptags|nbsp2space|truncatewords_html:20 }}
+                            <a class="font-weight-bold" href="{{ publication.get_absolute_url }}"> тĕплĕнрех</a>
                           </p>
                         </div>
                       {% endif %}
