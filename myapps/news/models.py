@@ -182,7 +182,7 @@ class VideoNews(models.Model):
     cap = models.CharField('Видео CAP.RU', max_length=150,
                            null=True, blank=True)
     youtube = models.CharField('Видео YouTube', max_length=100,
-                               null=True, blank=True, help_text='Код видео')
+                               null=True, blank=True, help_text='Код видео. Например "XyfjVLIAYCU"')
     instagram = models.CharField('Видео Instagram', max_length=100,
                                  null=True, blank=True)
     kod = models.TextField('Код для вставки', blank=True, null=True)
