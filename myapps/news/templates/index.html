@@ -136,7 +136,7 @@
                       </div>
                       {% if publication.image %}
                         {% thumbnail publication.image "250" crop="center" as im %}
-                          <img class="rounded w-100" alt="" src="{{ im.url }}" data-holder-rendered="true" width="{{ im.width }}" height="{{ im.height }}" loading="lazy">
+                          <img class="rounded w-100" alt="{{ publication.title }}" src="{{ im.url }}" data-holder-rendered="true" width="{{ im.width }}" height="{{ im.height }}" loading="lazy">
                         {% endthumbnail %}
                         {% comment %}
                           <div class="text-center news__content">
