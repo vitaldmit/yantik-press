@@ -6,7 +6,6 @@ media/
 static_collected/
 project/settings/production.py
 project/settings/local.py
-db.sqlite3
 manage.py
 
 myapps/news/tokens.py
