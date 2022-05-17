@@ -33,9 +33,10 @@ class News(models.Model):
                                  blank=True, null=True,
                                  help_text='Короткое описание к главному фото')
     content = HTMLField('Контент', )
+    on_socialnet = models.BooleanField('Опубликовать в соцсетях', default=False)
     source = models.CharField('Первоисточник', max_length=150,
                               blank=True, null=True)
-    visible = models.BooleanField('Показывать', default=1)
+    visible = models.BooleanField('Показывать', default=True)
     # ontop = models.BooleanField('Размещать сверху', )
     created = models.DateTimeField('Создан', auto_now=False, auto_now_add=True)
     updated = models.DateTimeField('Обновлен',
@@ -71,31 +72,30 @@ class News(models.Model):
             truncated_message = Truncator(message).words(60)
             short_url = requests.get('https://clck.ru/--',
                                      data={'url': absolute_url}).text
-            # print(absolute_url)
-            # print(short_url)
 
             # Разместить в Telegram
-            response = requests.get('https://api.telegram.org/bot{}/sendMessage'.format(TELEGRAM_TOKEN),
-                             params=dict(chat_id='@yantik_press', text=self.title + "\n" + short_url))
-            # print(response.text)
+            if self.on_socialnet:
+                response = requests.get('https://api.telegram.org/bot{}/sendMessage'.format(TELEGRAM_TOKEN),
+                                 params=dict(chat_id='@yantik_press', text=self.title + "\n" + short_url))
+                # print(response.text)
 
-            # Разместить в контакте
-            response = requests.post('https://api.vk.com/method/wall.post',
-                          data={'access_token': VK_TOKEN,
-                                'owner_id': -133578137,
-                                'from_group': 1,
-                                'message': truncated_message,
-                                'attachments': absolute_url,
-                                'signed': 0,
-                                'v': "5.110"}).json()
-            # print(response)
+                # Разместить в контакте
+                # response = requests.post('https://api.vk.com/method/wall.post',
+                #               data={'access_token': VK_TOKEN,
+                #                     'owner_id': -133578137,
+                #                     'from_group': 1,
+                #                     'message': truncated_message,
+                #                     'attachments': absolute_url,
+                #                     'signed': 0,
+                #                     'v': "5.110"}).json()
+                # print(response)
 
-            # # Разместить в фэйсбук
-            # response = requests.post('https://graph.facebook.com/v7.0/urpravum/feed',
-            #               data={'access_token': FB_TOKEN,
-            #                     'message': truncated_message,
-            #                     'link': absolute_url}).json()
-            # print(response)
+                # # Разместить в фэйсбук
+                # response = requests.post('https://graph.facebook.com/v7.0/urpravum/feed',
+                #               data={'access_token': FB_TOKEN,
+                #                     'message': truncated_message,
+                #                     'link': absolute_url}).json()
+                # print(response)
 
         super(News, self).save(*args, **kwargs)
 
@@ -113,7 +113,7 @@ class PhotoGallery(models.Model):
     image = models.ImageField('Главное фото', upload_to='newsimages/%Y/%m/%d/',
                               null=True, blank=True)
     content = HTMLField('Контент', null=True, blank=True)
-    visible = models.BooleanField('Показывать', default=1)
+    visible = models.BooleanField('Показывать', default=True)
     source = models.CharField('Первоисточник', max_length=150,
                               blank=True, null=True)
     created = models.DateTimeField('Создан', auto_now=False, auto_now_add=True)
@@ -150,7 +150,7 @@ class PhotoGalleryImages(models.Model):
                                      related_name='photogallery_images')
     image = models.ImageField('Фото', upload_to='newsimages/%Y/%m/%d/',
                               null=True, blank=True)
-    visible = models.BooleanField('Показывать', default=1)
+    visible = models.BooleanField('Показывать', default=True)
     created = models.DateTimeField('Создан', auto_now=False, auto_now_add=True)
     updated = models.DateTimeField('Обновлен',
                                    auto_now=True, auto_now_add=False)
@@ -187,7 +187,7 @@ class VideoNews(models.Model):
                                  null=True, blank=True)
     kod = models.TextField('Код для вставки', blank=True, null=True)
     content = HTMLField('Контент', null=True, blank=True)
-    visible = models.BooleanField('Показывать', default=1)
+    visible = models.BooleanField('Показывать', default=True)
     source = models.CharField('Первоисточник', max_length=150,
                               blank=True, null=True)
     created = models.DateTimeField('Создан', auto_now=False, auto_now_add=True)
@@ -224,7 +224,7 @@ class Banners(models.Model):
     image = models.ImageField('Фото баннера',
                               upload_to='bannersimages/%Y-%m-%d/',
                               blank=True, null=True)
-    visible = models.BooleanField('Показывать', default=1)
+    visible = models.BooleanField('Показывать', default=True)
     created = models.DateTimeField('Создан', auto_now=False, auto_now_add=True)
     updated = models.DateTimeField('Обновлен',
                                    auto_now=True, auto_now_add=False)

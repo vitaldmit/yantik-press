@@ -13,10 +13,14 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
+
+# You need to choose type of auto-created primary keys 
+# https://docs.djangoproject.com/en/3.2/releases/3.2/#customizing-type-of-auto-created-primary-keys (new in Django 3.2)
+
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
 
 # Application definition
@@ -133,14 +137,3 @@ MEDIA_URL = '/media/'
 # Example: "/var/www/example.com/media/"
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
-TINYMCE_DEFAULT_CONFIG = {
-    'plugins': "table,spellchecker,paste,searchreplace",
-    'theme': "advanced",
-    'cleanup_on_startup': True,
-    'custom_undo_redo_levels': 10,
-    'width': '80%',
-    'height': 500,
-}
-TINYMCE_SPELLCHECKER = True
-TINYMCE_COMPRESSOR = True

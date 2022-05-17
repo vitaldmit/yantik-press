@@ -14,8 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
-from django.conf.urls import url
+from django.urls import path, include, re_path
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.sitemaps.views import sitemap
@@ -48,7 +47,7 @@ urlpatterns = [
     path('administrat/', admin.site.urls),
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps},
          name='django.contrib.sitemaps.views.sitemap'),
-    url(r'^tinymce/', include('tinymce.urls')),
+    re_path(r'^tinymce/', include('tinymce.urls')),
 ]
 
 # handle /media/, /static/ static files (only if DEBUG is True)
