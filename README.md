@@ -1,1 +1,3 @@
-yantik-press.ru site
+# Сайт написан для сельско районной газеты
+
+Проект написан на `Django`. На сервере использованы `UWSGI` `Nginx` `PostgreSQL`
